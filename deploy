@@ -1,0 +1,3 @@
+git commit -am "make it better 9"
+git push heroku master
+heroku open
