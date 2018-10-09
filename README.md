@@ -5,7 +5,7 @@
 
 The main goal of this project is create a Restful API to be consumed from a client-side app and makes easier to consult all the informations about the Brazilian Food Composition Table made by UNICAMP.
 
-For more informations about this Table you can consult [here](http://www.unicamp.br/nepa/taco/).
+For more informations about this Table you can consult [here](http://www.nepa.unicamp.br/taco/tabela.php).
 
 ## Technologies
 
