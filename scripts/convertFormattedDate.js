@@ -3,7 +3,7 @@ const data = require("../references/TACO_formatted.json");
 const {
   keyToUnitObject,
   concatenateEnergy
-} = require("../src/converters/convertOriginalData");
+} = require("./converterFunctions");
 
 const fixData = () => {
   const normalizedDataByUnit = data.map(food => {
