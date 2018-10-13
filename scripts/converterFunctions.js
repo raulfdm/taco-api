@@ -1,4 +1,5 @@
 const isArray = require("lodash.isarray");
+const omit = require("lodash.omit");
 /**
  *
  * @param {string} key - key of the original format (e.g. protein_g, lipids_g)
@@ -37,6 +38,20 @@ const keyToUnitObject = (key, value, ignoreCases = []) => {
   };
 };
 
+/* TODO: Write jsDocs */
+const concatenateEnergy = ({ energy_kcal, energy_kj, ...rest }) => {
+  const omittedKeys = ["energy_kcal", "energy_kj"];
+
+  const energy = {
+    energy: {
+      kcal: energy_kcal,
+      kj: energy_kj
+    }
+  };
+  return omit(Object.assign({}, rest, { ...energy }), omittedKeys);
+};
+
 module.exports = {
-  keyToUnitObject
+  keyToUnitObject,
+  concatenateEnergy
 };

@@ -1,4 +1,5 @@
-const { keyToUnitObject } = require("./convertOriginalData");
+const { keyToUnitObject, concatenateEnergy } = require("./converterFunctions");
+const { model_1, model_2 } = require("./__models__/taco_formatted");
 
 describe("fn: keyToUnitObject", () => {
   it("should return an object", () => {
@@ -100,5 +101,72 @@ describe("fn: keyToUnitObject", () => {
         [key]: value
       });
     });
+  });
+});
+
+describe.only("fn: concatenateEnergy", () => {
+  it("should return an object", () => {
+    expect(concatenateEnergy(model_1)).toBeInstanceOf(Object);
+  });
+
+  it("should return an object with the property 'energy'", () => {
+    expect(concatenateEnergy(model_1)).toHaveProperty("energy");
+  });
+
+  describe("energy property", () => {
+    const result = concatenateEnergy(model_1).energy;
+    it("should the value be an object", () => {
+      expect(result).toBeInstanceOf(Object);
+    });
+
+    describe("kcal", () => {
+      it("should the value contains the property 'kcal'", () => {
+        expect(result).toHaveProperty("kcal");
+      });
+      it("should kcal has the same value as energy_kcal", () => {
+        expect(result.kcal).toBe(model_1.energy_kcal);
+      });
+    });
+
+    describe("kj", () => {
+      it("should the value contains the property 'kj'", () => {
+        expect(result).toHaveProperty("kj");
+      });
+      it("should kj has the same value as energy_kj", () => {
+        expect(result.kj).toBe(model_1.energy_kj);
+      });
+    });
+  });
+
+  it("should the object return does not contains energy_kcal", () => {
+    expect(concatenateEnergy(model_1)).not.toHaveProperty("energy_kcal");
+  });
+
+  it("should the object return does not contains energy_kj", () => {
+    expect(concatenateEnergy(model_1)).not.toHaveProperty("energy_kj");
+  });
+
+  it("should contain all other properties", () => {
+    const energy = {
+      kcal: 124,
+      kj: 517
+    };
+    const expected = Object.assign({}, model_1, { energy });
+    delete expected.energy_kcal;
+    delete expected.energy_kj;
+
+    expect(concatenateEnergy(model_1)).toEqual(expected);
+  });
+
+  it("should contain all other properties (model 2)", () => {
+    const energy = {
+      kcal: 192,
+      kj: 802
+    };
+    const expected = Object.assign({}, model_2, { energy });
+    delete expected.energy_kcal;
+    delete expected.energy_kj;
+
+    expect(concatenateEnergy(model_2)).toEqual(expected);
   });
 });
