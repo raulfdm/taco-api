@@ -2570,6 +2570,10 @@ lodash.isarray@^4.0.0:
   version "4.0.0"
   resolved "https://npm.staging.nxdev.nl/lodash.isarray/-/lodash.isarray-4.0.0.tgz#2aca496b28c4ca6d726715313590c02e6ea34403"
 
+lodash.omit@^4.5.0:
+  version "4.5.0"
+  resolved "https://npm.staging.nxdev.nl/lodash.omit/-/lodash.omit-4.5.0.tgz#6eb19ae5a1ee1dd9df0b969e66ce0b7fa30b5e60"
+
 lodash.sortby@^4.7.0:
   version "4.7.0"
   resolved "https://npm.staging.nxdev.nl/lodash.sortby/-/lodash.sortby-4.7.0.tgz#edd14c824e2cc9c1e0b0a1b42bb5210516a42438"
@@ -3437,10 +3441,6 @@ qs@6.2.0:
 qs@~6.5.2:
   version "6.5.2"
   resolved "https://npm.staging.nxdev.nl/qs/-/qs-6.5.2.tgz#cb3ae806e8740444584ef154ce8ee98d403f3e36"
-
-ramda@^0.25.0:
-  version "0.25.0"
-  resolved "https://npm.staging.nxdev.nl/ramda/-/ramda-0.25.0.tgz#8fdf68231cffa90bc2f9460390a0cb74a29b29a9"
 
 randomatic@^3.0.0:
   version "3.1.0"
