@@ -19,6 +19,7 @@
     "lodash": "^4.17.11"
   },
   "devDependencies": {
+    "deep-freeze": "^0.0.1",
     "eslint-config-airbnb-base": "^13.1.0",
     "eslint-plugin-import": "^2.14.0",
     "express": "^4.14.0",
