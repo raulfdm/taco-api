@@ -3,5 +3,4 @@ node_js: 10.11.0
 before_script:
   - yarn install
 scripts:
-  - yarn test
-  - yarn lint
+  - yarn quality
