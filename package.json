@@ -1,10 +1,17 @@
 {
-  "name": "taco",
+  "name": "taco.js",
   "version": "0.0.1",
-  "description": "",
-  "main": "index.js",
-  "author": "",
+  "description": "Brazilian Table of Food Composition (TACO) library helper",
+  "homepage": "https://github.com/raulfdm/taco.js",
+  "bugs": {
+    "url": "https://github.com/raulfdm/taco.js/issues"
+  },
   "license": "MIT",
+  "author": {
+    "name": "Raul de Melo",
+    "email": "melo.raulf@gmail.com"
+  },
+  "main": "dist/taco.js",
   "scripts": {
     "start": "node src/index.js",
     "quality": "npx eslint ./src",
@@ -26,7 +33,10 @@
     "husky": "^1.1.2",
     "jest": "^23.6.0",
     "prettier": "1.14.3",
-    "pretty-quick": "^1.8.0"
+    "pretty-quick": "^1.8.0",
+    "rimraf": "^2.6.2",
+    "rollup": "^0.66.6",
+    "rollup-plugin-json": "^3.1.0"
   },
   "husky": {
     "hooks": {
