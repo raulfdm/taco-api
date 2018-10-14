@@ -1,4 +1,5 @@
 const { writeFile } = require('fs');
+const { resolve } = require('path');
 
 const data = require('../references/TACO_formatted.json');
 const {
@@ -93,6 +94,19 @@ const _mergeAminoAcids = food =>
     finalKey: 'amino_acids',
   });
 
+/**
+ *
+ * @param {*} food - Food Object
+ * @description - All food were measured by 100g
+ */
+const _addBase = food =>
+  Object.assign({}, food, {
+    base: {
+      qty: 100,
+      unit: 'g',
+    },
+  });
+
 const _writeCallback = err => {
   if (err) {
     console.error(err);
@@ -103,6 +117,7 @@ const _writeCallback = err => {
 
 const normalizedData = data
   .map(removeEmptyValues)
+  .map(_addBase)
   .map(_normalizeUnits)
   .map(concatenateEnergy)
   .map(_mergeFattyAcids)
@@ -110,4 +125,5 @@ const normalizedData = data
 
 const formattedJsonData = JSON.stringify(normalizedData, null, 2);
 
-writeFile('final.json', formattedJsonData, _writeCallback);
+const PATH = resolve(__dirname, '../src/data/foodList.json');
+writeFile(PATH, formattedJsonData, _writeCallback);
