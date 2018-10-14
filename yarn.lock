@@ -1049,6 +1049,10 @@ estraverse@^4.0.0, estraverse@^4.1.0, estraverse@^4.1.1, estraverse@^4.2.0:
   version "4.2.0"
   resolved "https://npm.staging.nxdev.nl/estraverse/-/estraverse-4.2.0.tgz#0dee3fed31fcd469618ce7342099fc1afa0bdb13"
 
+estree-walker@^0.5.2:
+  version "0.5.2"
+  resolved "https://npm.staging.nxdev.nl/estree-walker/-/estree-walker-0.5.2.tgz#d3850be7529c9580d815600b53126515e146dd39"
+
 esutils@^2.0.2:
   version "2.0.2"
   resolved "https://npm.staging.nxdev.nl/esutils/-/esutils-2.0.2.tgz#0abf4f1caa5bcb1f7a9d8acc6dea4faaa04bac9b"
@@ -3334,6 +3338,19 @@ rimraf@^2.2.8, rimraf@^2.5.4, rimraf@^2.6.1, rimraf@^2.6.2:
   resolved "https://npm.staging.nxdev.nl/rimraf/-/rimraf-2.6.2.tgz#2ed8150d24a16ea8651e6d6ef0f47c4158ce7a36"
   dependencies:
     glob "^7.0.5"
+
+rollup-plugin-json@^3.1.0:
+  version "3.1.0"
+  resolved "https://npm.staging.nxdev.nl/rollup-plugin-json/-/rollup-plugin-json-3.1.0.tgz#7c1daf60c46bc21021ea016bd00863561a03321b"
+  dependencies:
+    rollup-pluginutils "^2.3.1"
+
+rollup-pluginutils@^2.3.1:
+  version "2.3.3"
+  resolved "https://npm.staging.nxdev.nl/rollup-pluginutils/-/rollup-pluginutils-2.3.3.tgz#3aad9b1eb3e7fe8262820818840bf091e5ae6794"
+  dependencies:
+    estree-walker "^0.5.2"
+    micromatch "^2.3.11"
 
 rollup@^0.66.6:
   version "0.66.6"
