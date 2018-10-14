@@ -18,7 +18,8 @@
     "build": "cross-env NODE_ENV=production rollup -c",
     "quality": "npx eslint ./src",
     "test": "jest",
-    "test:tdd": "npm run test -- --watch"
+    "test:tdd": "npm run test -- --watch",
+    "prepublish": "npm run build"
   },
   "dependencies": {
     "consign": "^0.1.2",
