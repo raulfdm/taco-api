@@ -26,8 +26,6 @@
     "prettier": "1.14.3",
     "pretty-quick": "^1.8.0",
     "express": "^4.14.0",
-    "lodash.isarray": "^4.0.0",
-    "ramda": "^0.25.0",
     "jest": "^23.6.0"
   },
   "husky": {
@@ -35,5 +33,4 @@
       "pre-commit": "pretty-quick --staged"
     }
   }
-
 }
