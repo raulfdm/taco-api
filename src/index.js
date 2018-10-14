@@ -1,5 +1,23 @@
-const app = require('./config/express.config.js')();
+import foodList from './data/foodList.json';
 
-const port = process.env.PORT || 8080;
+class TACO {
+  getAllFood() {
+    return foodList;
+  }
 
-app.listen(port, () => console.log(`Servidor Rodando na porta ${port}`));
+  getFoodById(id) {
+    return foodList.filter(food => food.id === id);
+  }
+
+  getFoodByCategoryId(categoryId) {
+    return foodList.filter(food => food.category_id === categoryId);
+  }
+
+  getFoodByDescription(description) {
+    return foodList.filter(food =>
+      new RegExp(description, 'gi').test(food.description)
+    );
+  }
+}
+
+export default new TACO();

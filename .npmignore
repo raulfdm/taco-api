@@ -1,0 +1,11 @@
+# Folders
+references/
+scripts/
+src/
+
+# Files
+.eslintrc.js
+.prettierrc.js
+.travis.yml
+rollup.config.js
+
