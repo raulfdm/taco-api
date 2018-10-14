@@ -74,8 +74,14 @@ const mergeProperties = (food, options) => {
     throw new Error('finalKey should not be empty');
   }
 
+  const containsAllKeys = mergeKeys.some(key => food[key]);
+
+  if (!containsAllKeys) {
+    throw new Error('All keys should be present in the food object');
+  }
+
   const newMergedKeysObj = mergeKeys.reduce((final, currentKey) => {
-    final[currentKey] = '';
+    final[currentKey] = food[currentKey];
     return final;
   }, {});
 

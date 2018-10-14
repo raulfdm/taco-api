@@ -215,10 +215,17 @@ describe('fn: mergeProperties', () => {
       it('should new property value object contain all mergeKeys as properties (another case)', () => {
         const mergeKeys = ['test1', 'test2'];
 
-        const result = mergeProperties(model_1, {
-          mergeKeys,
-          finalKey: 'fat',
-        }).fat;
+        const result = mergeProperties(
+          {
+            test1: false,
+            test2: 10,
+            others: [1, 2, 3],
+          },
+          {
+            mergeKeys,
+            finalKey: 'fat',
+          }
+        ).fat;
 
         expect(result).toHaveProperty('test1');
         expect(result).toHaveProperty('test2');
@@ -343,5 +350,66 @@ describe('fn: mergeProperties', () => {
 
     expect(result).toHaveProperty('description');
     expect(result.description).toBe('maculele');
+  });
+
+  describe('merged values', () => {
+    it('should values merge be the same sent', () => {
+      const before = {
+        id: 1,
+        description: 'maculele',
+        width: {
+          min: 100,
+          max: 150,
+        },
+        height: 200,
+      };
+      const result = mergeProperties(before, {
+        mergeKeys: ['width', 'height'],
+        finalKey: 'size',
+      });
+
+      expect(result.size.width).toEqual({
+        min: 100,
+        max: 150,
+      });
+
+      expect(result.size.height).toBe(200);
+    });
+
+    it('should values merge be the same sent (another case)', () => {
+      const before = {
+        _id: new Date().getSeconds(),
+        name: 'maculele',
+        amount: 3000.0,
+        numbers: [1, 2, 4],
+      };
+
+      const result = mergeProperties(before, {
+        mergeKeys: ['amount', 'numbers'],
+        finalKey: 'size',
+      });
+
+      expect(result.size.amount).toBe(3000.0);
+
+      expect(result.size.numbers).toEqual([1, 2, 4]);
+    });
+  });
+
+  it('should throw if the object does not contain some key', () => {
+    const before = {
+      id: 1,
+      description: 'maculele',
+      width: {
+        min: 100,
+        max: 150,
+      },
+      height: 200,
+    };
+    expect(() =>
+      mergeProperties(before, {
+        mergeKeys: ['test', 'hi'],
+        finalKey: 'size',
+      })
+    ).toThrow();
   });
 });
