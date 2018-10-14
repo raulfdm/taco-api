@@ -1,5 +1,5 @@
-const isArray = require("lodash.isarray");
-const omit = require("lodash.omit");
+const { isArray, isEmpty, omit, isString, merge } = require('lodash');
+
 /**
  *
  * @param {string} key - key of the original format (e.g. protein_g, lipids_g)
@@ -15,43 +15,83 @@ const omit = require("lodash.omit");
  */
 const keyToUnitObject = (key, value, ignoreCases = []) => {
   if (!isArray(ignoreCases)) {
-    throw new Error("ignore cases should be an array");
+    throw new Error('ignore cases should be an array');
   }
 
-  if (!key.includes("_") || ignoreCases.includes(key)) {
+  if (!key.includes('_') || ignoreCases.includes(key)) {
     return {
-      [key]: value
+      [key]: value,
     };
   }
-  const newKey = key.replace(/_.*/gi, "");
+  const newKey = key.replace(/_.*/gi, '');
 
   /* Find the index of the underscore and add 1 to substring */
-  const indexOfUnderscore = key.indexOf("_") + 1;
+  const indexOfUnderscore = key.indexOf('_') + 1;
   /* get the rest after the underscore */
   const unit = key.substr(indexOfUnderscore, key.length);
 
   return {
     [newKey]: {
       qty: value,
-      unit
-    }
+      unit,
+    },
   };
 };
 
-/* TODO: Write jsDocs */
+/**
+ *
+ * @param {Food} food - Full food object
+ * @description - Function to merge energy kcal and kj in a single property
+ */
 const concatenateEnergy = ({ energy_kcal, energy_kj, ...rest }) => {
-  const omittedKeys = ["energy_kcal", "energy_kj"];
+  const omittedKeys = ['energy_kcal', 'energy_kj'];
 
   const energy = {
     energy: {
       kcal: energy_kcal,
-      kj: energy_kj
-    }
+      kj: energy_kj,
+    },
   };
   return omit(Object.assign({}, rest, { ...energy }), omittedKeys);
 };
 
+const mergeProperties = (food, options) => {
+  const { mergeKeys = [], finalKey = '' } = options;
+
+  if (isEmpty(options)) {
+    throw new Error('Options is required');
+  }
+
+  if (!isArray(mergeKeys)) {
+    throw new TypeError('mergeKeys should be type of Array');
+  } else if (isEmpty(mergeKeys)) {
+    throw new Error('mergeKeys should not be empty');
+  }
+
+  if (!isString(finalKey)) {
+    throw new TypeError('finalKey should be type of String');
+  } else if (isEmpty(finalKey)) {
+    throw new Error('finalKey should not be empty');
+  }
+
+  const newMergedKeysObj = mergeKeys.reduce((final, currentKey) => {
+    final[currentKey] = '';
+    return final;
+  }, {});
+
+  /* Merge original object with the generated one */
+  const final = merge(food, {
+    [finalKey]: {
+      ...newMergedKeysObj,
+    },
+  });
+
+  /* Deleting the mergeKeys  */
+  return omit(final, mergeKeys);
+};
+
 module.exports = {
   keyToUnitObject,
-  concatenateEnergy
+  concatenateEnergy,
+  mergeProperties,
 };
