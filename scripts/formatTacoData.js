@@ -2,12 +2,19 @@ const { writeFile } = require('fs');
 const { resolve } = require('path');
 
 const data = require('../references/TACO_formatted.json');
+const categories = require('../src/data/categoryList.json');
+
 const {
   keyToUnitObject,
   concatenateEnergy,
   mergeProperties,
   removeEmptyValues,
 } = require('./converterFunctions');
+
+const categoriesMAP = categories.reduce((map, currentCategory) => {
+  map.set(currentCategory.category, currentCategory.id);
+  return map;
+}, new Map());
 
 /**
  *
@@ -101,10 +108,8 @@ const _mergeAminoAcids = food =>
  */
 const _addBase = food =>
   Object.assign({}, food, {
-    base: {
-      qty: 100,
-      unit: 'g',
-    },
+    base_qty: 100,
+    base_unit: 'g',
   });
 
 const _writeCallback = err => {
@@ -115,13 +120,51 @@ const _writeCallback = err => {
   }
 };
 
+const replaceCategoryToId = ({ category, ...rest }) =>
+  Object.assign({}, rest, {
+    category_id: categoriesMAP.get(category),
+  });
+
+const _mergeAttributes = food =>
+  mergeProperties(food, {
+    mergeKeys: [
+      'humidity',
+      'protein',
+      'lipid',
+      'cholesterol',
+      'carbohydrate',
+      'fiber',
+      'ashes',
+      'calcium',
+      'magnesium',
+      'phosphorus',
+      'iron',
+      'sodium',
+      'potassium',
+      'copper',
+      'zinc',
+      'retinol',
+      'thiamine',
+      'riboflavin',
+      'pyridoxine',
+      'niacin',
+      'energy',
+      'fatty_acids',
+      'amino_acids',
+      'manganese',
+    ],
+    finalKey: 'attributes',
+  });
+
 const normalizedData = data
   .map(removeEmptyValues)
-  .map(_addBase)
   .map(_normalizeUnits)
+  .map(_addBase)
+  .map(replaceCategoryToId)
   .map(concatenateEnergy)
   .map(_mergeFattyAcids)
-  .map(_mergeAminoAcids);
+  .map(_mergeAminoAcids)
+  .map(_mergeAttributes);
 
 const formattedJsonData = JSON.stringify(normalizedData, null, 2);
 
