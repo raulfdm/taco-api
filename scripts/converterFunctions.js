@@ -74,30 +74,38 @@ const mergeProperties = (food, options) => {
     throw new Error('finalKey should not be empty');
   }
 
-  const containsAllKeys = mergeKeys.some(key => food[key]);
+  const existingKeys = mergeKeys.filter(key => food[key]);
 
-  if (!containsAllKeys) {
-    throw new Error('All keys should be present in the food object');
+  if (existingKeys.length === 0) {
+    return food;
   }
-
-  const newMergedKeysObj = mergeKeys.reduce((final, currentKey) => {
+  const newMergedKeysObj = existingKeys.reduce((final, currentKey) => {
     final[currentKey] = food[currentKey];
     return final;
   }, {});
 
   /* Merge original object with the generated one */
-  const final = merge(food, {
+  const final = Object.assign({}, food, {
     [finalKey]: {
       ...newMergedKeysObj,
     },
   });
 
   /* Deleting the mergeKeys  */
-  return omit(final, mergeKeys);
+  return omit(final, existingKeys);
+};
+
+const removeEmptyValues = food => {
+  const keysToRemove = Object.keys(food).filter(key =>
+    isEmpty(food[key] && key)
+  );
+
+  return omit(food, keysToRemove);
 };
 
 module.exports = {
-  keyToUnitObject,
   concatenateEnergy,
+  keyToUnitObject,
   mergeProperties,
+  removeEmptyValues,
 };

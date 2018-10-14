@@ -1,7 +1,9 @@
+const deepFreeze = require('deep-freeze');
 const {
   keyToUnitObject,
   concatenateEnergy,
   mergeProperties,
+  removeEmptyValues,
 } = require('./converterFunctions');
 const { model_1, model_2 } = require('./__models__/taco_formatted');
 
@@ -202,7 +204,7 @@ describe('fn: mergeProperties', () => {
           'polyunsaturated_g',
         ];
 
-        const result = mergeProperties(model_1, {
+        const result = mergeProperties(deepFreeze(model_1), {
           mergeKeys,
           finalKey: 'testing',
         }).testing;
@@ -216,11 +218,11 @@ describe('fn: mergeProperties', () => {
         const mergeKeys = ['test1', 'test2'];
 
         const result = mergeProperties(
-          {
-            test1: false,
+          deepFreeze({
+            test1: 'raul',
             test2: 10,
             others: [1, 2, 3],
-          },
+          }),
           {
             mergeKeys,
             finalKey: 'fat',
@@ -307,10 +309,11 @@ describe('fn: mergeProperties', () => {
   });
 
   it('should new property value be an object', () => {
-    const result = mergeProperties(model_1, {
+    const result = mergeProperties(deepFreeze(model_1), {
       mergeKeys: ['saturated_g', 'monounsaturated_g', 'polyunsaturated_g'],
       finalKey: 'testing',
     });
+
     expect(result.testing).toBeInstanceOf(Object);
   });
 
@@ -395,7 +398,7 @@ describe('fn: mergeProperties', () => {
     });
   });
 
-  it('should throw if the object does not contain some key', () => {
+  it('should the same object if does not find any key', () => {
     const before = {
       id: 1,
       description: 'maculele',
@@ -405,11 +408,69 @@ describe('fn: mergeProperties', () => {
       },
       height: 200,
     };
-    expect(() =>
+    expect(
       mergeProperties(before, {
         mergeKeys: ['test', 'hi'],
         finalKey: 'size',
       })
-    ).toThrow();
+    ).toEqual(before);
+  });
+});
+
+describe('fn: removeEmptyValues', () => {
+  it('should remove empty values', () => {
+    expect(
+      removeEmptyValues({
+        name: 'raul',
+        age: '',
+      })
+    ).toEqual({
+      name: 'raul',
+    });
+  });
+
+  it('should remove empty values (another case)', () => {
+    expect(removeEmptyValues(model_1)).toEqual({
+      id: 1,
+      description: 'Arroz, integral, cozido',
+      category: 'Cereais e derivados',
+      humidity_percentage: 70.1,
+      energy_kcal: 124,
+      energy_kj: 517,
+      protein_g: 2.6,
+      lipids_g: 1,
+      cholesterol_mg: 'NA',
+      carbohydrate_g: 25.8,
+      fiber_g: 2.7,
+      ashes_g: 0.5,
+      calcium_mg: 5,
+      magnesium_mg: 59,
+      manganese_mg: 0.63,
+      phosphorus_mg: 106,
+      iron_mg: 0.3,
+      sodium_mg: 1,
+      potassium_mg: 75,
+      copper_mg: 0.02,
+      zinc_mg: 0.7,
+      retinol_mcg: 'NA',
+      thiamine_mg: 0.08,
+      riboflavin_mg: 'Tr',
+      pyridoxine_mg: 0.08,
+      niacin_mg: 'Tr',
+      saturated_g: 0.3,
+      monounsaturated_g: 0.4,
+      polyunsaturated_g: 0.3,
+      '14:0_g': 'Tr',
+      '16:0_g': 0.25,
+      '18:0_g': 0.02,
+      '20:0_g': 'Tr',
+      '22:0_g': 'Tr',
+      '24:0_g': 'Tr',
+      '18:1_g': 0.36,
+      '20:1_g': 'Tr',
+      '18:2 n-6_g': 0.31,
+      '18:3 n-3_g': 0.01,
+      '22:5_g': 'Tr',
+    });
   });
 });
