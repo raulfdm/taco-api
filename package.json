@@ -6,7 +6,6 @@
   "author": "",
   "license": "MIT",
   "scripts": {
-    "test": "test",
     "start": "node src/index.js",
     "quality": "npx eslint ./src"
   },
