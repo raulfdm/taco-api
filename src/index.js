@@ -1,5 +1,5 @@
-const app = require('./config/express.config.js')();
+const app = require('./config/express.js')();
 
-const port = process.env.PORT || 8080;
+const port = process.env.PORT || 4000;
 
-app.listen(port, () => console.log(`Servidor Rodando na porta ${port}`));
+app.listen(port, () => console.log(`Listening at ${port} port`));

@@ -5,7 +5,7 @@ module.exports = function() {
   const app = express();
 
   consign({ cwd: 'src/' })
-    .include('rotas')
+    .include('routes')
     .into(app);
 
   return app;
