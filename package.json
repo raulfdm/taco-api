@@ -14,6 +14,7 @@
   "main": "dist/taco.js",
   "scripts": {
     "start": "node src/index.js",
+    "dev": "nodemon src/index.js",
     "quality": "npx eslint ./src",
     "test": "jest",
     "test:tdd": "npm run test -- --watch"
@@ -25,20 +26,25 @@
   },
   "devDependencies": {
     "deep-freeze": "^0.0.1",
+    "eslint": "^5.7.0",
     "eslint-config-airbnb-base": "^13.1.0",
     "eslint-config-prettier": "^3.1.0",
     "eslint-plugin-import": "^2.14.0",
-    "eslint": "^5.7.0",
     "express": "^4.14.0",
     "husky": "^1.1.2",
     "jest": "^23.6.0",
+    "nodemon": "^1.18.4",
     "prettier": "1.14.3",
     "pretty-quick": "^1.8.0",
-    "rimraf": "^2.6.2"
+    "rimraf": "^2.6.2",
+    "supertest": "^3.3.0"
   },
   "husky": {
     "hooks": {
       "pre-commit": "pretty-quick --staged"
     }
+  },
+  "jest": {
+    "verbose": true
   }
 }
