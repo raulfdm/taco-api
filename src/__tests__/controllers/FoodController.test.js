@@ -1,8 +1,8 @@
-const FoodController = require('./FoodController');
+const FoodController = require('../../controllers/FoodController');
 const { isArray, isEmpty } = require('lodash');
 
 jest.mock(
-  '../data/foodList.json',
+  '../../data/foodList.json',
   () => [
     {
       id: '1',
