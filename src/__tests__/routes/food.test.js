@@ -40,7 +40,7 @@ describe('GET /food/:foodId', () => {
     });
   });
 
-  describe.only('validation', () => {
+  describe('validation', () => {
     const badRequest = request(app).get('/food/undefined');
 
     it('should return 400', () => badRequest.expect(400));
