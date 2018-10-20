@@ -1,12 +1,12 @@
 const express = require('express');
 const consign = require('consign');
 
-module.exports = function() {
-  const app = express();
+module.exports = function app() {
+  const expressApp = express();
 
   consign({ cwd: 'src/' })
     .include('routes')
-    .into(app);
+    .into(expressApp);
 
-  return app;
+  return expressApp;
 };

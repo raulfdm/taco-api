@@ -7,37 +7,49 @@ describe('GET /food', () => {
   it('should return status code 200', () => requestFood.expect(200));
 
   it('should body be an array', () =>
-    requestFood.then(request => expect(request.body).toBeInstanceOf(Array)));
+    requestFood.then(req => expect(req.body).toBeInstanceOf(Array)));
 
   /* Fixed amount of element (597) */
   it('should body response have size of 597 ', () =>
-    requestFood.then(request => expect(request.body).toHaveLength(597)));
+    requestFood.then(req => expect(req.body).toHaveLength(597)));
 });
 
 describe('GET /food/:foodId', () => {
-  const requestFood = request(app).get('/food/1');
+  describe('happy path', () => {
+    describe('case 1', () => {
+      const requestFood = request(app).get('/food/1');
+      it('should return status code 200', () => requestFood.expect(200));
 
-  const requestFood2 = request(app).get('/food/56');
+      it('should return an array', () =>
+        requestFood.then(req => expect(req.body).toBeInstanceOf(Array)));
+      it('should array have length of 1', () =>
+        requestFood.then(req => expect(req.body).toHaveLength(1)));
 
-  it('should return status code 200', () => requestFood.expect(200));
+      it('should id from the object be the same sent', () => {
+        requestFood.then(req => expect(req.body[0].id).toBe(1));
+      });
+    });
 
-  it('should return an array', () =>
-    requestFood.then(request => expect(request.body).toBeInstanceOf(Array)));
-  it('should array have length of 1', () =>
-    requestFood.then(request => expect(request.body).toHaveLength(1)));
+    describe('case 1', () => {
+      const requestFood = request(app).get('/food/56');
+      it('should return status code 200', () => requestFood.expect(200));
 
-  it('should array have length of 1 (case 2)', () =>
-    requestFood2.then(request => expect(request.body).toHaveLength(1)));
+      it('should return an array', () =>
+        requestFood.then(req => expect(req.body).toBeInstanceOf(Array)));
+      it('should array have length of 1', () =>
+        requestFood.then(req => expect(req.body).toHaveLength(1)));
+    });
+  });
 
   describe('unknown ID', () => {
     const requestFood = request(app).get('/food/900');
     it('should return status code 200', () => requestFood.expect(200));
 
     it('should return an array', () =>
-      requestFood.then(request => expect(request.body).toBeInstanceOf(Array)));
+      requestFood.then(req => expect(req.body).toBeInstanceOf(Array)));
 
     it('should return an empty array when receives unknown ID', () => {
-      requestFood.then(request => expect(request.body).toHaveLength(0));
+      requestFood.then(req => expect(req.body).toHaveLength(0));
     });
   });
 
@@ -86,14 +98,12 @@ describe('GET /category/:categoryId/food', () => {
     it('should status be 200', () => requestFoodByCategory.expect(200));
 
     it('should return an array', () =>
-      requestFoodByCategory.then(request =>
-        expect(request.body).toBeInstanceOf(Array)
+      requestFoodByCategory.then(req =>
+        expect(req.body).toBeInstanceOf(Array)
       ));
 
     it('should return an empty array when receives unknown ID', () => {
-      requestFoodByCategory.then(request =>
-        expect(request.body).toHaveLength(0)
-      );
+      requestFoodByCategory.then(req => expect(req.body).toHaveLength(0));
     });
   });
 

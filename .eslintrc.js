@@ -8,5 +8,6 @@ module.exports = {
     jest: true,
     it: true,
     describe: true,
+    isNaN: true,
   },
 };
