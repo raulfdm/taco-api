@@ -16,6 +16,7 @@ describe('GET /food', () => {
 
 describe('GET /food/:foodId', () => {
   const requestFood = request(app).get('/food/1');
+
   const requestFood2 = request(app).get('/food/56');
 
   it('should return status code 200', () => requestFood.expect(200));
@@ -58,6 +59,62 @@ describe('GET /food/:foodId', () => {
     it('should "message" match "required" word', () =>
       badRequest.then(response =>
         expect(response.body.message).toMatch(/id|required/gi)
+      ));
+  });
+});
+
+describe('GET /category/:categoryId/food', () => {
+  describe('happy path', () => {
+    const requestFoodByCategory = request(app).get('/category/1/food');
+
+    it('should status be 200', () => requestFoodByCategory.expect(200));
+
+    it('should return an array', () =>
+      requestFoodByCategory.then(response =>
+        expect(response.body).toBeInstanceOf(Array)
+      ));
+
+    /* Qty of elements by category 1 */
+    it('should return an array length of 63', () =>
+      requestFoodByCategory.then(response =>
+        expect(response.body).toHaveLength(63)
+      ));
+  });
+
+  describe('Unknown category id', () => {
+    const requestFoodByCategory = request(app).get('/category/999/food');
+    it('should status be 200', () => requestFoodByCategory.expect(200));
+
+    it('should return an array', () =>
+      requestFoodByCategory.then(request =>
+        expect(request.body).toBeInstanceOf(Array)
+      ));
+
+    it('should return an empty array when receives unknown ID', () => {
+      requestFoodByCategory.then(request =>
+        expect(request.body).toHaveLength(0)
+      );
+    });
+  });
+
+  describe('Valid "categoryId"', () => {
+    const requestFoodByCategory = request(app).get('/category/null/food');
+
+    it('should status be 400', () => requestFoodByCategory.expect(400));
+
+    it('should return an object', () =>
+      requestFoodByCategory.then(response =>
+        expect(response.body).toBeInstanceOf(Object)
+      ));
+
+    it('should object contain a "message" props', () =>
+      requestFoodByCategory.then(response =>
+        expect(response.body).toHaveProperty('message')
+      ));
+
+    it('should "message" match "required" word', () =>
+      requestFoodByCategory.then(response =>
+        expect(response.body.message).toMatch(/invalid/gi)
       ));
   });
 });

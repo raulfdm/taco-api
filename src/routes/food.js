@@ -14,5 +14,16 @@ module.exports = app => {
 
     res.json(FoodController.getFoodById(foodId));
   });
-  // app.get('/category/:categoryId/food', Food.getFoodByCategoryId);
+
+  app.get('/category/:categoryId/food', (req, res) => {
+    const { categoryId } = req.params;
+
+    if (isNaN(categoryId)) {
+      res.status(400).json({
+        message: 'Invalid category id',
+      });
+    }
+
+    res.json(FoodController.getFoodByCategoryId(categoryId));
+  });
 };
