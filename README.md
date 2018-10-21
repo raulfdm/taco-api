@@ -1,60 +1,80 @@
-# TACO - API
-> TACO - Tabela Brasileira de Composição de Alimentos
+# TACO API
 
-## Goal
+> Brazilian Table of Food Composition (TACO) consumer library
 
-The main goal of this project is create a Restful API to be consumed from a client-side app and makes easier to consult all the informations about the Brazilian Food Composition Table made by UNICAMP.
+<p align="center">
+  <a href="https://travis-ci.org/raulfdm/taco-api">
+    <img src="https://travis-ci.org/raulfdm/taco-api.svg?branch=master"
+         alt="build status">
+  </a>
+  <a href="https://david-dm.org/raulfdm/taco-api">
+    <img src="https://david-dm.org/raulfdm/taco-api/status.svg"
+         alt="dependencies Status">
+  </a>
+  
+  <a href="https://david-dm.org/raulfdm/taco-api?type=dev">
+    <img src="https://david-dm.org/raulfdm/taco-api/dev-status.svg"
+         alt="devDependencies Status">
+  </a>
+</p>
 
-For more informations about this Table you can consult [here](http://www.nepa.unicamp.br/taco/tabela.php).
+## Project TACO
 
-## Technologies
+TACO is an initiative between Nucleus of Studies and Research in Food (NEPA) of UNICAMP with a funding from brazilian Ministry of Health (MS) and Ministry of Social Development and Fight against Hunger (MDS) to provide data of a large number of nutrients in national and regional foods obtained through representative sampling and analysis carried out by laboratories with analytical competence proven by interlaboratory studies, according to international criteria.
 
-The technologies used are:
+> [Know more (in pt-br)](http://www.nepa.unicamp.br/taco/home.php?ativo=home)
 
-* [NodeJS](https://nodejs.org) - Server
-* [ExpressJS](http://expressjs.com/) - Framework node.js
-* [MongoDB](https://www.mongodb.com/) - NoSql database
-* [Heroku](https://www.heroku.com/) - Web platform
+## About this project
 
+The main goal of this project was to take the data from original research and provide as API using modern development techniques.
 
-## Informations
-All the informations used in this application was picked on oficial XLS Database offered by UNICAMP in their on [website](http://www.unicamp.br/nepa/taco/tabela.php?ativo=tabela), however, I migrate (not fully yet) it to JSON scruture to make easy to manipulate and distribute it.
+Actually the original project have only 2 possible ways to consult the data:
 
-## API
+1. By PDF file. In that case, you have to find the food you want and be sure your looking the correct value;
+1. By tabulated xls. The researchers have created the XLS to be an database, however, they tabulated it and made nice to print, not to filter or to extract. Also there's 3 different sheet containing specific data for the same food.
 
-> Consult food all classes registred
+The way they've chosen can work if you want to do a quick consult, however, if you want to build an application with this data, you have to format it to make it easy to use and that's this project about: better format.
 
-|   Method      |       URL                                             | Response      |
-|   ---         |                       ---                             | ---           |
-|   GET         |   https://taco-alimentos.herokuapp.com/categorias     | Collection    |
+### Step-by-step
+
+The following steps describe the whole workflow I did to build this project:
+
+1. Extract the original xls, cleaning unnecessary styles, columns and rows;
+1. Repeat the above step for each sheet;
+1. Merge all 3 sheets into one;
+1. Generate a CSV (Comma-separated values) and export it to a JSON format;
+1. Create another JSON file containing all `categories` and then create a relation between FOOD - Category;
+1. Create 2 end-points `food` and `category` to get this data
+
+### API Documentation
+
+You can consult the API documentation at: https://taco-food-api.herokuapp.com/docs
+
+### Official Research
+
+In order to keep the original research as `source of truth` of this project, I've saved all available files ([got from NEPA website](http://nepa.unicamp.br/taco/tabela.php)). You can consult them in [references](./references) folder.
+
+### Stack
+
+- [NodeJS](https://expressjs.com) - as server side
+- [ExpressJS](https://expressjs.com) - as HTTP framework
+- [Heroku](https://www.heroku.com/) - as cloud platform
+- [apidocs](http://apidocjs.com) - as API documentation generator
 
 ---
 
-> Consult food classes by ID
+## Want to say something?
 
-|   Method      |       URL                                                 | Response  |
-|   ---         |                       ---                                 | ---       |
-|   GET         |   https://taco-alimentos.herokuapp.com/categorias/{id}    | Class     |
+If you have any question, suggestion or something, please feel free to open an issue. I'll be happy to answer it! :)
 
 ---
 
-> Consult all foods registred
+## Legal Information
 
-|   Method      |       URL                                             | Response      |
-|   ---         |                       ---                             | ---           |
-|   GET         |   https://taco-alimentos.herokuapp.com/alimentos      | Collection    |
+> This is a non-profit project.
 
----
+All data provided on this project was researched and produced by [UNICAMP](http://Unicamp.br), therefore all copyright are reserved to them.
 
-> Consult food by ID
+### License
 
-|   Method      |       URL                                                 | Response  |
-|   ---         |                       ---                                 | ---       |
-|   GET         |   https://taco-alimentos.herokuapp.com/alimentos/{id}      | Food      |
-
----
-
-## Legal Informations
-All data used here was made by UNICAMP and all copyrights are reserverd to the university.
-
-This is a non-profit project.
+[MIT](./LICENSE.md)

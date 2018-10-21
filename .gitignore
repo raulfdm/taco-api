@@ -73,6 +73,7 @@ typings/
 .serverless
 
 # Others
+docs/
 
 ## macOS
 .DS_Store
