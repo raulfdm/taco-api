@@ -1,8 +1,21 @@
 const request = require('supertest');
 const app = require('../../config/express')();
 
+const PATHS = {
+  api: '/api/v1',
+  get all() {
+    return `${this.api}/food`;
+  },
+  byId(id) {
+    return `${this.api}/food/${id}`;
+  },
+  byCategory(categoryId) {
+    return `${this.api}/category/${categoryId}/food`;
+  },
+};
+
 describe('GET /food', () => {
-  const requestFood = request(app).get('/food');
+  const requestFood = request(app).get(PATHS.all);
 
   it('should return status code 200', () => requestFood.expect(200));
 
@@ -17,7 +30,7 @@ describe('GET /food', () => {
 describe('GET /food/:foodId', () => {
   describe('happy path', () => {
     describe('case 1', () => {
-      const requestFood = request(app).get('/food/1');
+      const requestFood = request(app).get(PATHS.byId(1));
       it('should return status code 200', () => requestFood.expect(200));
 
       it('should return an array', () =>
@@ -31,7 +44,7 @@ describe('GET /food/:foodId', () => {
     });
 
     describe('case 1', () => {
-      const requestFood = request(app).get('/food/56');
+      const requestFood = request(app).get(PATHS.byId(56));
       it('should return status code 200', () => requestFood.expect(200));
 
       it('should return an array', () =>
@@ -42,7 +55,7 @@ describe('GET /food/:foodId', () => {
   });
 
   describe('unknown ID', () => {
-    const requestFood = request(app).get('/food/900');
+    const requestFood = request(app).get(PATHS.byId(900));
     it('should return status code 200', () => requestFood.expect(200));
 
     it('should return an array', () =>
@@ -54,7 +67,7 @@ describe('GET /food/:foodId', () => {
   });
 
   describe('validation', () => {
-    const badRequest = request(app).get('/food/undefined');
+    const badRequest = request(app).get(PATHS.byId('undefined'));
 
     it('should return 400', () => badRequest.expect(400));
 
@@ -77,7 +90,7 @@ describe('GET /food/:foodId', () => {
 
 describe('GET /category/:categoryId/food', () => {
   describe('happy path', () => {
-    const requestFoodByCategory = request(app).get('/category/1/food');
+    const requestFoodByCategory = request(app).get(PATHS.byCategory(1));
 
     it('should status be 200', () => requestFoodByCategory.expect(200));
 
@@ -94,7 +107,7 @@ describe('GET /category/:categoryId/food', () => {
   });
 
   describe('Unknown category id', () => {
-    const requestFoodByCategory = request(app).get('/category/999/food');
+    const requestFoodByCategory = request(app).get(PATHS.byCategory(999));
     it('should status be 200', () => requestFoodByCategory.expect(200));
 
     it('should return an array', () =>
@@ -108,7 +121,7 @@ describe('GET /category/:categoryId/food', () => {
   });
 
   describe('Valid "categoryId"', () => {
-    const requestFoodByCategory = request(app).get('/category/null/food');
+    const requestFoodByCategory = request(app).get(PATHS.byId(null));
 
     it('should status be 400', () => requestFoodByCategory.expect(400));
 

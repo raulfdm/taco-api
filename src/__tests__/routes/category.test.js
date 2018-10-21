@@ -1,8 +1,17 @@
 const request = require('supertest');
 const app = require('../../config/express')();
 
+const PATHS = {
+  api: '/api/v1',
+  get all() {
+    return `${this.api}/category`;
+  },
+  byId(id) {
+    return `${this.api}/category/${id}`;
+  },
+};
 describe('GET /category', () => {
-  const requestCategories = request(app).get('/category');
+  const requestCategories = request(app).get(PATHS.all);
 
   it('should return status code 200', () => requestCategories.expect(200));
 
@@ -17,7 +26,7 @@ describe('GET /category', () => {
 describe('GET /category/:categoryId', () => {
   describe('happy path', () => {
     describe('case 1', () => {
-      const requestCategory = request(app).get('/category/1');
+      const requestCategory = request(app).get(PATHS.byId(1));
       it('should return status code 200', () => requestCategory.expect(200));
 
       it('should return an array', () =>
@@ -31,7 +40,7 @@ describe('GET /category/:categoryId', () => {
     });
 
     describe('case 2', () => {
-      const requestCategory = request(app).get('/category/14');
+      const requestCategory = request(app).get(PATHS.byId(14));
       it('should return status code 200', () => requestCategory.expect(200));
 
       it('should return an array', () =>
@@ -46,7 +55,7 @@ describe('GET /category/:categoryId', () => {
   });
 
   describe('Unknown category ID', () => {
-    const requestCategory = request(app).get('/category/900');
+    const requestCategory = request(app).get(PATHS.byId(900));
     it('should return status code 200', () => requestCategory.expect(200));
 
     it('should return an array', () =>
@@ -58,7 +67,7 @@ describe('GET /category/:categoryId', () => {
   });
 
   describe('validation', () => {
-    const badRequest = request(app).get('/category/undefined');
+    const badRequest = request(app).get(PATHS.byId('undefined'));
 
     it('should return 400', () => badRequest.expect(400));
 

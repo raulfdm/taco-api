@@ -105,7 +105,7 @@ module.exports = app => {
 
     if (!isValidId(foodId)) {
       res.status(400).json({
-        message: 'Food id is required',
+        message: 'Invalid Food ID',
       });
     }
 
