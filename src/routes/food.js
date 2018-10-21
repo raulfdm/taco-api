@@ -8,7 +8,7 @@ module.exports = app => {
    * @apiName GetFoodList
    * @apiGroup Food
    * @apiExample {curl} Example usage:
-   *     curl -i http://localhost:4000/food
+   *     curl -i http://localhost:4000/api/v1/food
    * 
    * @apiSuccess {Object[]} food A list of all food available.  
    * 
@@ -23,7 +23,7 @@ module.exports = app => {
    * @apiName GetFoodById
    * @apiGroup Food
    * @apiExample {curl} Example usage:
-   *     curl -i http://localhost:4000/food/1/
+   *     curl -i http://localhost:4000/api/v1/food/1/
    * @apiParam {Number} foodId Food unique ID.
    *
    * @apiSuccess {Number}   food.id Food unique ID.
@@ -117,7 +117,7 @@ module.exports = app => {
    * @apiName GetFoodListByCategory
    * @apiGroup Food
    * @apiExample {curl} Example usage:
-   *     curl -i http://localhost:4000/category/1/food
+   *     curl -i http://localhost:4000/api/v1/category/1/food
    * @apiParam {Number} categoryId Category unique ID.
    *
    */
