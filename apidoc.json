@@ -1,0 +1,7 @@
+{
+  "name": "Taco API",
+  "version": "0.1.0",
+  "description": "Brazilian Table of Food Composition (TACO) API",
+  "title": "TACO",
+  "url": "https://taco-food-api.herokuapp.com/api/v1"
+}
