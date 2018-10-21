@@ -12,6 +12,7 @@
     "email": "melo.raulf@gmail.com"
   },
   "scripts": {
+    "postinstall": "npm run doc",
     "prestart": "npm run doc",
     "start": "node src/index.js",
     "predev": "npm run doc",
