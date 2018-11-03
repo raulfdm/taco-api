@@ -48,7 +48,7 @@ The following steps describe the whole workflow I did to build this project:
 
 ### API Documentation
 
-You can consult the API documentation at: https://taco-food-api.herokuapp.com/docs
+You can consult the API documentation at: https://taco-food-api.herokuapp.com
 
 ### Official Research
 
