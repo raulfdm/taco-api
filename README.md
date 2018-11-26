@@ -52,7 +52,7 @@ You can consult the API documentation at: https://taco-food-api.herokuapp.com
 
 ### Official Research
 
-In order to keep the original research as `source of truth` of this project, I've saved all available files ([got from NEPA website](http://nepa.unicamp.br/taco/tabela.php)). You can consult them in [references](./references) folder.
+In order to keep the original research as `source of truth` of this project, I've saved all available files ([got from NEPA website](http://www.nepa.unicamp.br/taco/tabela.php)). You can consult them in [references](./references) folder.
 
 ### Stack
 
@@ -73,7 +73,7 @@ If you have any question, suggestion or something, please feel free to open an i
 
 > This is a non-profit project.
 
-All data provided on this project was researched and produced by [UNICAMP](http://Unicamp.br), therefore all copyright are reserved to them.
+All data provided on this project was researched and produced by [UNICAMP](http://www.unicamp.br), therefore all copyright are reserved to them.
 
 ### License
 
