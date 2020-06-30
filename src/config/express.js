@@ -12,7 +12,7 @@ module.exports = function app() {
 
   expressApp.use(express.static(join(__dirname, '../../docs/')));
 
-  express.use(cors);
+  expressApp.use(cors());
 
   return expressApp;
 };
