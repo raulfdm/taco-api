@@ -25,10 +25,12 @@
   },
   "dependencies": {
     "consign": "^0.1.2",
+    "cors": "^2.8.5",
     "express": "^4.14.0",
     "lodash": "^4.17.11"
   },
   "devDependencies": {
+    "@types/cors": "^2.8.6",
     "apidoc": "^0.17.6",
     "deep-freeze": "^0.0.1",
     "eslint": "^5.7.0",
