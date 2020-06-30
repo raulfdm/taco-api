@@ -1,10 +1,10 @@
 language: node_js
 
-node_js: 10.11.0
+node_js: 12.13.0
 cache: yarn
 
 before_script:
-  - yarn install
+  - yarn install --frozen-lockfile
 
 script:
   - yarn quality
