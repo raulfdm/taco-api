@@ -24,10 +24,10 @@
     "doc": "npx apidoc -i src -o docs"
   },
   "dependencies": {
-    "consign": "^0.1.2",
-    "cors": "^2.8.5",
-    "express": "^4.14.0",
-    "lodash": "^4.17.11"
+    "consign": "0.1.6",
+    "cors": "2.8.5",
+    "express": "4.17.1",
+    "lodash": "4.17.15"
   },
   "devDependencies": {
     "@types/cors": "^2.8.6",
