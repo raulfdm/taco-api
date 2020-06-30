@@ -45,6 +45,9 @@
     "rimraf": "^3.0.2",
     "supertest": "^4.0.2"
   },
+  "resolutions": {
+    "minimist": "^0.2.1"
+  },
   "husky": {
     "hooks": {
       "pre-commit": "pretty-quick --staged"
