@@ -1,4 +1,4 @@
-const { isArray, isEmpty, omit, isString, merge } = require('lodash');
+const { isArray, isEmpty, omit, isString } = require('lodash');
 
 /**
  *
@@ -74,7 +74,7 @@ const mergeProperties = (food, options) => {
     throw new Error('finalKey should not be empty');
   }
 
-  const existingKeys = mergeKeys.filter(key => food[key]);
+  const existingKeys = mergeKeys.filter((key) => food[key]);
 
   if (existingKeys.length === 0) {
     return food;
@@ -95,8 +95,8 @@ const mergeProperties = (food, options) => {
   return omit(final, existingKeys);
 };
 
-const removeEmptyValues = food => {
-  const keysToRemove = Object.keys(food).filter(key =>
+const removeEmptyValues = (food) => {
+  const keysToRemove = Object.keys(food).filter((key) =>
     isEmpty(food[key] && key)
   );
 
