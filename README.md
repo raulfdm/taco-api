@@ -11,7 +11,6 @@
     <img src="https://david-dm.org/raulfdm/taco-api/status.svg"
          alt="dependencies Status">
   </a>
-  
   <a href="https://david-dm.org/raulfdm/taco-api?type=dev">
     <img src="https://david-dm.org/raulfdm/taco-api/dev-status.svg"
          alt="devDependencies Status">
@@ -23,6 +22,48 @@
 TACO is an initiative between Nucleus of Studies and Research in Food (NEPA) of UNICAMP with a funding from brazilian Ministry of Health (MS) and Ministry of Social Development and Fight against Hunger (MDS) to provide data of a large number of nutrients in national and regional foods obtained through representative sampling and analysis carried out by laboratories with analytical competence proven by interlaboratory studies, according to international criteria.
 
 > [Know more (in pt-br)](http://www.nepa.unicamp.br/taco/home.php?ativo=home)
+
+## Getting started
+
+### Docker
+
+If you use Docker, instead running this project locally you can simply run Taco API image:
+
+```bash
+docker pull raulfdm/taco-api
+```
+
+Then, run your container:
+
+```bash
+docker run -it --rm --name taco -p 4000:4000 raulfdm/taco-api
+```
+
+After that, you can check the API documentation at `http://localhost:4000`.
+
+### Running locally
+
+To run locally, clone this project:
+
+```bash
+git clone https://github.com/raulfdm/taco-api.git
+```
+
+Then, install all dependencies and run npm start:
+
+```bash
+cd taco-api
+npm install
+npm start
+```
+
+After that, you can check the API documentation at `http://localhost:4000`.
+
+If you want to use docker and run instead, you can use docker-compose:
+
+```bash
+docker-compose up
+```
 
 ## About this project
 
@@ -75,6 +116,6 @@ If you have any question, suggestion or something, please feel free to open an i
 
 All data provided on this project was researched and produced by [UNICAMP](http://Unicamp.br), therefore all copyright are reserved to them.
 
-### License
+## License
 
 [MIT](./LICENSE.md)
