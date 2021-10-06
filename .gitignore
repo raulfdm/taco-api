@@ -77,3 +77,7 @@ docs/
 
 ## macOS
 .DS_Store
+
+## Misc
+.temp
+.cache

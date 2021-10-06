@@ -9,4 +9,4 @@ before_script:
 script:
   - yarn quality
   - yarn test
-  - yarn doc
+  - yarn api:doc

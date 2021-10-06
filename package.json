@@ -12,22 +12,25 @@
     "email": "melo.raulf@gmail.com"
   },
   "scripts": {
-    "postinstall": "npm run doc",
-    "prestart": "npm run doc",
+    "postinstall": "npm run api:doc",
+    "prestart": "npm run api:doc",
     "start": "node src/index.js",
-    "predev": "npm run doc",
+    "predev": "npm run api:doc",
     "dev": "nodemon src/index.js",
     "quality": "eslint ./src/**/*.js",
     "test": "jest",
     "test:tdd": "npm run test -- --watch",
     "test:coverage": "npm run test -- --coverage",
-    "doc": "apidoc -i src -o docs"
+    "api:doc": "apidoc -i src -o docs",
+    "docs:dev": "vuepress dev documentation",
+    "docs:build": "vuepress build documentation"
   },
   "dependencies": {
     "consign": "0.1.6",
     "cors": "2.8.5",
     "express": "4.17.1",
-    "lodash": "4.17.20"
+    "lodash": "4.17.20",
+    "vuepress": "^2.0.0-beta.26"
   },
   "devDependencies": {
     "@types/cors": "2.8.6",
