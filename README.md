@@ -15,7 +15,10 @@
 
 ## Documentation
 
-For more details about this API, check the official docs (in both Portuguese and English)
+For more details about this API, check the official docs:
+
+- [Portuguese](https://taco-api.netlify.app/)
+- [English](https://taco-api.netlify.app/en)
 
 ## License
 
