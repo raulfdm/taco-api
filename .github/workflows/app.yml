@@ -1,0 +1,33 @@
+name: App
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v2
+
+      - name: Use Node
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14'
+
+      - name: Install deps and build (with cache)
+        uses: bahmutov/npm-install@v1
+        with:
+          useRollingCache: true
+
+      # Necessary because it's being used in the code
+      - name: Linting
+        run: npm run lint
+
+      - name: Testing
+        run: npm run test
+
+      - name: Build API Doc
+        run: npm run api:doc
+
+      - name: Build Web docs
+        run: npm run docs:build
