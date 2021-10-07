@@ -1,121 +1,148 @@
 # TACO API
 
-> Brazilian Table of Food Composition (TACO) consumer library
-
 <p align="center">
-  <a href="https://travis-ci.org/raulfdm/taco-api">
-    <img src="https://travis-ci.org/raulfdm/taco-api.svg?branch=master"
-         alt="build status">
-  </a>
-  <a href="https://david-dm.org/raulfdm/taco-api">
-    <img src="https://david-dm.org/raulfdm/taco-api/status.svg"
-         alt="dependencies Status">
-  </a>
-  <a href="https://david-dm.org/raulfdm/taco-api?type=dev">
-    <img src="https://david-dm.org/raulfdm/taco-api/dev-status.svg"
-         alt="devDependencies Status">
-  </a>
+ <a href="https://github.com/raulfdm/taco-api/actions/workflows/app.yml">
+   <img src="https://github.com/raulfdm/taco-api/actions/workflows/app.yml/badge.svg"
+        alt="build status">
+ </a>
+ <a href="https://travis-ci.org/raulfdm/taco-api">
+   <img src="https://travis-ci.org/raulfdm/taco-api.svg?branch=master"
+        alt="build status">
+ </a>
 </p>
 
-## Project TACO
+## About the project TACO
 
 TACO is an initiative between Nucleus of Studies and Research in Food (NEPA) of UNICAMP with a funding from brazilian Ministry of Health (MS) and Ministry of Social Development and Fight against Hunger (MDS) to provide data of a large number of nutrients in national and regional foods obtained through representative sampling and analysis carried out by laboratories with analytical competence proven by interlaboratory studies, according to international criteria.
 
-> [Know more (in pt-br)](http://www.nepa.unicamp.br/taco/home.php?ativo=home)
+::: tip Dica
+To know more, read the [official website (in portuguese)](http://www.nepa.unicamp.br/taco/home.php?ativo=home)
+:::
 
-## Getting started
+## About this project
 
-### Docker
+O objetivo principal deste projeto é usar os dados originais da pesquisa da TACO e provê-los através de uma API para ser utilizado para construção de aplicações.
 
-If you use Docker, instead running this project locally you can simply run Taco API image:
+Originalmente, o projeto TACO possui somente 2 maneiras de consumir esses dados. São elas:
+
+1. Através de um arquivo PDF. Neste caso, você precisa buscar o alimento desejado e seus respectivos valores;
+2. Através de um arquivo Excel (xls). Os pesquisadores criaram esse arquivo com o intuito de servir como um banco de dados, porém, a formatação dos dados está longe de ser otimizada para busca e consumo.
+
+Em ambos casos, para uma consulta rápida de um nutricionista, talvez não seja nenhum problema, porém, impossibilita a criação de alguma aplicação cliente (mobile ou web).
+
+### Processo de formatação dos dados
+
+Para criar esse projeto, eu segui os seguintes passos:
+
+1. Baixar e fazer a limpeza do XLS original, limpando estilos desnecessários e removendo colunas e linhas em branco. Esse processo é aplicado nas 3 abas da planilha;
+2. Fundir (merge) as 3 abas em apenas uma aba para um ponto central de dados;
+3. Gerar um CSV (Comma-separated value ou valores separados por vírgula) e exportar esses dados em um formato JSON;
+4. Criar outro arquivo JSON, contendo todas as `categorias` (`categories`) e criar uma relação entre ALIMENTO (FOOD) e CATEGORIA (CATEGORY);
+5. Criar 2 end-points `food` e `category` para expor os dados.
+
+E assim, você pode consultar tanto os dados via `/api/v1/<end-point>`.
+
+### Dados oficiais
+
+Para manter os dados originais da pesquisa utilizado para realização desse projeto, [salvei todos os arquivos do site original](https://www.nepa.unicamp.br/taco/tabela.php?ativo=tabela) e você pode consultados na pasta `/references/*`
+
+### Tecnologias utilizadas
+
+- [NodeJS](https://nodejs.org/en/) - JavaScript runtime
+- [ExpressJS](https://expressjs.com) - Framework HTTP
+- [apidocs](http://apidocjs.com) - Gerador de documentação de APIS
+
+## Configuração
+
+### Via container
+
+Se você está familiarizado ou prefere usar Docker, existem duas maneiras de subir um container deste projeto.
+
+A primeira é utilizando a imagem pública no Docker Hub deste projeto. Ao final, ambos os processos deixarão disponíveis a documentação da API em `http://localhost:4000`.
+
+#### Imagem pública
+
+Primeiro, baixe a imagem via docker hub:
 
 ```bash
 docker pull raulfdm/taco-api
 ```
 
-Then, run your container:
+Feito isso, rode suba um container utilizando a imagem baixada:
 
 ```bash
 docker run -it --rm --name taco -p 4000:4000 raulfdm/taco-api
 ```
 
-After that, you can check the API documentation at `http://localhost:4000`.
+#### Utilizando o projeto
 
-### Running locally
-
-To run locally, clone this project:
+Caso queira usar docker em tempo de desenvolvimento, basta clonar este repositório:
 
 ```bash
 git clone https://github.com/raulfdm/taco-api.git
 ```
 
-Then, install all dependencies and run npm start:
-
-```bash
-cd taco-api
-npm install
-npm start
-```
-
-After that, you can check the API documentation at `http://localhost:4000`.
-
-If you want to use docker and run instead, you can use docker-compose:
+E rodar o docker compose para subir o container:
 
 ```bash
 docker-compose up
 ```
 
-## About this project
+### Sem container
 
-The main goal of this project was to take the data from original research and provide as API using modern development techniques.
+Caso não queira rodar através de um container, primeiro, clone este repositório e instale as dependências:
 
-Actually the original project have only 2 possible ways to consult the data:
+```bash
+cd taco-api
+npm install
+```
 
-1. By PDF file. In that case, you have to find the food you want and be sure your looking the correct value;
-1. By tabulated xls. The researchers have created the XLS to be an database, however, they tabulated it and made nice to print, not to filter or to extract. Also there's 3 different sheet containing specific data for the same food.
+Agora, suba o servidor através do comando `start`:
 
-The way they've chosen can work if you want to do a quick consult, however, if you want to build an application with this data, you have to format it to make it easy to use and that's this project about: better format.
+```bash
+npm start
+```
 
-### Step-by-step
+Feito isso, você pode checar a documentação da API em `http://localhost:4000`.
 
-The following steps describe the whole workflow I did to build this project:
+### Documentação da API
 
-1. Extract the original xls, cleaning unnecessary styles, columns and rows;
-1. Repeat the above step for each sheet;
-1. Merge all 3 sheets into one;
-1. Generate a CSV (Comma-separated values) and export it to a JSON format;
-1. Create another JSON file containing all `categories` and then create a relation between FOOD - Category;
-1. Create 2 end-points `food` and `category` to get this data
+Ao subir o servidor e acessar `http://localhost:4000`, você verá a documentação com exemplos e descrição dos endpoints existentes e como consumi-los.
 
-### API Documentation
+## Dúvidas?
 
-You can consult the API documentation at: https://taco-food-api.herokuapp.com
+Se você tiver alguma dúvida ou sugestão sobre este projeto, procure na aba "discussão" no Github deste repositório. Caso sua dúvida não esteja lá, inicie uma nova discussão [clicando aqui](https://github.com/raulfdm/taco-api/discussions/new) e eu responderei o quanto antes!
 
-### Official Research
+## FAQ
 
-In order to keep the original research as `source of truth` of this project, I've saved all available files ([got from NEPA website](http://nepa.unicamp.br/taco/tabela.php)). You can consult them in [references](./references) folder.
+### A API está offline?
 
-### Stack
+Sim, eu tirei do ar.
 
-- [NodeJS](https://expressjs.com) - as server side
-- [ExpressJS](https://expressjs.com) - as HTTP framework
-- [Heroku](https://www.heroku.com/) - as cloud platform
-- [apidocs](http://apidocjs.com) - as API documentation generator
+O motivo é que, quando eu criei o projeto, subi o servidor da API na minha conta pessoal no Heroku. Porém, algumas pessoas criaram projetos em cima da API, fazendo meu servidor ficar ativo sempre.
 
----
+Por eu usar o free-tier (plano gratuito), eu tenho limite mensal e ele estava sendo rapidamente consumido.
 
-## Want to say something?
+### Posso utilizar esse projeto para construir uma aplicação?
 
-If you have any question, suggestion or something, please feel free to open an issue. I'll be happy to answer it! :)
+Sim, o projeto é livre para qualquer pessoa utilizar. Porém, como disse anteriormente, ele não está mais disponível online, ou seja, você precisará subir o servidor em algum serviço de cloud caso queira ter acesso.
 
----
+- [Como publicar aplicação Node.js na Heroku](https://www.luiztools.com.br/post/como-publicar-aplicacao-node-js-na-heroku/)
 
-## Legal Information
+::: tip Obs.
+Eu geralmente uso Heroku por ser fácil, mas pode ser qualquer outro de sua preferência.
+:::
 
-> This is a non-profit project.
+### O projeto ainda é mantido?
 
-All data provided on this project was researched and produced by [UNICAMP](http://Unicamp.br), therefore all copyright are reserved to them.
+Mais ou menos. Quando eu o criei, a intenção era estudar Backend e APIs. Hoje, tenho outras coisas como foco, então, não pretendo adicionar novas funcionalidades.
 
-## License
+## Informações Legais
+
+Este é um projeto sem fins lucrativos.
+
+Todos os dados utilizados foram pesquisados e produzidos pela [UNICAMP](http://Unicamp.br), e todo direito autoral é reservado à instituição.
+
+## Licença
 
 [MIT](./LICENSE.md)
