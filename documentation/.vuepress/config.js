@@ -1,9 +1,20 @@
 module.exports = {
   themeConfig: {
-    logo: 'https://vuejs.org/images/logo.png',
+    logo: false,
+    repo: 'raulfdm/taco-api',
     locales: {
       '/': {
         selectLanguageName: 'Português',
+        toggleDarkMode: 'Alternar modo escuro',
+        openInNewWindow: 'Abrir em nova aba',
+        backToHome: 'Voltar para página inicial',
+        tip: 'Dica',
+        warning: 'Atenção',
+        danger: 'Perigo',
+        contributorsText: 'Contribuidores',
+        lastUpdatedText: 'Atualizado pela última vez em',
+        editLinkText: 'Edite esta página',
+        selectLanguageText: 'Idiomas',
       },
       '/en/': {
         selectLanguageName: 'English',
