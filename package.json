@@ -26,6 +26,7 @@
     "docs:build": "vuepress build documentation"
   },
   "dependencies": {
+    "apidoc": "0.50.3",
     "consign": "0.1.6",
     "cors": "2.8.5",
     "express": "4.17.2",
@@ -33,7 +34,6 @@
   },
   "devDependencies": {
     "@types/cors": "2.8.12",
-    "apidoc": "0.50.3",
     "deep-freeze": "0.0.1",
     "eslint": "7.32.0",
     "eslint-config-airbnb-base": "14.2.0",
