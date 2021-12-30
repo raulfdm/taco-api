@@ -28,25 +28,25 @@
   "dependencies": {
     "consign": "0.1.6",
     "cors": "2.8.5",
-    "express": "4.17.1",
-    "lodash": "4.17.20",
-    "vuepress": "^2.0.0-beta.26"
+    "express": "4.17.2",
+    "lodash": "4.17.21"
   },
   "devDependencies": {
-    "@types/cors": "2.8.6",
-    "apidoc": "0.23.0",
+    "@types/cors": "2.8.12",
+    "apidoc": "0.50.3",
     "deep-freeze": "0.0.1",
-    "eslint": "7.3.1",
+    "eslint": "7.32.0",
     "eslint-config-airbnb-base": "14.2.0",
     "eslint-config-prettier": "6.11.0",
     "eslint-plugin-import": "2.22.0",
-    "husky": "4.2.5",
+    "husky": "4.3.8",
     "jest": "26.1.0",
     "nodemon": "2.0.4",
     "prettier": "2.0.5",
     "pretty-quick": "2.0.1",
     "rimraf": "3.0.2",
-    "supertest": "4.0.2"
+    "supertest": "4.0.2",
+    "vuepress": "2.0.0-beta.32"
   },
   "resolutions": {
     "minimist": "^0.2.1"
