@@ -81,3 +81,4 @@ docs/
 ## Misc
 .temp
 .cache
+documentation/.vuepress/dist
