@@ -2,136 +2,130 @@
 
 ## About the project TACO
 
-TACO is an initiative between Nucleus of Studies and Research in Food (NEPA) of UNICAMP with a funding from brazilian Ministry of Health (MS) and Ministry of Social Development and Fight against Hunger (MDS) to provide data of a large number of nutrients in national and regional foods obtained through representative sampling and analysis carried out by laboratories with analytical competence proven by interlaboratory studies, according to international criteria.
+TACO is an initiative between the Nucleus of Studies and Research in Food (NEPA) of UNICAMP with funding from the Brazilian Ministry of Health (MS) and Ministry of Social Development and Fight against Hunger (MDS).
 
-::: tip Dica
-To know more, read the [official website (in portuguese)](http://www.nepa.unicamp.br/taco/home.php?ativo=home)
+The goal is to provide data of many nutrients in national and regional foods obtained through representative sampling and analysis carried out by laboratories with analytical competence proven by interlaboratory studies, according to international criteria.
+
+::: tip Tip
+To know more, read the [official website (in Portuguese)](http://www.nepa.unicamp.br/taco/home.php?ativo=home)
 :::
 
 ## About this project
 
 O objetivo principal deste projeto é usar os dados originais da pesquisa da TACO e provê-los através de uma API para ser utilizado para construção de aplicações.
 
-Originalmente, o projeto TACO possui somente 2 maneiras de consumir esses dados. São elas:
+The main goal of this project is to use the official data from the TACO research and provide them through a REST API.
 
-1. Através de um arquivo PDF. Neste caso, você precisa buscar o alimento desejado e seus respectivos valores;
-2. Através de um arquivo Excel (xls). Os pesquisadores criaram esse arquivo com o intuito de servir como um banco de dados, porém, a formatação dos dados está longe de ser otimizada para busca e consumo.
+Initially, TACO research provides the data in only two ways:
 
-Em ambos casos, para uma consulta rápida de um nutricionista, talvez não seja nenhum problema, porém, impossibilita a criação de alguma aplicação cliente (mobile ou web).
+1. PDF File. In this case, you have to search the food name manually and check-in its row the reference values;
+2. A XLS (Excel) file, where the researchers have created a database. Despite, the data formatting is far from ideal, and it's still hard to normalize the information there.
 
-### Processo de formatação dos dados
+It wouldn't be a big problem for a dietist to consult food information in both cases. However, if someone wants to use the data to create an application, it becomes a real problem.
 
-Para criar esse projeto, eu segui os seguintes passos:
+### Data sanitization process
 
-1. Baixar e fazer a limpeza do XLS original, limpando estilos desnecessários e removendo colunas e linhas em branco. Esse processo é aplicado nas 3 abas da planilha;
-2. Fundir (merge) as 3 abas em apenas uma aba para um ponto central de dados;
-3. Gerar um CSV (Comma-separated value ou valores separados por vírgula) e exportar esses dados em um formato JSON;
-4. Criar outro arquivo JSON, contendo todas as `categorias` (`categories`) e criar uma relação entre ALIMENTO (FOOD) e CATEGORIA (CATEGORY);
-5. Criar 2 end-points `food` e `category` para expor os dados.
+For creating this project, I've done the following actions:
 
-E assim, você pode consultar tanto os dados via `/api/v1/<end-point>`.
+1. Download the original XLS file and clean up the unnecessary styles, empty rows, color, etc., (this process is applied on the three tabs);
+2. Merge the three tabs into a single one because it's the same food but with different data;
+3. Generate a CSV (comma-separated value) and export those data into a JSON format;
+4. Create another JSON file containing food `categories`;
+5. Create a relation between `food` and its `category`;
+6. Create two endpoints (`food` and `category`) to expose those data via `/api/v1/<end-point>`;
 
-### Dados oficiais
+### Oficial data and research
 
-Para manter os dados originais da pesquisa utilizado para realização desse projeto, [salvei todos os arquivos do site original](https://www.nepa.unicamp.br/taco/tabela.php?ativo=tabela) e você pode consultados na pasta `/references/*`
+To preserve the original data used in this project, I've saved all files from the [official research website](https://www.nepa.unicamp.br/taco/tabela.php?ativo=tabela) at `<rootDir>/references` folder.
 
-### Tecnologias utilizadas
+It's essential to keep these files in case the original website went shut down or appears offline for any reason.
 
-- [NodeJS](https://nodejs.org/en/) - JavaScript runtime
-- [ExpressJS](https://expressjs.com) - Framework HTTP
-- [apidocs](http://apidocjs.com) - Gerador de documentação de APIS
+### Tech Behind
 
-## Configuração
+- [NodeJS](https://nodejs.org/en/) - JS Backend;
+- [ExpressJS](https://expressjs.com) - HTTP Framework;
+- [apidocs](http://apidocjs.com) - Auto doc-gen for Rest APIs;
+- [Vuepress](https://vuepress.vuejs.org/) - Markdown-based static site generate for this overall documentation;
 
-### Via container
+## Getting Started
 
-Se você está familiarizado ou prefere usar Docker, existem duas maneiras de subir um container deste projeto.
+### Running the API
 
-A primeira é utilizando a imagem pública no Docker Hub deste projeto. Ao final, ambos os processos deixarão disponíveis a documentação da API em `http://localhost:4000`.
+For any of the following cases, the API will be boot at `http://localhost:4000`. When you hit this URL, you'll access the auto-gen API docs where you can see what's available to use.
 
-#### Imagem pública
+#### Via container
 
-Primeiro, baixe a imagem via docker hub:
+If you're familiar with Docker, there are two ways of running this project:
 
-```bash
-docker pull raulfdm/taco-api
-```
-
-Feito isso, rode suba um container utilizando a imagem baixada:
-
-```bash
-docker run -it --rm --name taco -p 4000:4000 raulfdm/taco-api
-```
-
-#### Utilizando o projeto
-
-Caso queira usar docker em tempo de desenvolvimento, basta clonar este repositório:
-
-```bash
-git clone https://github.com/raulfdm/taco-api.git
-```
-
-E rodar o docker compose para subir o container:
+The first is building the image locally. To do that, make sure you have docker-compose installed. Then, in the root level of this project run:
 
 ```bash
 docker-compose up
 ```
 
-### Sem container
+The second way is by using the public image hosted at Docker hub. For that, first, download the `taco-api` image:
 
-Caso não queira rodar através de um container, primeiro, clone este repositório e instale as dependências:
+```bash
+docker pull raulfdm/taco-api
+```
+
+Then run the following command:
+
+```bash
+docker run -it --rm --name taco -p 4000:4000 raulfdm/taco-api
+```
+
+#### No container
+
+If you want to run the API without a container, all you need to do is install the project dependencies with `npm`:
 
 ```bash
 cd taco-api
 npm install
 ```
 
-Agora, suba o servidor através do comando `start`:
+Then boot the server with `npm start`.
 
-```bash
-npm start
-```
+## Questions and Suggestions
 
-Feito isso, você pode checar a documentação da API em `http://localhost:4000`.
+If you have any questions, concerns, or suggestions, you can always check Github's repo's "discussion" tab at this project.
 
-### Documentação da API
-
-Ao subir o servidor e acessar `http://localhost:4000`, você verá a documentação com exemplos e descrição dos endpoints existentes e como consumi-los.
-
-## Dúvidas?
-
-Se você tiver alguma dúvida ou sugestão sobre este projeto, procure na aba "discussão" no Github deste repositório. Caso sua dúvida não esteja lá, inicie uma nova discussão [clicando aqui](https://github.com/raulfdm/taco-api/discussions/new) e eu responderei o quanto antes!
+If you can't find what you're looking for, create a [new discussion](https://github.com/raulfdm/taco-api/discussions/new) I can visualize and answer as soon as possible.
 
 ## FAQ
 
-### A API está offline?
+### Is the API offline?
 
-Sim, eu tirei do ar.
+Yes, I've shut it down.
 
-O motivo é que, quando eu criei o projeto, subi o servidor da API na minha conta pessoal no Heroku. Porém, algumas pessoas criaram projetos em cima da API, fazendo meu servidor ficar ativo sempre.
+The reason for that is that I've initially hosted it on my personal Heroku account. Because some people created projects on top of it, TACO API always stayed online, consuming my entire quota (which is limited since I use the free-tier and share it with other projects).
 
-Por eu usar o free-tier (plano gratuito), eu tenho limite mensal e ele estava sendo rapidamente consumido.
+### Can I use this project to build a client?
 
-### Posso utilizar esse projeto para construir uma aplicação?
+Yes, the project is free to use. The only thing you have to do is host it yourself wherever cloud platform you want to.
 
-Sim, o projeto é livre para qualquer pessoa utilizar. Porém, como disse anteriormente, ele não está mais disponível online, ou seja, você precisará subir o servidor em algum serviço de cloud caso queira ter acesso.
+::: tip
+I often use Heroku because it's straightforward, but it can be any other.
 
-- [Como publicar aplicação Node.js na Heroku](https://www.luiztools.com.br/post/como-publicar-aplicacao-node-js-na-heroku/)
-
-::: tip Obs.
-Eu geralmente uso Heroku por ser fácil, mas pode ser qualquer outro de sua preferência.
+[Deploying Node.js Apps on Heroku](https://devcenter.heroku.com/articles/deploying-nodejs)
 :::
 
-### O projeto ainda é mantido?
+### Is the project still being maintained?
 
-Mais ou menos. Quando eu o criei, a intenção era estudar Backend e APIs. Hoje, tenho outras coisas como foco, então, não pretendo adicionar novas funcionalidades.
+Somewhat.
 
-## Informações Legais
+When I've created this project, the end goal was to learn about Backend with node and REST APIs. However, today I'm focused on other subjects and studies.
 
-Este é um projeto sem fins lucrativos.
+Maybe for the future would be lovely to convert this into GraphQL, fix some data inconsistencies and even add data from different countries (TACO is a Brazilian project).
 
-Todos os dados utilizados foram pesquisados e produzidos pela [UNICAMP](http://Unicamp.br), e todo direito autoral é reservado à instituição.
+## Legal information
+
+This project is non-profitable.
+
+All used data were part of a research made by [UNICAMP](http://Unicamp.br)(Campina's University), and all rights are reserved to them.
 
 ## Licença
 
 [MIT](./LICENSE.md)
+
+---
