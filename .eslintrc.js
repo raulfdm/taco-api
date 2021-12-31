@@ -1,7 +1,8 @@
 module.exports = {
-  extends: ['airbnb-base', 'prettier'],
+  extends: ['eslint:recommended', 'airbnb-base', 'prettier'],
   rules: {
-    'no-underscore-dangle': 0,
+    'no-underscore-dangle': 'off',
+    'import/no-unresolved': 'warn',
   },
   globals: {
     expect: true,

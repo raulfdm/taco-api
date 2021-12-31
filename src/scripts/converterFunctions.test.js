@@ -1,3 +1,5 @@
+/* eslint-disable no-shadow */
+/* eslint-disable camelcase */
 const deepFreeze = require('deep-freeze');
 const {
   keyToUnitObject,
@@ -29,6 +31,7 @@ describe('fn: keyToUnitObject', () => {
     it('should be an object', () => {
       expect(result.protein).toBeInstanceOf(Object);
     });
+
     describe('qty property', () => {
       it('should has the property "qty"', () => {
         expect(result.protein).toHaveProperty('qty');
@@ -157,7 +160,7 @@ describe('fn: concatenateEnergy', () => {
       kcal: 124,
       kj: 517,
     };
-    const expected = Object.assign({}, model_1, { energy });
+    const expected = { ...model_1, ...energy };
     delete expected.energy_kcal;
     delete expected.energy_kj;
 
@@ -169,7 +172,7 @@ describe('fn: concatenateEnergy', () => {
       kcal: 192,
       kj: 802,
     };
-    const expected = Object.assign({}, model_2, { energy });
+    const expected = { ...model_2, ...energy };
     delete expected.energy_kcal;
     delete expected.energy_kj;
 

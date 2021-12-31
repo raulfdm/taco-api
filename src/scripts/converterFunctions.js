@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 const { isArray, isEmpty, omit, isString } = require('lodash');
 
 /**
@@ -52,7 +53,7 @@ const concatenateEnergy = ({ energy_kcal, energy_kj, ...rest }) => {
       kj: energy_kj,
     },
   };
-  return omit(Object.assign({}, rest, { ...energy }), omittedKeys);
+  return omit({ ...rest, ...energy }, omittedKeys);
 };
 
 const mergeProperties = (food, options) => {
@@ -79,17 +80,19 @@ const mergeProperties = (food, options) => {
   if (existingKeys.length === 0) {
     return food;
   }
-  const newMergedKeysObj = existingKeys.reduce((final, currentKey) => {
-    final[currentKey] = food[currentKey];
-    return final;
+  const newMergedKeysObj = existingKeys.reduce((result, currentKey) => {
+    // eslint-disable-next-line no-param-reassign
+    result[currentKey] = food[currentKey];
+    return result;
   }, {});
 
   /* Merge original object with the generated one */
-  const final = Object.assign({}, food, {
+  const final = {
+    ...food,
     [finalKey]: {
       ...newMergedKeysObj,
     },
-  });
+  };
 
   /* Deleting the mergeKeys  */
   return omit(final, existingKeys);

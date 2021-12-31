@@ -21,16 +21,14 @@ const categoriesMAP = categories.reduce((map, currentCategory) => {
  * @param {*} food - Food object
  * @description - change from {<prop-name_unit> : <value>} to {<prop-name>: {qty: <value>, unit: <unit>}}
  */
-const _normalizeUnits = food => {
+const _normalizeUnits = (food) => {
   const keys = Object.keys(food);
   const keysToIgnore = ['energy_kcal', 'energy_kj', 'humidity_percentage'];
   const finalData = keys.reduce(
-    (result, currentKey) =>
-      Object.assign(
-        {},
-        result,
-        keyToUnitObject(currentKey, food[currentKey], keysToIgnore)
-      ),
+    (result, currentKey) => ({
+      ...result,
+      ...keyToUnitObject(currentKey, food[currentKey], keysToIgnore),
+    }),
     {}
   );
 
@@ -42,7 +40,7 @@ const _normalizeUnits = food => {
  * @param {*} food - Food Object
  * @description - merge all fatty acids in a single prop
  */
-const _mergeFattyAcids = food =>
+const _mergeFattyAcids = (food) =>
   mergeProperties(food, {
     mergeKeys: [
       'saturated',
@@ -76,7 +74,7 @@ const _mergeFattyAcids = food =>
  * @param {*} food - Food Object
  * @description - merge all amino acids in a single prop
  */
-const _mergeAminoAcids = food =>
+const _mergeAminoAcids = (food) =>
   mergeProperties(food, {
     mergeKeys: [
       'tryptophan',
@@ -106,13 +104,13 @@ const _mergeAminoAcids = food =>
  * @param {*} food - Food Object
  * @description - All food were measured by 100g
  */
-const _addBase = food =>
-  Object.assign({}, food, {
-    base_qty: 100,
-    base_unit: 'g',
-  });
+const _addBase = (food) => ({
+  ...food,
+  base_qty: 100,
+  base_unit: 'g',
+});
 
-const _writeCallback = err => {
+const _writeCallback = (err) => {
   if (err) {
     console.error(err);
   } else {
@@ -120,12 +118,12 @@ const _writeCallback = err => {
   }
 };
 
-const replaceCategoryToId = ({ category, ...rest }) =>
-  Object.assign({}, rest, {
-    category_id: categoriesMAP.get(category),
-  });
+const replaceCategoryToId = ({ category, ...rest }) => ({
+  ...rest,
+  category_id: categoriesMAP.get(category),
+});
 
-const _mergeAttributes = food =>
+const _mergeAttributes = (food) =>
   mergeProperties(food, {
     mergeKeys: [
       'humidity',
