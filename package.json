@@ -1,0 +1,18 @@
+{
+  "name": "taco-api",
+  "version": "1.0.0",
+  "description": "Brazilian Table of Food Composition (TACO) - JSON API",
+  "homepage": "https://github.com/raulfdm/taco.js",
+  "bugs": {
+    "url": "https://github.com/raulfdm/taco.js/issues"
+  },
+  "license": "MIT",
+  "author": {
+    "name": "Raul de Melo",
+    "email": "melo.raulf@gmail.com"
+  },
+  "keywords": [],
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}
