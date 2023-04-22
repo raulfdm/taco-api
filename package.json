@@ -15,10 +15,13 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "dependencies": {
+    "@prisma/client": "4.13.0"
+  },
   "devDependencies": {
     "@types/node": "18.15.13",
     "prisma": "4.13.0",
-    "ts-node": "10.9.1",
+    "tsx": "3.12.6",
     "typescript": "5.0.4"
   }
 }
