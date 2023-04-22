@@ -32,10 +32,12 @@
     "consign": "0.1.6",
     "cors": "2.8.5",
     "express": "4.17.2",
-    "lodash": "4.17.21"
+    "lodash": "4.17.21",
+    "zod": "3.21.4"
   },
   "devDependencies": {
     "@types/cors": "2.8.12",
+    "@types/node": "^18.15.13",
     "deep-freeze": "0.0.1",
     "eslint": "7.32.0",
     "eslint-config-airbnb-base": "14.2.0",
@@ -46,9 +48,12 @@
     "nodemon": "2.0.4",
     "prettier": "2.0.5",
     "pretty-quick": "2.0.1",
+    "prisma": "4.13.0",
     "rimraf": "3.0.2",
     "scripty": "2.0.0",
     "supertest": "4.0.2",
+    "ts-node": "10.9.1",
+    "typescript": "5.0.4",
     "vuepress": "2.0.0-beta.32"
   },
   "resolutions": {
