@@ -2,6 +2,7 @@
   "name": "taco-api",
   "version": "1.0.0",
   "description": "Brazilian Table of Food Composition (TACO) - JSON API",
+  "type": "module",
   "homepage": "https://github.com/raulfdm/taco.js",
   "bugs": {
     "url": "https://github.com/raulfdm/taco.js/issues"
@@ -11,9 +12,9 @@
     "name": "Raul de Melo",
     "email": "melo.raulf@gmail.com"
   },
-  "keywords": [],
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "tsx index.ts",
+    "migration": "prisma migrate dev --name init"
   },
   "dependencies": {
     "@prisma/client": "4.13.0"
