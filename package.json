@@ -14,7 +14,8 @@
   },
   "scripts": {
     "dev": "tsx index.ts",
-    "migration": "prisma migrate dev --name init"
+    "migration": "prisma migrate dev --name init",
+    "seed": "./scripts/seed.sh"
   },
   "dependencies": {
     "@prisma/client": "4.13.0"
