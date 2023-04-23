@@ -16,6 +16,7 @@
     "dev": "tsx index.ts",
     "studio": "prisma studio",
     "migration": "prisma migrate dev --name init",
+    "migration:reset": "prisma migrate reset --force",
     "seed": "./scripts/seed.sh"
   },
   "dependencies": {
