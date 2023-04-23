@@ -21,3 +21,5 @@ Abaixo, a lista dos arquivos e suas descrições:
 - `taco_phase_3_rename_labels` -> Nessa etapa, eu fiz uma limpeza nos nomes das colunas, removendo espaços, a unidade dos nutrientes e traduzindo para inglês;
 - `taco_phase_4_decouple_category` -> Nessa etapa, eu criei uma outra tabela somente com as categorias, assim, ao invés de duplicar o nome da categoria (por exemplo `Cereais e derivados`), eu faço uma referencia ao seu `id` em cada alimento (por exemplo, `1`);
 - `taco_phase_5_decouple_food` -> A última etapa foi separar o alimento dos nutrientes em outra planilha, criando uma relação pelo seu ID entre as outras tabelas.
+
+Por último, fiz a extração de todas as planilhas dentro do `taco_phase_5_decouple_food` para `.csv` (comma separated value). Isso facilita na transposição dos dados em JSON.
