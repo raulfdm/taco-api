@@ -5,6 +5,7 @@ import csvtojson from "csvtojson/v2";
 
 import { AminoAcid, AminoAcidMap } from "./amino-acids";
 import { FattyAcid, FattyAcidMap } from "./fatty-acids";
+import { Nutrients, type NutrientsMap } from "./nutrients";
 
 const __dirname = url.fileURLToPath(new URL(".", import.meta.url));
 
@@ -25,16 +26,21 @@ type PrismaFood = Food & {
   fattyAcids?: {
     create: Omit<FattyAcid, "foodId">;
   };
+  nutrients?: {
+    create: Omit<Nutrients, "foodId">;
+  };
 };
 
 type GetFoodOptions = {
   fattyAcidsMap: FattyAcidMap;
   aminoAcidsMap: AminoAcidMap;
+  nutrientsMap: NutrientsMap;
 };
 
 export async function getFoods({
   aminoAcidsMap,
   fattyAcidsMap,
+  nutrientsMap,
 }: GetFoodOptions): Promise<PrismaFood[]> {
   const foodJson = await csvtojson().fromFile(
     path.resolve(__dirname, "../../references/csv/food.csv")
@@ -53,6 +59,7 @@ export async function getFoods({
 
     const aminoAcids = aminoAcidsMap.get(food.id);
     const fattyAcids = fattyAcidsMap.get(food.id);
+    const nutrients = nutrientsMap.get(food.id);
 
     if (aminoAcids) {
       foodMap.aminoAcids = {
@@ -63,6 +70,12 @@ export async function getFoods({
     if (fattyAcids) {
       foodMap.fattyAcids = {
         create: fattyAcids,
+      };
+    }
+
+    if (nutrients) {
+      foodMap.nutrients = {
+        create: nutrients,
       };
     }
 
