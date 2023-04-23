@@ -19,10 +19,38 @@ model Category {
 }
 
 model Food {
-  id         Int      @id @default(autoincrement())
-  name       String   @unique @db.VarChar(255)
-  category   Category @relation(fields: [categoryId], references: [id])
+  id         Int         @id @default(autoincrement())
+  name       String      @unique @db.VarChar(255)
+  category   Category    @relation(fields: [categoryId], references: [id])
   categoryId Int
+  AminoAcids AminoAcid[]
 
   @@map("foods")
+}
+
+model AminoAcid {
+  id     Int  @id @default(autoincrement())
+  food   Food @relation(fields: [foodId], references: [id])
+  foodId Int
+
+  tryptophan    Float
+  threonine     Float
+  isoleucine    Float
+  leucine       Float
+  lysine        Float
+  methionine    Float
+  cystine       Float
+  phenylalanine Float
+  tyrosine      Float
+  valine        Float
+  arginine      Float
+  histidine     Float
+  alanine       Float
+  asparticAcid  Float
+  glutamicAcid  Float
+  glycine       Float
+  proline       Float
+  serine        Float
+
+  @@map("amino_acids")
 }
