@@ -24,19 +24,15 @@ try {
 
   await prisma.category.createMany({
     data: categories,
+    skipDuplicates: true,
   });
 
   console.log("Categories created");
 
   await prisma.$disconnect();
 } catch (e) {
+  console.error(e);
   await prisma.$disconnect();
 
-  if ("message" in e && e.message.includes("Unique constraint failed")) {
-    console.log("Categories already created");
-    process.exit(0);
-  }
-
-  console.error(e);
   process.exit(1);
 }
