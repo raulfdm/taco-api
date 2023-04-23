@@ -1,21 +1,26 @@
 import { PrismaClient } from "@prisma/client";
+import * as url from "url";
+import path from "node:path";
+import { z } from "zod";
+import csvtojson from "csvtojson/v2";
 
-import references from "../references/TACO_formatted.json";
+const __dirname = url.fileURLToPath(new URL(".", import.meta.url));
 
 const prisma = new PrismaClient();
 
-const categoriesSet = references.reduce((acc, { category }) => {
-  acc.add(category);
-
-  return acc;
-}, new Set<string>());
-
-const categories = Array.from(categoriesSet.values()).map((category) => ({
-  name: category,
-}));
+const categoriesSchema = z.array(
+  z.object({
+    id: z.string().transform((id) => Number(id)),
+    name: z.string(),
+  })
+);
 
 try {
-  console.log(categories);
+  const categoriesJson = await csvtojson().fromFile(
+    path.resolve(__dirname, "../references/csv/categories.csv")
+  );
+
+  const categories = categoriesSchema.parse(categoriesJson);
 
   await prisma.category.createMany({
     data: categories,
