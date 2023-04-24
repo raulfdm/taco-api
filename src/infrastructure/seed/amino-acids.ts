@@ -35,7 +35,7 @@ export type AminoAcidMap = Map<number, Omit<AminoAcid, "foodId">>;
 
 export async function getAminoAcidsMap(): Promise<AminoAcidMap> {
   const aminoAcidsJson = await csvtojson().fromFile(
-    path.resolve(__dirname, "../../references/csv/amino-acids.csv")
+    path.resolve(__dirname, "../../../references/csv/amino-acids.csv")
   );
 
   const aminoAcids = aminoAcidsSchema.parse(aminoAcidsJson);

@@ -15,7 +15,7 @@ const categoriesSchema = z.array(
 
 export async function seedCategories(client: PrismaClient) {
   const categoriesJson = await csvtojson().fromFile(
-    path.resolve(__dirname, "../../references/csv/categories.csv")
+    path.resolve(__dirname, "../../../references/csv/categories.csv")
   );
 
   const categories = categoriesSchema.parse(categoriesJson);

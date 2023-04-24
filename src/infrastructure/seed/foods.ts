@@ -43,7 +43,7 @@ export async function getFoods({
   nutrientsMap,
 }: GetFoodOptions): Promise<PrismaFood[]> {
   const foodJson = await csvtojson().fromFile(
-    path.resolve(__dirname, "../../references/csv/food.csv")
+    path.resolve(__dirname, "../../../references/csv/food.csv")
   );
 
   const foods = foodSchema.parse(foodJson);

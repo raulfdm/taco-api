@@ -67,7 +67,7 @@ export type FattyAcidMap = Map<number, Omit<FattyAcid, "foodId">>;
 
 export async function getFattyAcidsMap(): Promise<FattyAcidMap> {
   const fattyAcidsJson = await csvtojson().fromFile(
-    path.resolve(__dirname, "../../references/csv/fatty-acids.csv")
+    path.resolve(__dirname, "../../../references/csv/fatty-acids.csv")
   );
 
   const fattyAcids = fattyAcidsSchema.parse(fattyAcidsJson);

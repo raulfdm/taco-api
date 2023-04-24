@@ -49,7 +49,7 @@ export type NutrientsMap = Map<number, Omit<Nutrients, "foodId">>;
 
 export async function getNutrientsMap(): Promise<NutrientsMap> {
   const aminoAcidsJson = await csvtojson().fromFile(
-    path.resolve(__dirname, "../../references/csv/nutrients.csv")
+    path.resolve(__dirname, "../../../references/csv/nutrients.csv")
   );
 
   const nutrients = nutrientsSchema.parse(aminoAcidsJson);
