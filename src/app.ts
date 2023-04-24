@@ -4,13 +4,13 @@ import { graphqlHTTP } from "express-graphql";
 import { createApplication } from "graphql-modules";
 
 import {
-  mainModule,
-  unitModule,
-  foodModule,
-  categoryModule,
   aminoAcidModules,
+  categoryModule,
   fattyAcidModule,
+  foodModule,
+  mainModule,
   nutrientModule,
+  unitModule,
 } from "@/modules";
 
 dotenv.config();

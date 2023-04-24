@@ -1,6 +1,6 @@
+import { Prisma } from "@prisma/client";
 import { createModule } from "graphql-modules";
 import * as url from "url";
-import { Prisma } from "@prisma/client";
 
 import { getPrismaClient } from "../../infrastructure/primaClient";
 import { typeDefs } from "./typeDef";

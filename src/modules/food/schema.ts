@@ -1,9 +1,9 @@
+import { Prisma } from "@prisma/client";
 import { createModule } from "graphql-modules";
 import * as url from "url";
 
 import { getPrismaClient } from "../../infrastructure/primaClient";
 import { typeDefs } from "./typeDef";
-import { Prisma } from "@prisma/client";
 
 const __dirname = url.fileURLToPath(new URL(".", import.meta.url));
 
@@ -27,7 +27,7 @@ export const foodModule = createModule({
           },
         });
       },
-      getFoodById: async (_: any, { id }: { id: number }) => {
+      getFoodById: async (_: unknown, { id }: { id: number }) => {
         return getPrismaClient().food.findUnique({
           where: {
             id,

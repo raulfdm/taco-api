@@ -1,10 +1,10 @@
 import { PrismaClient } from "@prisma/client";
 
 import { getAminoAcidsMap } from "./amino-acids";
-import { getFattyAcidsMap } from "./fatty-acids";
-import { getNutrientsMap } from "./nutrients";
-import { getFoods } from "./foods";
 import { seedCategories } from "./categories";
+import { getFattyAcidsMap } from "./fatty-acids";
+import { getFoods } from "./foods";
+import { getNutrientsMap } from "./nutrients";
 import { seedUnits } from "./units";
 
 const prisma = new PrismaClient();

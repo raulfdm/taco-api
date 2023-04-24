@@ -1,7 +1,8 @@
-import { z } from "zod";
-import * as url from "url";
 import path from "node:path";
+
 import csvtojson from "csvtojson/v2";
+import * as url from "url";
+import { z } from "zod";
 
 import { AminoAcid, AminoAcidMap } from "./amino-acids";
 import { FattyAcid, FattyAcidMap } from "./fatty-acids";

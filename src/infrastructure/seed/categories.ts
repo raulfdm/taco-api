@@ -1,8 +1,9 @@
-import { PrismaClient } from "@prisma/client";
-import * as url from "url";
 import path from "node:path";
-import { z } from "zod";
+
+import { PrismaClient } from "@prisma/client";
 import csvtojson from "csvtojson/v2";
+import * as url from "url";
+import { z } from "zod";
 
 const __dirname = url.fileURLToPath(new URL(".", import.meta.url));
 
