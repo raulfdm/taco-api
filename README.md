@@ -1,15 +1,25 @@
-# Taco API
+# Taco GraphQL API
 
-## Stack
+> Brazilian Table of Food Composition
 
-- prisma
-- postgres
-- express
+<p>
+ <a href="https://github.com/raulfdm/taco-api/actions/workflows/app.yml">
+   <img src="https://github.com/raulfdm/taco-api/actions/workflows/app.yml/badge.svg"
+        alt="build status">
+ </a>
+ <a href="https://travis-ci.org/raulfdm/taco-api">
+   <img src="https://travis-ci.org/raulfdm/taco-api.svg?branch=master"
+        alt="build status">
+ </a>
+</p>
 
-## Running it locally
+## Docs
 
-Boot postgres via docker:
+For more details about this API, check the official docs:
 
-```sh
-docker compose up
-```
+- [Portuguese](https://taco-api.netlify.app/)
+- [English](https://taco-api.netlify.app/en)
+
+## License
+
+[MIT](./LICENSE.md)
