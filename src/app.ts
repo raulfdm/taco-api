@@ -1,4 +1,4 @@
-import { config } from "dotenv";
+import * as dotenv from "dotenv";
 import express from "express";
 import { graphqlHTTP } from "express-graphql";
 import { createApplication } from "graphql-modules";
@@ -6,7 +6,7 @@ import { createApplication } from "graphql-modules";
 import { mainModule } from "./modules/main/schema";
 import { unitModule } from "./modules/unit/schema";
 
-config();
+dotenv.config();
 
 const app = express();
 
