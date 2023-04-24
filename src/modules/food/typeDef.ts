@@ -98,7 +98,9 @@ const foodTypeDef = gql`
     fattyAcids: FattyAcid
     nutrients: Nutrient
   }
+`;
 
+const queryTypeDef = gql`
   extend type Query {
     getAllFood: [Food]!
     getFoodById(id: Int!): Food
@@ -110,5 +112,6 @@ export const typeDefs = [
   aminoAcidTypeDef,
   nutrientTypeDef,
   fattyAcidTypeDef,
+  queryTypeDef,
   foodTypeDef,
 ];
