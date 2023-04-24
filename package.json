@@ -1,7 +1,7 @@
 {
   "name": "taco-api",
+  "description": "Brazilian Table of Food Composition (TACO) - GraphQL API",
   "version": "1.0.0",
-  "description": "Brazilian Table of Food Composition (TACO) - JSON API",
   "type": "module",
   "homepage": "https://github.com/raulfdm/taco.js",
   "bugs": {
@@ -10,7 +10,7 @@
   "license": "MIT",
   "author": {
     "name": "Raul de Melo",
-    "email": "melo.raulf@gmail.com"
+    "email": "contact@raulmelo.dev"
   },
   "scripts": {
     "start": "tsx src/app.ts",
@@ -25,6 +25,7 @@
   },
   "dependencies": {
     "@prisma/client": "4.13.0",
+    "cors": "2.8.5",
     "dotenv": "16.0.3",
     "express": "4.18.2",
     "express-graphql": "0.12.0",
@@ -33,14 +34,15 @@
     "zod": "3.21.4"
   },
   "devDependencies": {
+    "@types/cors": "2.8.13",
     "@types/csvtojson": "2.0.0",
     "@types/express": "4.17.17",
     "@types/node": "18.15.13",
-    "@typescript-eslint/eslint-plugin": "^5.59.0",
-    "@typescript-eslint/parser": "^5.59.0",
+    "@typescript-eslint/eslint-plugin": "5.59.0",
+    "@typescript-eslint/parser": "5.59.0",
     "@vuepress/client": "2.0.0-beta.61",
     "csvtojson": "2.0.10",
-    "eslint": "^8.39.0",
+    "eslint": "8.39.0",
     "eslint-plugin-simple-import-sort": "10.0.0",
     "prisma": "4.13.0",
     "tsx": "3.12.6",
