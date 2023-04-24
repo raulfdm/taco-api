@@ -4,10 +4,13 @@ import { getAminoAcidsMap } from "./amino-acids";
 import { getFattyAcidsMap } from "./fatty-acids";
 import { getNutrientsMap } from "./nutrients";
 import { getFoods } from "./foods";
+import { seedCategories } from "./categories";
 
 const prisma = new PrismaClient();
 
 try {
+  await seedCategories(prisma);
+
   const [aminoAcidsMap, fattyAcidsMap, nutrientsMap] = await Promise.all([
     getAminoAcidsMap(),
     getFattyAcidsMap(),

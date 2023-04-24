@@ -6,8 +6,6 @@ import csvtojson from "csvtojson/v2";
 
 const __dirname = url.fileURLToPath(new URL(".", import.meta.url));
 
-const prisma = new PrismaClient();
-
 const categoriesSchema = z.array(
   z.object({
     id: z.string().transform((id) => Number(id)),
@@ -15,24 +13,17 @@ const categoriesSchema = z.array(
   })
 );
 
-try {
+export async function seedCategories(client: PrismaClient) {
   const categoriesJson = await csvtojson().fromFile(
-    path.resolve(__dirname, "../references/csv/categories.csv")
+    path.resolve(__dirname, "../../references/csv/categories.csv")
   );
 
   const categories = categoriesSchema.parse(categoriesJson);
 
-  await prisma.category.createMany({
+  await client.category.createMany({
     data: categories,
     skipDuplicates: true,
   });
 
   console.log("Categories created");
-
-  await prisma.$disconnect();
-} catch (e) {
-  console.error(e);
-  await prisma.$disconnect();
-
-  process.exit(1);
 }
