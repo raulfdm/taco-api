@@ -25,7 +25,14 @@ export const categoryModule = createModule({
             id,
           },
           include: {
-            foods: {},
+            foods: {
+              include: {
+                nutrients: true,
+                aminoAcids: true,
+                category: true,
+                fattyAcids: true,
+              },
+            },
           },
         });
       },
