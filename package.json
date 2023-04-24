@@ -39,6 +39,7 @@
     "typescript": "5.0.4"
   },
   "prisma": {
-    "seed": "tsx ./src/infrastructure/seed/index.ts"
+    "seed": "tsx ./src/infrastructure/seed/index.ts",
+    "schema": "src/infrastructure/prisma/schema.prisma"
   }
 }
