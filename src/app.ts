@@ -9,6 +9,7 @@ import {
   foodModule,
   categoryModule,
   aminoAcidModules,
+  fattyAcidModule,
 } from "@/modules";
 
 dotenv.config();
@@ -22,6 +23,7 @@ const api = createApplication({
     foodModule,
     categoryModule,
     aminoAcidModules,
+    fattyAcidModule,
   ],
 });
 

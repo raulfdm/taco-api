@@ -1,32 +1,5 @@
 import { gql } from "graphql-modules";
 
-const fattyAcidTypeDef = gql`
-  type FattyAcid {
-    saturated: Float!
-    monounsaturated: Float!
-    polyunsaturated: Float!
-    twelveZero: Float
-    fourteenZero: Float
-    fourteenOne: Float
-    sixteenZero: Float
-    sixteenOne: Float
-    eighteenZero: Float
-    eighteenOne: Float
-    eighteenOneT: Float
-    eighteenTwoN6: Float
-    eighteenTwoT: Float
-    eighteenThreeN3: Float
-    twentyZero: Float
-    twentyOne: Float
-    twentyFour: Float
-    twentyFive: Float
-    twentyTwoZero: Float
-    twentyTwoFive: Float
-    twentyTwoSix: Float
-    twentyFourZero: Float
-  }
-`;
-
 const nutrientTypeDef = gql`
   type Nutrient {
     moisture: Float
@@ -58,13 +31,6 @@ const nutrientTypeDef = gql`
   }
 `;
 
-const categoryTypeDef = gql`
-  type Category {
-    id: Int!
-    name: String!
-  }
-`;
-
 const foodTypeDef = gql`
   type Food {
     id: Int!
@@ -84,10 +50,4 @@ const queryTypeDef = gql`
   }
 `;
 
-export const typeDefs = [
-  categoryTypeDef,
-  nutrientTypeDef,
-  fattyAcidTypeDef,
-  queryTypeDef,
-  foodTypeDef,
-];
+export const typeDefs = [nutrientTypeDef, queryTypeDef, foodTypeDef];
