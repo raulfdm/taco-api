@@ -5,13 +5,14 @@ import { createApplication } from "graphql-modules";
 
 import { mainModule } from "./modules/main/schema";
 import { unitModule } from "./modules/unit/schema";
+import { foodModule } from "./modules/food/schema";
 
 dotenv.config();
 
 const app = express();
 
 const api = createApplication({
-  modules: [mainModule, unitModule],
+  modules: [mainModule, unitModule, foodModule],
 });
 
 const port = 4004;
