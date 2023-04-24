@@ -1,6 +1,6 @@
 import { gql } from "graphql-modules";
 
-const aminoAcidTypeDef = gql`
+const fattyAcidTypeDef = gql`
   type FattyAcid {
     saturated: Float!
     monounsaturated: Float!
@@ -27,4 +27,4 @@ const aminoAcidTypeDef = gql`
   }
 `;
 
-export const typeDefs = [aminoAcidTypeDef];
+export const typeDefs = [fattyAcidTypeDef];
