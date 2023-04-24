@@ -22,18 +22,21 @@ model Food {
   id   Int    @id @default(autoincrement())
   name String @unique @db.VarChar(255)
 
-  category   Category @relation(fields: [categoryId], references: [id])
-  categoryId Int
-
   aminoAcids AminoAcid?
   fattyAcids FattyAcid?
-  nutrients  Nutrients?
+  nutrients  Nutrient?
+
+  category   Category @relation(fields: [categoryId], references: [id])
+  categoryId Int
 
   @@map("foods")
 }
 
 model AminoAcid {
   id Int @id @default(autoincrement())
+
+  food   Food @relation(fields: [foodId], references: [id])
+  foodId Int  @unique
 
   tryptophan    Float
   threonine     Float
@@ -53,9 +56,6 @@ model AminoAcid {
   glycine       Float
   proline       Float
   serine        Float
-
-  food   Food @relation(fields: [foodId], references: [id])
-  foodId Int  @unique
 
   @@map("amino_acids")
 }
@@ -91,7 +91,7 @@ model FattyAcid {
   @@map("fatty_acids")
 }
 
-model Nutrients {
+model Nutrient {
   id     Int  @id @default(autoincrement())
   food   Food @relation(fields: [foodId], references: [id])
   foodId Int  @unique
@@ -124,4 +124,13 @@ model Nutrients {
   vitaminC      Float?
 
   @@map("nutrients")
+}
+
+model Unit {
+  id     Int    @id @default(autoincrement())
+  name   String @unique @db.VarChar(255)
+  namePt String @unique @db.VarChar(255)
+  unit   String
+
+  @@map("units")
 }
