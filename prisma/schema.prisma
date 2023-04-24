@@ -129,8 +129,12 @@ model Nutrient {
 model Unit {
   id     Int    @id @default(autoincrement())
   name   String @unique @db.VarChar(255)
-  namePt String @unique @db.VarChar(255)
   unit   String
+  namePt String @unique @db.VarChar(255)
+
+  infoodsTagname String? @unique @db.VarChar(255)
+  systematicName String? @unique @db.VarChar(255)
+  commonName     String? @unique @db.VarChar(255)
 
   @@map("units")
 }
