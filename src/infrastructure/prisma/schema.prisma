@@ -11,9 +11,9 @@ datasource db {
 }
 
 model Category {
-  id   Int    @id @default(autoincrement())
-  name String @unique @db.VarChar(255)
-  Food Food[]
+  id    Int    @id @default(autoincrement())
+  name  String @unique @db.VarChar(255)
+  foods Food[]
 
   @@map("categories")
 }
