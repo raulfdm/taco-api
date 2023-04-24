@@ -5,11 +5,13 @@ import { getFattyAcidsMap } from "./fatty-acids";
 import { getNutrientsMap } from "./nutrients";
 import { getFoods } from "./foods";
 import { seedCategories } from "./categories";
+import { seedUnits } from "./units";
 
 const prisma = new PrismaClient();
 
 try {
   await seedCategories(prisma);
+  await seedUnits(prisma);
 
   const [aminoAcidsMap, fattyAcidsMap, nutrientsMap] = await Promise.all([
     getAminoAcidsMap(),
@@ -40,7 +42,7 @@ try {
   await prisma.$disconnect();
 
   if ("message" in e && e.message.includes("Unique constraint failed")) {
-    console.log("Foods already created");
+    console.log("Row already created");
     process.exit(0);
   }
 
