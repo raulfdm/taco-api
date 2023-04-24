@@ -17,7 +17,7 @@
     "studio": "prisma studio",
     "migration": "prisma migrate dev --name init",
     "migration:reset": "prisma migrate reset --force",
-    "seed": "./scripts/seed.sh"
+    "seed": "tsx ./scripts/seed/index.ts"
   },
   "dependencies": {
     "@prisma/client": "4.13.0",
