@@ -3,6 +3,7 @@ import * as url from "url";
 
 import { getPrismaClient } from "../../infrastructure/primaClient";
 import { typeDefs } from "./typeDef";
+import { Prisma } from "@prisma/client";
 
 const __dirname = url.fileURLToPath(new URL(".", import.meta.url));
 
@@ -12,8 +13,12 @@ export const foodModule = createModule({
   typeDefs: typeDefs,
   resolvers: {
     Query: {
-      getAllFood: async () => {
-        return await getPrismaClient().food.findMany({
+      getAllFood: async (
+        _: unknown,
+        { opts }: { opts: Pick<Prisma.FoodFindManyArgs, "skip" | "take"> }
+      ) => {
+        return getPrismaClient().food.findMany({
+          ...opts,
           include: {
             category: true,
             nutrients: true,
@@ -23,7 +28,7 @@ export const foodModule = createModule({
         });
       },
       getFoodById: async (_: any, { id }: { id: number }) => {
-        return await getPrismaClient().food.findUnique({
+        return getPrismaClient().food.findUnique({
           where: {
             id,
           },

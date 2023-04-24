@@ -8,6 +8,11 @@ export const mainModule = createModule({
   dirname: __dirname,
   typeDefs: [
     gql`
+      input PrismaQueryOptions {
+        skip: Int
+        take: Int
+      }
+
       type Query
     `,
   ],

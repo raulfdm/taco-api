@@ -9,9 +9,13 @@ const categoryTypeDef = gql`
 `;
 
 const queryTypeDef = gql`
+  input GetCategoryByIdOpts {
+    foodFilters: PrismaQueryOptions
+  }
+
   extend type Query {
-    getAllCategories: [Category]!
-    getCategoryById(id: Int!): Category
+    getAllCategories(opts: GetCategoryByIdOpts): [Category]!
+    getCategoryById(id: Int!, opts: GetCategoryByIdOpts): Category
   }
 `;
 

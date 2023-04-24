@@ -14,7 +14,7 @@ const foodTypeDef = gql`
 
 const queryTypeDef = gql`
   extend type Query {
-    getAllFood: [Food]!
+    getAllFood(opts: PrismaQueryOptions): [Food]!
     getFoodById(id: Int!): Food
   }
 `;
