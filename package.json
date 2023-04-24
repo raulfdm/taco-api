@@ -16,9 +16,9 @@
     "start": "tsx src/app.ts",
     "dev": "tsx --watch src/app.ts",
     "studio": "prisma studio",
-    "migration": "prisma migrate dev --name init",
-    "migration:reset": "prisma migrate reset --force",
-    "db:seed": "NODE_ENV=development prisma db seed"
+    "db:migrate": "prisma migrate dev",
+    "db:seed": "NODE_ENV=development prisma db seed",
+    "db:reset": "NODE_ENV=development prisma migrate reset"
   },
   "dependencies": {
     "@prisma/client": "4.13.0",
