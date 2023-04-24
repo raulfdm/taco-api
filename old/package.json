@@ -1,39 +1,11 @@
 {
-  "name": "taco-api",
-  "version": "0.1.0",
-  "description": "Brazilian Table of Food Composition (TACO) - JSON API",
-  "homepage": "https://github.com/raulfdm/taco.js",
-  "bugs": {
-    "url": "https://github.com/raulfdm/taco.js/issues"
-  },
-  "license": "MIT",
-  "author": {
-    "name": "Raul de Melo",
-    "email": "melo.raulf@gmail.com"
-  },
   "scripts": {
-    "postinstall": "npm run api:doc",
-    "prestart": "npm run api:doc",
-    "start": "node src/index.js",
-    "predev": "npm run api:doc",
-    "dev": "nodemon src/index.js",
-    "lint": "eslint ./src/**/*.js",
     "test": "jest",
     "test:tdd": "npm run test -- --watch",
     "test:coverage": "npm run test -- --coverage",
     "api:doc": "apidoc -i src -o docs",
     "docs:dev": "vuepress dev documentation",
     "docs:build": "vuepress build documentation",
-    "build:image": "scripty",
-    "deploy:image": "scripty"
-  },
-  "dependencies": {
-    "apidoc": "0.50.3",
-    "consign": "0.1.6",
-    "cors": "2.8.5",
-    "express": "4.17.2",
-    "lodash": "4.17.21",
-    "zod": "3.21.4"
   },
   "devDependencies": {
     "@types/cors": "2.8.12",
@@ -56,9 +28,7 @@
     "typescript": "5.0.4",
     "vuepress": "2.0.0-beta.32"
   },
-  "resolutions": {
-    "minimist": "^0.2.1"
-  },
+  
   "husky": {
     "hooks": {
       "pre-commit": "pretty-quick --staged"

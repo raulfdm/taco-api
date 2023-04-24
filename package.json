@@ -21,7 +21,9 @@
     "db:seed": "NODE_ENV=development prisma db seed",
     "db:reset": "NODE_ENV=development prisma migrate reset",
     "docs:dev": "vuepress dev documentation",
-    "docs:build": "vuepress build documentation"
+    "docs:build": "vuepress build documentation",
+    "image:build": "docker build -t raulfdm/taco-api .",
+    "image:deploy": "pnpm run image:build && docker push raulfdm/taco-api"
   },
   "dependencies": {
     "@prisma/client": "4.13.0",
