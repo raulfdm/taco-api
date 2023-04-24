@@ -4,9 +4,10 @@ import csvtojson from "csvtojson/v2";
 import * as url from "url";
 import { z } from "zod";
 
-import { AminoAcid, AminoAcidMap } from "./amino-acids";
-import { FattyAcid, FattyAcidMap } from "./fatty-acids";
-import { Nutrients, type NutrientsMap } from "./nutrients";
+import type { AminoAcid, AminoAcidMap } from "./amino-acids";
+import type { FattyAcid, FattyAcidMap } from "./fatty-acids";
+import type { Nutrients } from "./nutrients";
+import type { NutrientsMap } from "./nutrients";
 
 const __dirname = url.fileURLToPath(new URL(".", import.meta.url));
 

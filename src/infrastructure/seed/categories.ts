@@ -1,6 +1,6 @@
 import path from "node:path";
 
-import { PrismaClient } from "@prisma/client";
+import type { PrismaClient } from "@prisma/client";
 import csvtojson from "csvtojson/v2";
 import * as url from "url";
 import { z } from "zod";

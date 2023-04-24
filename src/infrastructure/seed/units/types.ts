@@ -1,4 +1,4 @@
-import { AminoAcid, FattyAcid, Nutrient, Unit } from "@prisma/client";
+import type { AminoAcid, FattyAcid, Nutrient, Unit } from "@prisma/client";
 
 export type ValidUnit = Omit<Unit, "id"> & {
   fieldName: NutrientKeys | AminoAcidKeys | FattyAcidKeys;

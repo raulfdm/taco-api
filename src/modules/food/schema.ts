@@ -1,4 +1,4 @@
-import { Prisma } from "@prisma/client";
+import type { Prisma } from "@prisma/client";
 import { createModule } from "graphql-modules";
 import * as url from "url";
 

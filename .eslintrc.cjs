@@ -7,6 +7,8 @@ module.exports = {
   rules: {
     "simple-import-sort/imports": "error",
     "simple-import-sort/exports": "error",
+    "@typescript-eslint/consistent-type-imports": "error",
+    "@typescript-eslint/consistent-type-definitions": ["error", "type"],
     "@typescript-eslint/no-unused-vars": [
       "error",
       {
