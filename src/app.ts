@@ -3,14 +3,26 @@ import express from "express";
 import { graphqlHTTP } from "express-graphql";
 import { createApplication } from "graphql-modules";
 
-import { mainModule, unitModule, foodModule, categoryModule } from "@/modules";
+import {
+  mainModule,
+  unitModule,
+  foodModule,
+  categoryModule,
+  aminoAcidModules,
+} from "@/modules";
 
 dotenv.config();
 
 const app = express();
 
 const api = createApplication({
-  modules: [mainModule, unitModule, foodModule, categoryModule],
+  modules: [
+    mainModule,
+    unitModule,
+    foodModule,
+    categoryModule,
+    aminoAcidModules,
+  ],
 });
 
 const port = 4004;
