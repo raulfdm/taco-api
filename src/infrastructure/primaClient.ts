@@ -1,9 +1,13 @@
 import { PrismaClient } from "@prisma/client";
 
-export function getPrismaClient(): PrismaClient {
+type GetPrismaOpts = {
+  disableLogs?: boolean;
+};
+
+export function getPrismaClient({ disableLogs }: GetPrismaOpts): PrismaClient {
   const prisma = new PrismaClient({
     // TODO: change this to development only
-    log: ["error", "info", "query", "warn"],
+    log: disableLogs ? undefined : ["error", "info", "query", "warn"],
   });
 
   return prisma;
