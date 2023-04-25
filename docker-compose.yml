@@ -1,17 +1,10 @@
 version: '3.9'
 
 services:
-  db:
-    image: postgres
-    restart: unless-stopped
+  taco_api:
+    build: ./
     environment:
-      POSTGRES_PASSWORD: mysecretpassword
-      POSTGRES_USER: postgres
-      POSTGRES_DB: taco-api
-    ports:
-      - 5432:5432
-    volumes:
-      - postgres-data:/var/lib/postgresql/data
+      PORT: 4000
 
-volumes:
-  postgres-data:
+    ports:
+      - 4000:4000
