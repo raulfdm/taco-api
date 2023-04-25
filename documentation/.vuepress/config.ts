@@ -5,6 +5,21 @@ export default defineUserConfig({
     repo: 'raulfdm/taco-api',
     locales: {
       '/': {
+        navbar: [
+          {
+            text: 'Versão',
+            children: [
+              {
+                text: 'Changelog',
+                link: 'https://github.com/raulfdm/taco-api/blob/main/CHANGELOG.md',
+              },
+              {
+                text: 'v1.0.0',
+                link: 'https://6447d8ec2c2ccb00085151ca--taco-api.netlify.app/',
+              },
+            ],
+          },
+        ],
         selectLanguageName: 'Português',
         toggleColorMode: 'Alternar modo escuro',
         openInNewWindow: 'Abrir em nova aba',
