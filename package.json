@@ -63,6 +63,7 @@
     "schema": "src/infrastructure/prisma/schema.prisma"
   },
   "lint-staged": {
-    "*.{js,ts,json}": "eslint --fix"
+    "*.{js,ts,json}": "eslint --fix",
+    "*.{md,mdx,yml}": "prettier --write"
   }
 }
