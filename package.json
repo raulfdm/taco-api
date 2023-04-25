@@ -23,7 +23,8 @@
     "docs:dev": "vuepress dev documentation",
     "docs:build": "vuepress build documentation",
     "image:build": "docker build -t raulfdm/taco-api .",
-    "image:deploy": "pnpm run image:build && docker push raulfdm/taco-api"
+    "image:deploy": "pnpm run image:build && docker push raulfdm/taco-api",
+    "prepare": "husky install"
   },
   "dependencies": {
     "@prisma/client": "4.13.0",
@@ -50,6 +51,8 @@
     "eslint-config-prettier": "8.8.0",
     "eslint-plugin-prettier": "4.2.1",
     "eslint-plugin-simple-import-sort": "10.0.0",
+    "husky": "8.0.3",
+    "lint-staged": "13.2.1",
     "prettier": "2.8.8",
     "typescript": "5.0.4",
     "vue": "3.2.47",
@@ -58,5 +61,8 @@
   "prisma": {
     "seed": "tsx ./src/infrastructure/seed/index.ts",
     "schema": "src/infrastructure/prisma/schema.prisma"
+  },
+  "lint-staged": {
+    "*.{js,ts,json}": "eslint --fix"
   }
 }
