@@ -18,13 +18,14 @@
     "studio": "prisma studio",
     "lint": "eslint --ext .ts src",
     "db:migrate": "NODE_ENV=development prisma migrate dev",
+    "db:generate": "NODE_ENV=development prisma generate",
     "db:seed": "NODE_ENV=development prisma db seed",
     "db:reset": "NODE_ENV=development prisma migrate reset",
     "docs:dev": "vuepress dev documentation",
     "docs:build": "vuepress build documentation",
     "image:build": "docker build -t raulfdm/taco-api .",
     "image:deploy": "pnpm run image:build && docker push raulfdm/taco-api",
-    "prepare": "husky install"
+    "prepare": "husky install && pnpm run db:generate"
   },
   "dependencies": {
     "@prisma/client": "4.13.0",

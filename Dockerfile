@@ -9,7 +9,7 @@ COPY package.json .
 RUN corepack enable
 RUN corepack prepare pnpm@latest-8 --activate
 
-RUN pnpm i --prod
+RUN pnpm i --prod --ignore-scripts
 
 COPY . .
 
