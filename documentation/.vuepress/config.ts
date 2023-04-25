@@ -33,6 +33,21 @@ export default defineUserConfig({
         selectLanguageText: 'Idiomas',
       },
       '/en/': {
+        navbar: [
+          {
+            text: 'Version',
+            children: [
+              {
+                text: 'Changelog',
+                link: 'https://github.com/raulfdm/taco-api/blob/main/CHANGELOG.md',
+              },
+              {
+                text: 'v1.0.0',
+                link: 'https://6447d8ec2c2ccb00085151ca--taco-api.netlify.app/',
+              },
+            ],
+          },
+        ],
         selectLanguageName: 'English',
       },
     },
