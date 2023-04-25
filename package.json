@@ -17,7 +17,7 @@
     "dev": "NODE_ENV=development tsx --watch src/app.ts",
     "studio": "prisma studio",
     "lint": "eslint --ext .ts src",
-    "db:migrate": "prisma migrate dev",
+    "db:migrate": "NODE_ENV=development prisma migrate dev",
     "db:seed": "NODE_ENV=development prisma db seed",
     "db:reset": "NODE_ENV=development prisma migrate reset",
     "docs:dev": "vuepress dev documentation",
