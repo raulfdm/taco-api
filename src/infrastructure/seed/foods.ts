@@ -1,13 +1,16 @@
 import path from "node:path";
 
+import type { PrismaClient } from "@prisma/client";
 import csvtojson from "csvtojson/v2";
 import * as url from "url";
 import { z } from "zod";
 
 import type { AminoAcid, AminoAcidMap } from "./amino-acids";
+import { getAminoAcidsMap } from "./amino-acids";
 import type { FattyAcid, FattyAcidMap } from "./fatty-acids";
-import type { Nutrients } from "./nutrients";
-import type { NutrientsMap } from "./nutrients";
+import { getFattyAcidsMap } from "./fatty-acids";
+import type { Nutrients, NutrientsMap } from "./nutrients";
+import { getNutrientsMap } from "./nutrients";
 
 const __dirname = url.fileURLToPath(new URL(".", import.meta.url));
 
@@ -39,7 +42,7 @@ type GetFoodOptions = {
   nutrientsMap: NutrientsMap;
 };
 
-export async function getFoods({
+async function getFoods({
   aminoAcidsMap,
   fattyAcidsMap,
   nutrientsMap,
@@ -85,4 +88,32 @@ export async function getFoods({
   }
 
   return foodsMap;
+}
+
+export async function seedFood(client: PrismaClient) {
+  const [aminoAcidsMap, fattyAcidsMap, nutrientsMap] = await Promise.all([
+    getAminoAcidsMap(),
+    getFattyAcidsMap(),
+    getNutrientsMap(),
+  ]);
+
+  const foods = await getFoods({ aminoAcidsMap, fattyAcidsMap, nutrientsMap });
+
+  console.group("Seeding foods");
+  for (const food of foods) {
+    console.log(`Creating food "${food.name}"`);
+
+    await client.food.upsert({
+      create: food,
+      where: {
+        id: food.id,
+      },
+      update: {},
+    });
+
+    console.log("Done.");
+  }
+
+  console.log("All foods created successfully.");
+  console.groupEnd();
 }

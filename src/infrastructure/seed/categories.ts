@@ -21,10 +21,17 @@ export async function seedCategories(client: PrismaClient) {
 
   const categories = categoriesSchema.parse(categoriesJson);
 
-  await client.category.createMany({
-    data: categories,
-    skipDuplicates: true,
-  });
+  console.group("Seeding categories");
 
-  console.log("Categories created");
+  for (const category of categories) {
+    console.log(`Creating category "${category.name}"`);
+    await client.category.create({
+      data: category,
+    });
+
+    console.log("Done.");
+  }
+
+  console.log("All categories created successfully.");
+  console.groupEnd();
 }
