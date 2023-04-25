@@ -23,7 +23,7 @@
     "db:reset": "NODE_ENV=development prisma migrate reset",
     "docs:dev": "vuepress dev documentation",
     "docs:build": "vuepress build documentation",
-    "image:build": "docker build -t raulfdm/taco-api .",
+    "image:build": "docker build -t raulfdm/taco-api:v2 -t raulfdm/taco-api:latest .",
     "image:deploy": "pnpm run image:build && docker push raulfdm/taco-api",
     "prepare": "husky install && pnpm run db:generate"
   },
