@@ -1,6 +1,6 @@
-import { PrismaClient } from "@prisma/client";
+import { PrismaClient } from '@prisma/client';
 
-import { env } from "./env";
+import { env } from './env';
 
 type GetPrismaOpts = {
   disableLogs?: boolean;
@@ -15,12 +15,12 @@ export function getPrismaClient({
     shouldLog = false;
   }
 
-  if (env.NODE_ENV === "production") {
+  if (env.NODE_ENV === 'production') {
     shouldLog = false;
   }
 
   const prisma = new PrismaClient({
-    log: shouldLog ? ["error", "info", "query", "warn"] : undefined,
+    log: shouldLog ? ['error', 'info', 'query', 'warn'] : undefined,
   });
 
   return prisma;

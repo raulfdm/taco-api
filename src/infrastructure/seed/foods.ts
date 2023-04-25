@@ -1,18 +1,18 @@
-import path from "node:path";
+import path from 'node:path';
 
-import type { PrismaClient } from "@prisma/client";
-import csvtojson from "csvtojson/v2";
-import * as url from "url";
-import { z } from "zod";
+import type { PrismaClient } from '@prisma/client';
+import csvtojson from 'csvtojson/v2';
+import * as url from 'url';
+import { z } from 'zod';
 
-import type { AminoAcid, AminoAcidMap } from "./amino-acids";
-import { getAminoAcidsMap } from "./amino-acids";
-import type { FattyAcid, FattyAcidMap } from "./fatty-acids";
-import { getFattyAcidsMap } from "./fatty-acids";
-import type { Nutrients, NutrientsMap } from "./nutrients";
-import { getNutrientsMap } from "./nutrients";
+import type { AminoAcid, AminoAcidMap } from './amino-acids';
+import { getAminoAcidsMap } from './amino-acids';
+import type { FattyAcid, FattyAcidMap } from './fatty-acids';
+import { getFattyAcidsMap } from './fatty-acids';
+import type { Nutrients, NutrientsMap } from './nutrients';
+import { getNutrientsMap } from './nutrients';
 
-const __dirname = url.fileURLToPath(new URL(".", import.meta.url));
+const __dirname = url.fileURLToPath(new URL('.', import.meta.url));
 
 const foodSchema = z.array(
   z.object({
@@ -26,13 +26,13 @@ type Food = z.infer<typeof foodSchema>[number];
 
 type PrismaFood = Food & {
   aminoAcids?: {
-    create: Omit<AminoAcid, "foodId">;
+    create: Omit<AminoAcid, 'foodId'>;
   };
   fattyAcids?: {
-    create: Omit<FattyAcid, "foodId">;
+    create: Omit<FattyAcid, 'foodId'>;
   };
   nutrients?: {
-    create: Omit<Nutrients, "foodId">;
+    create: Omit<Nutrients, 'foodId'>;
   };
 };
 
@@ -48,7 +48,7 @@ async function getFoods({
   nutrientsMap,
 }: GetFoodOptions): Promise<PrismaFood[]> {
   const foodJson = await csvtojson().fromFile(
-    path.resolve(__dirname, "../../../references/csv/food.csv")
+    path.resolve(__dirname, '../../../references/csv/food.csv')
   );
 
   const foods = foodSchema.parse(foodJson);
@@ -99,7 +99,7 @@ export async function seedFood(client: PrismaClient) {
 
   const foods = await getFoods({ aminoAcidsMap, fattyAcidsMap, nutrientsMap });
 
-  console.group("Seeding foods");
+  console.group('Seeding foods');
   for (const food of foods) {
     console.log(`Creating food "${food.name}"`);
 
@@ -111,9 +111,9 @@ export async function seedFood(client: PrismaClient) {
       update: {},
     });
 
-    console.log("Done.");
+    console.log('Done.');
   }
 
-  console.log("All foods created successfully.");
+  console.log('All foods created successfully.');
   console.groupEnd();
 }

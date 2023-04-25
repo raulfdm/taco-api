@@ -1,21 +1,21 @@
-import type { Prisma } from "@prisma/client";
-import { createModule } from "graphql-modules";
-import * as url from "url";
+import type { Prisma } from '@prisma/client';
+import { createModule } from 'graphql-modules';
+import * as url from 'url';
 
-import { getPrismaClient } from "../../infrastructure/primaClient";
-import { typeDefs } from "./typeDef";
+import { getPrismaClient } from '../../infrastructure/primaClient';
+import { typeDefs } from './typeDef';
 
-const __dirname = url.fileURLToPath(new URL(".", import.meta.url));
+const __dirname = url.fileURLToPath(new URL('.', import.meta.url));
 
 export const foodModule = createModule({
-  id: "food-module",
+  id: 'food-module',
   dirname: __dirname,
   typeDefs: typeDefs,
   resolvers: {
     Query: {
       getAllFood: async (
         _: unknown,
-        { opts }: { opts: Pick<Prisma.FoodFindManyArgs, "skip" | "take"> }
+        { opts }: { opts: Pick<Prisma.FoodFindManyArgs, 'skip' | 'take'> }
       ) => {
         return getPrismaClient().food.findMany({
           ...opts,

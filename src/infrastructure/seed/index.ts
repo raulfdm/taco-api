@@ -1,7 +1,7 @@
-import { getPrismaClient } from "../primaClient";
-import { seedCategories } from "./categories";
-import { seedFood } from "./foods";
-import { seedUnits } from "./units";
+import { getPrismaClient } from '../primaClient';
+import { seedCategories } from './categories';
+import { seedFood } from './foods';
+import { seedUnits } from './units';
 
 const prisma = getPrismaClient({
   disableLogs: true,
@@ -18,9 +18,9 @@ try {
 
   if (
     error instanceof Error &&
-    error.message.includes("Unique constraint failed")
+    error.message.includes('Unique constraint failed')
   ) {
-    console.log("Row already created");
+    console.log('Row already created');
     process.exit(0);
   }
 

@@ -1,9 +1,9 @@
-import type { PrismaClient } from "@prisma/client";
+import type { PrismaClient } from '@prisma/client';
 
-import { unitsToSave } from "./unitsToSave";
+import { unitsToSave } from './unitsToSave';
 
 export async function seedUnits(client: PrismaClient) {
-  console.group("Seeding units");
+  console.group('Seeding units');
   for (const unit of unitsToSave) {
     console.log(`Creating unit: "${unit.fieldName}"`);
 
@@ -11,9 +11,9 @@ export async function seedUnits(client: PrismaClient) {
       data: unit,
     });
 
-    console.log("Done.");
+    console.log('Done.');
   }
 
-  console.log("All units created successfully.");
+  console.log('All units created successfully.');
   console.groupEnd();
 }

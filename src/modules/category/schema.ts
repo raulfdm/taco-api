@@ -1,16 +1,16 @@
-import type { Prisma } from "@prisma/client";
-import { createModule } from "graphql-modules";
-import * as url from "url";
+import type { Prisma } from '@prisma/client';
+import { createModule } from 'graphql-modules';
+import * as url from 'url';
 
-import { getPrismaClient } from "../../infrastructure/primaClient";
-import { typeDefs } from "./typeDef";
+import { getPrismaClient } from '../../infrastructure/primaClient';
+import { typeDefs } from './typeDef';
 
-type FoodFilters = Pick<Prisma.FoodFindManyArgs, "skip" | "take">;
+type FoodFilters = Pick<Prisma.FoodFindManyArgs, 'skip' | 'take'>;
 
-const __dirname = url.fileURLToPath(new URL(".", import.meta.url));
+const __dirname = url.fileURLToPath(new URL('.', import.meta.url));
 
 export const categoryModule = createModule({
-  id: "category-module",
+  id: 'category-module',
   dirname: __dirname,
   typeDefs: typeDefs,
   resolvers: {
