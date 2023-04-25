@@ -1,7 +1,7 @@
 import cors from 'cors';
 import * as dotenv from 'dotenv';
 import express from 'express';
-import { graphqlHTTP } from 'express-graphql';
+import { createHandler } from 'graphql-http/lib/use/express';
 import { createApplication } from 'graphql-modules';
 
 import { env } from '@/infrastructure/env';
@@ -35,10 +35,9 @@ app.use(cors());
 
 app.use(
   '/graphql',
-  graphqlHTTP({
+  createHandler({
     schema: api.schema,
-    customExecuteFn: api.createExecution(),
-    graphiql: true,
+    execute: api.createExecution(),
   })
 );
 
