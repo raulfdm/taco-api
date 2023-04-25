@@ -4,6 +4,7 @@ import express from "express";
 import { graphqlHTTP } from "express-graphql";
 import { createApplication } from "graphql-modules";
 
+import { env } from "@/infrastructure/env";
 import {
   aminoAcidModules,
   categoryModule,
@@ -30,8 +31,6 @@ const api = createApplication({
   ],
 });
 
-const port = 4004;
-
 app.use(cors());
 
 app.use(
@@ -43,4 +42,6 @@ app.use(
   })
 );
 
-app.listen(port, () => console.log(`Example app listening on port ${port}!`));
+app.listen(env.PORT, () =>
+  console.log(`Example app listening on port ${env.PORT}!`)
+);
