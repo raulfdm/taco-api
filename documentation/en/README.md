@@ -1,131 +1,183 @@
 # Home
 
-## About the project TACO
+## About the TACO Project
 
-TACO is an initiative between the Nucleus of Studies and Research in Food (NEPA) of UNICAMP with funding from the Brazilian Ministry of Health (MS) and Ministry of Social Development and Fight against Hunger (MDS).
+The TACO project (Brazilian Table of Food Composition), coordinated by the Center for Studies and Research in Food (NEPA) at UNICAMP and funded by the Ministry of Health - MS and Ministry of Social Development and Fight Against Hunger - MDS is an initiative to provide data on a large number of nutrients in national and regional foods obtained through representative sampling and analysis performed by laboratories with analytical competence proven by inter-laboratory studies, according to international criteria.
 
-The goal is to provide data of many nutrients in national and regional foods obtained through representative sampling and analysis carried out by laboratories with analytical competence proven by interlaboratory studies, according to international criteria.
-
-::: tip Tip
-To know more, read the [official website (in Portuguese)](http://www.nepa.unicamp.br/taco/home.php?ativo=home)
+::: tip
+To learn more, read the [official site](http://www.nepa.unicamp.br/taco/home.php?ativo=home)
 :::
 
 ## About this project
 
-O objetivo principal deste projeto é usar os dados originais da pesquisa da TACO e provê-los através de uma API para ser utilizado para construção de aplicações.
+Initially, the TACO project has only 2 ways to consume this data. These are:
 
-The main goal of this project is to use the official data from the TACO research and provide them through a REST API.
+1. Through a PDF file. In this case, you need to search for the desired food and its values;
+2. Through an Excel file (xls) which, in theory, represents the "database" of foods.
 
-Initially, TACO research provides the data in only two ways:
+Building an application is almost impossible in both cases since we need the data correctly formatted, well structured, and with clear relationships between the information.
 
-1. PDF File. In this case, you have to search the food name manually and check-in its row the reference values;
-2. A XLS (Excel) file, where the researchers have created a database. Despite, the data formatting is far from ideal, and it's still hard to normalize the information there.
+So the main goal of this project is to use the original TACO research data and structure it so that it is easy to build a client (mobile or web).
 
-It wouldn't be a big problem for a dietist to consult food information in both cases. However, if someone wants to use the data to create an application, it becomes a real problem.
+### Data processing
 
-### Data sanitization process
+The beginning of the process is based entirely on the database (.xls file) they made available. However, to achieve a satisfactory result and to be able to insert it into a relational database, the following steps were taken:
 
-For creating this project, I've done the following actions:
+1. I downloaded the original spreadsheet and uploaded it to Google Sheets;
+2. I converted it from `.xls` (proprietary Microsoft format) to `.xlsx` (Office Open XML format) for better accessibility;
+3. I cleaned up all the rows, columns, and font formatting. I removed empty rows, merged duplicate rows or rows that were added for better visualization in the study;
+4. Replaced the non-numeric values, where:
+   - `NA` (not applicable) was converted to empty (`null`);
+   - `*` (values sent for re-analysis) has been converted to empty (`null`);
+   - `Tr` (values between a specific range) has been converted to zero (`0`);
+5. I defined English names for the columns;
+6. I created another worksheet (still in the same document) that contains all the possible categories and linked theirs `id's to the food worksheet;
+7. I created another sheet (still in the same document) that contains nutritional information and linked it to the `id` of the food;
+8. I exported each spreadsheet in the document to `.csv` and downloaded it into the project;
+9. I modeled the database using a tool called `Prisma`;
+10. I created a script to populate the database in the correct order and make the relationship between the information and the food.
 
-1. Download the original XLS file and clean up the unnecessary styles, empty rows, color, etc., (this process is applied on the three tabs);
-2. Merge the three tabs into a single one because it's the same food but with different data;
-3. Generate a CSV (comma-separated value) and export those data into a JSON format;
-4. Create another JSON file containing food `categories`;
-5. Create a relation between `food` and its `category`;
-6. Create two endpoints (`food` and `category`) to expose those data via `/api/v1/<end-point>`;
+### Official data
 
-### Oficial data and research
+To keep the original research data used for this project, [I have saved all the files from the original site](https://www.nepa.unicamp.br/taco/tabela.php?ativo=tabela) and you can consult them in the `/references/*` folder
 
-To preserve the original data used in this project, I've saved all files from the [official research website](https://www.nepa.unicamp.br/taco/tabela.php?ativo=tabela) at `<rootDir>/references` folder.
+### Technologies
 
-It's essential to keep these files in case the original website went shut down or appears offline for any reason.
+- [NodeJS](https://nodejs.org/en/) - JavaScript runtime
+- [ExpressJS](https://expressjs.com) - HTTP framework
+- [Prisma](https://www.prisma.io/) - JavaScript Object-Relational Mapping (ORM) to populate the database and define the relationship;
+- [SQLite](https://sqlite.org/) - Mini relational database;
+- [GraphQL](https://graphql.org/) - Query language for the API;
+- [Vuepress](https://v2.vuepress.vuejs.org/) - Documentation site
 
-### Tech Behind
+## Contributing
 
-- [NodeJS](https://nodejs.org/en/) - JS Backend;
-- [ExpressJS](https://expressjs.com) - HTTP Framework;
-- [apidocs](http://apidocjs.com) - Auto doc-gen for Rest APIs;
-- [Vuepress](https://vuepress.vuejs.org/) - Markdown-based static site generate for this overall documentation;
+### Prerequisites
 
-## Getting Started
+To run the project locally, you will need to have installed the following:
 
-### Running the API
+- [NodeJS version 18](https://nodejs.org/en)
+- [pnpm](https://pnpm.io) (dependency manager). You can follow the installation steps by clicking [here](https://pnpm.io/installation#using-corepack).
+- A GraphQL client to be able to inspect the API.
+  I recommend [Altair GraphQL](https://altairgraphql.dev/)
 
-For any of the following cases, the API will be boot at `http://localhost:4000`. When you hit this URL, you'll access the auto-gen API docs where you can see what's available to use.
+### Running the project
 
-#### Via container
-
-If you're familiar with Docker, there are two ways of running this project:
-
-The first is building the image locally. To do that, make sure you have docker-compose installed. Then, in the root level of this project run:
-
-```bash
-docker-compose up
-```
-
-The second way is by using the public image hosted at Docker hub. For that, first, download the `taco-api` image:
-
-```bash
-docker pull raulfdm/taco-api
-```
-
-Then run the following command:
+First, install all the dependencies for the project:
 
 ```bash
-docker run -it --rm --name taco -p 4000:4000 raulfdm/taco-api
+pnpm install
 ```
 
-#### No container
-
-If you want to run the API without a container, all you need to do is install the project dependencies with `npm`:
+Then, run the server:
 
 ```bash
-cd taco-api
-npm install
+pnpm run dev
 ```
 
-Then boot the server with `npm start`.
+Now the server is running at `http://localhost:4000/grapqhl`. Now just copy this address into your GraphQL client so you can run queries and view the API documentation.
 
-## Questions and Suggestions
+#### Prisma ORM and the Database
 
-If you have any questions, concerns, or suggestions, you can always check Github's repo's "discussion" tab at this project.
+Because the project uses SQLite, and this generates a file that is being committed, you probably don't need to run any of the commands from the database.
 
-If you can't find what you're looking for, create a [new discussion](https://github.com/raulfdm/taco-api/discussions/new) I can visualize and answer as soon as possible.
+But if you fork the project and want to make changes to the models, you will probably need to do a database migration so that the new columns/tables can be inserted.
+
+When making any changes to the `src/infrastructure/prisma/schema.prisma` file, run the following command:
+
+```bash
+pnpm run db:migrate -name <change-name>
+```
+
+This will create a migration file that must be committed.
+
+If you want to clean out the database and re-insert the original data, you can use the command:
+
+```bash
+pnpm run db:reset
+```
+
+If you want to see the database in a dashboard, you can run Prisma studio:
+
+```bash
+pnpm run studio
+```
+
+#### API Documentation
+
+In version 1, the documentation was generated through APIDocs.
+Now that the project uses GraphQL, you can view the API documentation (sample queries, fields, etc.) through your GraphQL client.
+
+## Using in production
+
+If you want to run the project in production mode (for deployment), there are two ways.
+
+### Without docker
+
+Here, you will need to follow the same prerequisite as in the contribution step.
+Once you have the dependencies installed, you can run the command:
+
+```bash
+pnpm start
+```
+
+This will put the project into production mode (with logs disabled) and will also be available at the `http://localhost:4000/grapqhl` address.
+
+### With docker
+
+If you are familiar with docker, you have the option of running the project from an image.
+Within the repository, there is a configuration file to upload the project using docker-compose, so you can just do:
+
+```bash
+docker compose up -build
+```
+
+If you want to use the remote image, you can run the following:
+
+```bash
+docker run -it --rm --name taco -p 4000:4000 raulfdm/taco-api:v2
+```
 
 ## FAQ
 
-### Is the API offline?
+### Is there an online demo?
 
-Yes, I've shut it down.
+No.
+I used to leave a version hosted on Heroku, but people were building apps that hit it directly, and my usage quota expired very quickly.
 
-The reason for that is that I've initially hosted it on my personal Heroku account. Because some people created projects on top of it, TACO API always stayed online, consuming my entire quota (which is limited since I use the free-tier and share it with other projects).
+Also, Heroku stopped offering the free plan, making it even more difficult.
 
-### Can I use this project to build a client?
+### Can I use this project to build a client application?
 
-Yes, the project is free to use. The only thing you have to do is host it yourself wherever cloud platform you want to.
+Yes, the project is free for anyone to use. However, as I said before, it is no longer available online. You must upload the server to a cloud service if you want access.
 
-::: tip
-I often use Heroku because it's straightforward, but it can be any other.
+### Is the project still maintained?
 
-[Deploying Node.js Apps on Heroku](https://devcenter.heroku.com/articles/deploying-nodejs)
-:::
+More or less.
+When I created it, I intended to study API builds using NodeJS.
+When I want to test something new that fits this scope, I update one thing or another. Still, my career and professional focus is not that. I have little time available, and I always prefer other projects.
 
-### Is the project still being maintained?
+### Why did you convert the project from Rest to GraphQL?
 
-Somewhat.
+I took this decision precisely because I wanted to revisit the creation of APIs in Node but using the new tools, and also because I believe it is much easier and more intuitive to bring the information that the customer needs.
+If you are not so familiar with GraphQL, I strongly recommend that you study the basics to at least be able to consume it, or use version 1 of the project.
 
-When I've created this project, the end goal was to learn about Backend with node and REST APIs. However, today I'm focused on other subjects and studies.
+### Why a database instead of local files?
 
-Maybe for the future would be lovely to convert this into GraphQL, fix some data inconsistencies and even add data from different countries (TACO is a Brazilian project).
+In version 2, I chose a relational database because I believe that the structure of Taco's data is extremely relational.
+There is a relationship between the category and the food, the food and its amino acids, the food, and its nutrients, etc.
+Making these relationships using a database is much easier than using JSON files.
 
-## Legal information
+### Why SQLite and not Postgresql or another database?
 
-This project is non-profitable.
+Initially, I started with Postgres. However, I think it offers much more than this application needs (5 or 6 tables with at most 500 rows) and adds complexity to the application deployment.
+SQLite allows us to save the database along with the rest of the files, making the whole process easier.
 
-All used data were part of a research made by [UNICAMP](http://Unicamp.br)(Campina's University), and all rights are reserved to them.
+## Legal Information
 
-## Licença
+This is a non-profit project.
+All data used was researched and produced by [UNICAMP](http://Unicamp.br), and all copyrights are reserved to the institution.
 
-[MIT](./LICENSE.md)
+## Doubts?
 
----
+If you have any questions or suggestions about this project, look in the "discussion" tab on the GitHub of this repository. If your question is not there, start a new thread [by clicking here](https://github.com/raulfdm/taco-api/discussions/new), and I will answer as soon as possible!

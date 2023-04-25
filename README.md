@@ -1,8 +1,8 @@
-# TACO API
+# Taco GraphQL API
 
 > Brazilian Table of Food Composition
 
-<p align="center">
+<p>
  <a href="https://github.com/raulfdm/taco-api/actions/workflows/app.yml">
    <img src="https://github.com/raulfdm/taco-api/actions/workflows/app.yml/badge.svg"
         alt="build status">
@@ -13,7 +13,7 @@
  </a>
 </p>
 
-## Documentation
+## Docs
 
 For more details about this API, check the official docs:
 

@@ -1,0 +1,140 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./taco.db"
+}
+
+model Category {
+  id    Int    @id @default(autoincrement())
+  name  String @unique
+  foods Food[]
+
+  @@map("categories")
+}
+
+model Food {
+  id   Int    @id @default(autoincrement())
+  name String @unique
+
+  aminoAcids AminoAcid?
+  fattyAcids FattyAcid?
+  nutrients  Nutrient?
+
+  category   Category @relation(fields: [categoryId], references: [id])
+  categoryId Int
+
+  @@map("foods")
+}
+
+model AminoAcid {
+  id Int @id @default(autoincrement())
+
+  food   Food @relation(fields: [foodId], references: [id])
+  foodId Int  @unique
+
+  tryptophan    Float
+  threonine     Float
+  isoleucine    Float
+  leucine       Float
+  lysine        Float
+  methionine    Float
+  cystine       Float
+  phenylalanine Float
+  tyrosine      Float
+  valine        Float
+  arginine      Float
+  histidine     Float
+  alanine       Float
+  asparticAcid  Float
+  glutamicAcid  Float
+  glycine       Float
+  proline       Float
+  serine        Float
+
+  @@map("amino_acids")
+}
+
+model FattyAcid {
+  food   Food @relation(fields: [foodId], references: [id])
+  foodId Int  @unique
+
+  saturated       Float
+  monounsaturated Float
+  polyunsaturated Float
+
+  twelveZero      Float? @map("12:0")
+  fourteenZero    Float? @map("14:0")
+  fourteenOne     Float? @map("14:1")
+  sixteenZero     Float? @map("16:0")
+  sixteenOne      Float? @map("16:1")
+  eighteenZero    Float? @map("18:0")
+  eighteenOne     Float? @map("18:1")
+  eighteenOneT    Float? @map("18:1t")
+  eighteenTwoN6   Float? @map("18:2n6")
+  eighteenTwoT    Float? @map("18:2t")
+  eighteenThreeN3 Float? @map("18:3n3")
+  twentyZero      Float? @map("20:0")
+  twentyOne       Float? @map("20:1")
+  twentyFour      Float? @map("20:4")
+  twentyFive      Float? @map("20:5")
+  twentyTwoZero   Float? @map("22:0")
+  twentyTwoFive   Float? @map("22:5")
+  twentyTwoSix    Float? @map("22:6")
+  twentyFourZero  Float? @map("24:0")
+
+  @@map("fatty_acids")
+}
+
+model Nutrient {
+  id     Int  @id @default(autoincrement())
+  food   Food @relation(fields: [foodId], references: [id])
+  foodId Int  @unique
+
+  moisture      Float?
+  kcal          Float?
+  kJ            Float?
+  protein       Float?
+  lipids        Float?
+  cholesterol   Float?
+  carbohydrates Float?
+  dietaryFiber  Float?
+  ash           Float?
+  calcium       Float?
+  magnesium     Float?
+  manganese     Float?
+  phosphorus    Float?
+  iron          Float?
+  sodium        Float?
+  potassium     Float?
+  copper        Float?
+  zinc          Float?
+  retinol       Float?
+  re            Float?
+  rae           Float?
+  thiamin       Float?
+  riboflavin    Float?
+  pyridoxine    Float?
+  niacin        Float?
+  vitaminC      Float?
+
+  @@map("nutrients")
+}
+
+model Unit {
+  id        Int    @id @default(autoincrement())
+  fieldName String
+  unit      String
+  labelPt   String
+
+  infoodsTagname String?
+  systematicName String?
+  commonName     String?
+
+  @@map("units")
+}

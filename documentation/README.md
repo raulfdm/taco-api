@@ -4,131 +4,179 @@
 
 O projeto TACO (Tabela Brasileira de Composição de Alimentos), coordenado pelo Núcleo de Estudos e Pesquisas em Alimentação (NEPA) da UNICAMP e com financiamento do Ministério da Saúde – MS e Ministério do Desenvolvimento Social e Combate à FOME – MDS é uma iniciativa para proporcionar dados de um grande número de nutrientes em alimentos nacionais e regionais obtidos por meio de amostragem representativa e análises realizadas por laboratórios com competência analítica comprovada por estudos interlaboratoriais, segundo critérios internacionais.
 
-::: tip Dica
+::: tip
 Para saber mais, leia o [site oficial](http://www.nepa.unicamp.br/taco/home.php?ativo=home)
 :::
 
 ## Sobre este projeto
 
-O objetivo principal deste projeto é usar os dados originais da pesquisa da TACO e provê-los através de uma API para ser utilizado para construção de aplicações.
-
 Originalmente, o projeto TACO possui somente 2 maneiras de consumir esses dados. São elas:
 
 1. Através de um arquivo PDF. Neste caso, você precisa buscar o alimento desejado e seus respectivos valores;
-2. Através de um arquivo Excel (xls). Os pesquisadores criaram esse arquivo com o intuito de servir como um banco de dados, porém, a formatação dos dados está longe de ser otimizada para busca e consumo.
+2. Através de um arquivo Excel (xls) que em tese, representa o "banco de dados" dos alimentos.
 
-Em ambos casos, para uma consulta rápida de um nutricionista, talvez não seja nenhum problema, porém, impossibilita a criação de alguma aplicação cliente (mobile ou web).
+Em ambos casos, a construção de uma aplicação é quase impossível, dado que precisamos dos dados corretamente formatados, bem estruturados e com relações claras entre as informações.
 
-### Processo de formatação dos dados
+Assim, o objetivo principal deste projeto é usar os dados originais da pesquisa da TACO e estruturar de tal forma que fique fácil para construção de um cliente (mobile ou web).
 
-Para criar esse projeto, eu segui os seguintes passos:
+### Processamento dos dados
 
-1. Baixar e fazer a limpeza do XLS original, limpando estilos desnecessários e removendo colunas e linhas em branco. Esse processo é aplicado nas 3 abas da planilha;
-2. Fundir (merge) as 3 abas em apenas uma aba para um ponto central de dados;
-3. Gerar um CSV (Comma-separated value ou valores separados por vírgula) e exportar esses dados em um formato JSON;
-4. Criar outro arquivo JSON, contendo todas as `categorias` (`categories`) e criar uma relação entre ALIMENTO (FOOD) e CATEGORIA (CATEGORY);
-5. Criar 2 end-points `food` e `category` para expor os dados.
+O início do processo se baseia inteiramente no banco de dados (arquivo .xls) disponibilizado por eles. Entretanto, para conseguir um resultado satisfatório e poder inseri-los em um banco de dados relacional, as seguintes etapas foram feitas:
 
-E assim, você pode consultar tanto os dados via `/api/v1/<end-point>`.
+1. Baixei a planilha original e subi para o Google Sheets;
+2. Converti de `.xls` (formato proprietário da Microsoft) para `.xlsx` (formato do Office Open XML) para dar mais acessibilidade;
+3. Fiz a limpeza de todas as formatações de linhas, colunas, fontes. Removi as linhas vazias, unifiquei linhas duplicadas ou que foram adicionadas para melhor visualização no estudo;
+4. Substitui os valores não numéricos, onde:
+   - `NA` (não aplicável) foi convertido para vazio (`null`);
+   - `*` (valores enviados para re-análise) foi convertido para vazio (`null`);
+   - `Tr` (valores entre um certo range) foi convertido para para zero (`0`);
+5. Defini nomes em inglês para as colunas;
+6. Criei uma outra planilha (ainda no mesmo documento) que contém todas as categorias possíveis e linkei seus respectivos `id`s na planilha dos alimentos;
+7. Criei uma outra planilha (ainda no mesmo documento) que contém informações nutricionais e linkei com o `id` do alimento;
+8. Exportei cada planilha no documento para `.csv` e baixei dentro do projeto;
+9. Fiz a modelagem do banco de dados usando uma ferramenta chamada `Prisma`;
+10. Criei um scripts para popular o banco de dados na ordem correta, e fazendo a relação entre a informação e o alimento
 
 ### Dados oficiais
 
 Para manter os dados originais da pesquisa utilizado para realização desse projeto, [salvei todos os arquivos do site original](https://www.nepa.unicamp.br/taco/tabela.php?ativo=tabela) e você pode consultados na pasta `/references/*`
 
-### Tecnologias utilizadas
+### Tecnologias
 
 - [NodeJS](https://nodejs.org/en/) - JavaScript runtime
 - [ExpressJS](https://expressjs.com) - Framework HTTP
-- [apidocs](http://apidocjs.com) - Gerador de documentação de APIS
-- [Vuepress](https://v2.vuepress.vuejs.org/) - Gerador de site estático através de arquivos markdown
+- [Prisma](https://www.prisma.io/) - JavaScript Object-Relational Mapping (ORM) para popular o banco de dados e definir a relação;
+- [SQLite](https://sqlite.org/) - Mini banco de dados relacional;
+- [GraphQL](https://graphql.org/) - Query language para a API;
+- [Vuepress](https://v2.vuepress.vuejs.org/) - Site da documentação
 
-## Configuração
+## Contribuindo
 
-### Via container
+### Pré-requisitos
 
-Se você está familiarizado ou prefere usar Docker, existem duas maneiras de subir um container deste projeto.
+Para rodar o projeto localmente, você vai precisar ter instalado:
 
-A primeira é utilizando a imagem pública no Docker Hub deste projeto. Ao final, ambos os processos deixarão disponíveis a documentação da API em `http://localhost:4000`.
+- [NodeJS versão 18](https://nodejs.org/en)
+- pnpm (gerenciador de dependências). Você pode seguir os passos de instalação clicando [aqui](https://pnpm.io/installation#using-corepack);
+- Algum GraphQL cliente para poder inspecionar a API. Eu recomendo o [Altair GraphQL](https://altairgraphql.dev/)
 
-#### Imagem pública
+### Rodando o projeto
 
-Primeiro, baixe a imagem via docker hub:
-
-```bash
-docker pull raulfdm/taco-api
-```
-
-Feito isso, rode suba um container utilizando a imagem baixada:
+Primeiro, instale todas as dependências do projeto:
 
 ```bash
-docker run -it --rm --name taco -p 4000:4000 raulfdm/taco-api
+pnpm install
 ```
 
-#### Utilizando o projeto
-
-Caso queira usar docker em tempo de desenvolvimento, basta clonar este repositório:
+Depois, rode o servidor:
 
 ```bash
-git clone https://github.com/raulfdm/taco-api.git
+pnpm run dev
 ```
 
-E rodar o docker compose para subir o container:
+Feito isso, o servidor estará rodando no `http://localhost:4000/grapqhl`. Agora, basta copiar este endereço dentro do seu cliente GraphQL para poder rodar queries e ver a documentação da API.
+
+#### Prisma ORM e o Banco de dados
+
+Porque o projeto utiliza SQLite e esse gera um arquivo que está sendo comitado, provavelmente você não precisará rodar nenhum dos comandos do data base.
+
+Mas, se forkar o projeto e quiser fazer alterações nos modelos, você provavelmente precisará fazer uma migration no banco de dados para que as novas colunas/tabelas sejam inseridas.
+
+Ao fazer qualquer alteração no arquivo `src/infrastructure/prisma/schema.prisma`, rode o seguinte comando:
 
 ```bash
-docker-compose up
+pnpm run db:migrate –name <nome-da-alteração>
 ```
 
-### Sem container
+Isso irá criar um arquivo de migration que deve ser commitado.
 
-Caso não queira rodar através de um container, primeiro, clone este repositório e instale as dependências:
+Caso queira limpar o banco de dados e reinserir os dados originais, pode usar o comando:
 
 ```bash
-cd taco-api
-npm install
+pnpm run db:reset
 ```
 
-Agora, suba o servidor através do comando `start`:
+Caso queira ver o banco de dados em um dashboard, você pode subir o Prisma studio:
 
 ```bash
-npm start
+pnpm run studio
 ```
 
-Feito isso, você pode checar a documentação da API em `http://localhost:4000`.
+#### Documentação da API
 
-### Documentação da API
+Na versão 1, a documentação era gerada através do APIDocs.
+Agora que o projeto utiliza GraphQL, você pode ver a documentação da API (exemplo de queries, campos, etc) através do seu cliente GraphQL.
 
-Ao subir o servidor e acessar `http://localhost:4000`, você verá a documentação com exemplos e descrição dos endpoints existentes e como consumi-los.
+## Usando em produção
 
-## Dúvidas?
+Caso você queira rodar o projeto em modo de produção (para deployment), existem duas maneiras.
 
-Se você tiver alguma dúvida ou sugestão sobre este projeto, procure na aba "discussão" no Github deste repositório. Caso sua dúvida não esteja lá, inicie uma nova discussão [clicando aqui](https://github.com/raulfdm/taco-api/discussions/new) e eu responderei o quanto antes!
+### Sem docker
+
+Aqui, você vai precisar seguir o mesmo pré-requisito da etapa de contribuição.
+Uma vez que tem as dependências instaladas, poderá rodar o comando:
+
+```bash
+pnpm start
+```
+
+Isso colocará o projeto em modo de produção (com os logs desabilitados) e também estará disponível no endereço `http://localhost:4000/grapqhl`.
+
+### Com docker
+
+Caso você tenha familiaridade com docker, existe a opção de rodar o projeto através de uma imagem.
+Dentro do repositório, existe uma arquivo de configuração para subir o projeto usando docker compose, assim, você pode fazer apenas:
+
+```bash
+docker compose up –build
+```
+
+Caso queira usar a imagem remota, pode rodar:
+
+```bash
+docker run -it --rm --name taco -p 4000:4000 raulfdm/taco-api:v2
+```
 
 ## FAQ
 
-### A API está offline?
+### Existe uma demo online?
 
-Sim, eu tirei do ar.
+Não.
+Antigamente eu deixava uma versão hospedada no heroku, mas as pessoas estavam construindo aplicações que batiam diretamente nele e a minha quota de uso expirava muito rápido.
 
-O motivo é que, quando eu criei o projeto, subi o servidor da API na minha conta pessoal no Heroku. Porém, algumas pessoas criaram projetos em cima da API, fazendo meu servidor ficar ativo sempre.
+Além disso, o Heroku deixou de oferecer o plano gratuito, dificultando ainda mais o processo.
 
-Por eu usar o free-tier (plano gratuito), eu tenho limite mensal e ele estava sendo rapidamente consumido.
-
-### Posso utilizar esse projeto para construir uma aplicação?
+### Posso utilizar esse projeto para construir uma aplicação cliente?
 
 Sim, o projeto é livre para qualquer pessoa utilizar. Porém, como disse anteriormente, ele não está mais disponível online, ou seja, você precisará subir o servidor em algum serviço de cloud caso queira ter acesso.
 
-- [Como publicar aplicação Node.js na Heroku](https://www.luiztools.com.br/post/como-publicar-aplicacao-node-js-na-heroku/)
-
-::: tip Obs.
-Eu geralmente uso Heroku por ser fácil, mas pode ser qualquer outro de sua preferência.
-:::
-
 ### O projeto ainda é mantido?
 
-Mais ou menos. Quando eu o criei, a intenção era estudar Backend e APIs. Hoje, tenho outras coisas como foco, então, não pretendo adicionar novas funcionalidades.
+Mais ou menos.
+Quando eu o criei, a intenção era estudar construções de API utilizando NodeJS.
+Quando quero testar algo novo e que cabe neste escopo, eu atualizo uma coisa ou outra, mas como meu foco de carreira e profissional não é esse e eu tenho pouco tempo disponível, sempre dou preferência para outros projetos.
+
+### Por que você converteu o projeto de Rest para GraphQL?
+
+Eu tomei essa decisão justamente porque queria revisitar a criação de APIs em Node, mas utilizando as novas ferramentas, e também porque eu acredito ser muito mais fácil e intuitivo você trazer as informações que o consumidor precisa.
+Caso você não esteja tão familiarizado com GraphQL, recomendo fortemente que estude o básico para pelo menos conseguir consumir, ou então, utilize a versão 1 do projeto.
+
+### Por que um banco de dados ao invés dos arquivos locais?
+
+Na versão 2, eu escolhi um banco de dados relacional porque acredito que a estrutura dos dados da Taco é extremamente relacional.
+Existe uma relação entre a categoria e o alimento, o alimento e seus aminoácidos, o alimento e seus nutrientes, etc.
+Fazer essas relações utilizando um banco de dados é muito mais fácil do que utilizar arquivos JSON.
+
+### Por que SQLite e não Postgresql ou outro banco de dados?
+
+Inicialmente eu comecei com Postgres. Porém, acho que ele oferece muito mais do que essa aplicação de fato precisa (umas 5 ou 6 tabelas com no máximo 500 linhas), além de adicionar complexidade no deploy da aplicação.
+O SQLite permite a gente gravar a base de dados junto com o restante dos arquivos, e isso facilita todo o processo.
 
 ## Informações Legais
 
 Este é um projeto sem fins lucrativos.
-
 Todos os dados utilizados foram pesquisados e produzidos pela [UNICAMP](http://Unicamp.br), e todo direito autoral é reservado à instituição.
+
+## Dúvidas?
+
+Se você tiver alguma dúvida ou sugestão sobre este projeto, procure na aba "discussão" no Github deste repositório. Caso sua dúvida não esteja lá, inicie uma nova discussão [clicando aqui](https://github.com/raulfdm/taco-api/discussions/new) e eu responderei o quanto antes!
