@@ -15,6 +15,10 @@ Security in case of vulnerabilities.
 
  -->
 
+## [1.0.1]
+
+- tag docker image with `v1`
+
 ## [1.0.0]
 
 - create a tag version to prep v2 to get in place
