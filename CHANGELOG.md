@@ -15,6 +15,30 @@ Security in case of vulnerabilities.
 
  -->
 
+## [2.0.0]
+
+This is the major change after 5 years of this project creation.
+
+I've decided to revamp completely the project using modern tech and implementing a few features some people asked a couple years ago.
+
+### What has changed?
+
+The main change here is now the project is complete type-safe thanks to [Prisma](https://prisma.io).
+
+Also, instead Rest API, I've decide to switch completely to GraphQL. This will makes the documentation and the ability to fetch data easier.
+
+### all changes
+
+- refactor everything to TypeScript;
+- re-done the data processing to fix data mistakes such as keeping strings with numbers;
+- remove APIDoc in favor of GraphQL api docs;
+- update docs;
+- switch from `npm` to `pnpm`;
+- use relational database (`SQLite`) instead local `json` files for storing data;
+- implement filter ability. Now for in a few endpoints you can pass `skip` and `take` ([see more here](https://www.prisma.io/docs/concepts/components/prisma-client/pagination#offset-pagination));
+- migrate to Node18;
+- use full ESM instead CJS;
+
 ## [1.0.1]
 
 - tag docker image with `v1`
