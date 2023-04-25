@@ -6,13 +6,13 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
+  provider = "sqlite"
+  url      = "file:./taco.db"
 }
 
 model Category {
   id    Int    @id @default(autoincrement())
-  name  String @unique @db.VarChar(255)
+  name  String @unique
   foods Food[]
 
   @@map("categories")
@@ -20,7 +20,7 @@ model Category {
 
 model Food {
   id   Int    @id @default(autoincrement())
-  name String @unique @db.VarChar(255)
+  name String @unique
 
   aminoAcids AminoAcid?
   fattyAcids FattyAcid?
@@ -128,13 +128,13 @@ model Nutrient {
 
 model Unit {
   id        Int    @id @default(autoincrement())
-  fieldName String @unique @db.VarChar(255)
+  fieldName String
   unit      String
-  labelPt   String @unique @db.VarChar(255)
+  labelPt   String
 
-  infoodsTagname String? @unique @db.VarChar(255)
-  systematicName String? @unique @db.VarChar(255)
-  commonName     String? @unique @db.VarChar(255)
+  infoodsTagname String?
+  systematicName String?
+  commonName     String?
 
   @@map("units")
 }
