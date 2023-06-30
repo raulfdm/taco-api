@@ -1,7 +1,7 @@
 {
   "name": "taco-api",
   "description": "Brazilian Table of Food Composition (TACO) - GraphQL API",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "type": "module",
   "homepage": "https://github.com/raulfdm/taco.js",
   "bugs": {
@@ -10,7 +10,7 @@
   "license": "MIT",
   "author": {
     "name": "Raul de Melo",
-    "email": "contact@raulmelo.dev"
+    "email": "contact@raulmelo.me"
   },
   "scripts": {
     "start": "NODE_ENV=production tsx src/app.ts",

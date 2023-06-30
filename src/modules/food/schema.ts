@@ -40,6 +40,21 @@ export const foodModule = createModule({
           },
         });
       },
+      getFoodByName: async (_: unknown, { name }: { name: string }) => {
+        return getPrismaClient().food.findMany({
+          where: {
+            name: {
+              contains: name,
+            },
+          },
+          include: {
+            category: true,
+            nutrients: true,
+            aminoAcids: true,
+            fattyAcids: true,
+          },
+        });
+      },
     },
   },
 });

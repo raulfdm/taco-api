@@ -16,6 +16,7 @@ const queryTypeDef = gql`
   extend type Query {
     getAllFood(opts: PrismaQueryOptions): [Food]!
     getFoodById(id: Int!): Food
+    getFoodByName(name: String!): [Food]!
   }
 `;
 
