@@ -15,6 +15,20 @@ Security in case of vulnerabilities.
 
  -->
 
+## [2.1.0]
+
+### What has changed?
+
+- add new `getFoodByName` query:
+
+```gql
+query FoodByName {
+  getFoodByName(name: "carne") {
+    name
+  }
+}
+```
+
 ## [2.0.0]
 
 This is the major change after 5 years of this project creation.
