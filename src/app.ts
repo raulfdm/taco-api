@@ -38,9 +38,9 @@ app.use(
   createHandler({
     schema: api.schema,
     execute: api.createExecution(),
-  })
+  }),
 );
 
 app.listen(env.PORT, () =>
-  console.log(`Example app listening on port ${env.PORT}!`)
+  console.log(`Example app listening on port ${env.PORT}!`),
 );

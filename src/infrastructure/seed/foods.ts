@@ -19,7 +19,7 @@ const foodSchema = z.array(
     id: z.string().transform((id) => Number(id)),
     categoryId: z.string().transform((id) => Number(id)),
     name: z.string(),
-  })
+  }),
 );
 
 type Food = z.infer<typeof foodSchema>[number];
@@ -48,7 +48,7 @@ async function getFoods({
   nutrientsMap,
 }: GetFoodOptions): Promise<PrismaFood[]> {
   const foodJson = await csvtojson().fromFile(
-    path.resolve(__dirname, '../../../references/csv/food.csv')
+    path.resolve(__dirname, '../../../references/csv/food.csv'),
   );
 
   const foods = foodSchema.parse(foodJson);

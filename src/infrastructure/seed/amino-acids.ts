@@ -27,7 +27,7 @@ const aminoAcidsSchema = z.array(
     glycine: z.string().transform((id) => Number(id)),
     proline: z.string().transform((id) => Number(id)),
     serine: z.string().transform((id) => Number(id)),
-  })
+  }),
 );
 
 export type AminoAcid = z.infer<typeof aminoAcidsSchema>[number];
@@ -36,7 +36,7 @@ export type AminoAcidMap = Map<number, Omit<AminoAcid, 'foodId'>>;
 
 export async function getAminoAcidsMap(): Promise<AminoAcidMap> {
   const aminoAcidsJson = await csvtojson().fromFile(
-    path.resolve(__dirname, '../../../references/csv/amino-acids.csv')
+    path.resolve(__dirname, '../../../references/csv/amino-acids.csv'),
   );
 
   const aminoAcids = aminoAcidsSchema.parse(aminoAcidsJson);

@@ -15,7 +15,7 @@ export const foodModule = createModule({
     Query: {
       getAllFood: async (
         _: unknown,
-        { opts }: { opts: Pick<Prisma.FoodFindManyArgs, 'skip' | 'take'> }
+        { opts }: { opts: Pick<Prisma.FoodFindManyArgs, 'skip' | 'take'> },
       ) => {
         return getPrismaClient().food.findMany({
           ...opts,

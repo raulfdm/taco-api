@@ -17,7 +17,7 @@ export const unitModule = createModule({
       },
       getUnitByFieldName: async (
         _: unknown,
-        { fieldName }: { fieldName: string }
+        { fieldName }: { fieldName: string },
       ) => {
         return await getPrismaClient().unit.findFirst({
           where: {

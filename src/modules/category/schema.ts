@@ -17,7 +17,7 @@ export const categoryModule = createModule({
     Query: {
       getAllCategories: async (
         _: unknown,
-        { opts }: { opts: { foodFilters: FoodFilters } }
+        { opts }: { opts: { foodFilters: FoodFilters } },
       ) => {
         return getPrismaClient().category.findMany({
           include: {
@@ -35,7 +35,7 @@ export const categoryModule = createModule({
       },
       getCategoryById: async (
         _: unknown,
-        { id, opts }: { id: number; opts: { foodFilters: FoodFilters } }
+        { id, opts }: { id: number; opts: { foodFilters: FoodFilters } },
       ) => {
         return getPrismaClient().category.findUnique({
           where: {

@@ -11,12 +11,12 @@ const categoriesSchema = z.array(
   z.object({
     id: z.string().transform((id) => Number(id)),
     name: z.string(),
-  })
+  }),
 );
 
 export async function seedCategories(client: PrismaClient) {
   const categoriesJson = await csvtojson().fromFile(
-    path.resolve(__dirname, '../../../references/csv/categories.csv')
+    path.resolve(__dirname, '../../../references/csv/categories.csv'),
   );
 
   const categories = categoriesSchema.parse(categoriesJson);
