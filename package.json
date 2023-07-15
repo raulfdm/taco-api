@@ -28,14 +28,14 @@
     "prepare": "husky install && pnpm run db:generate"
   },
   "dependencies": {
-    "@prisma/client": "4.13.0",
+    "@prisma/client": "5.0.0",
     "cors": "2.8.5",
     "dotenv": "16.0.3",
     "express": "4.18.2",
     "graphql": "16.6.0",
     "graphql-http": "1.18.0",
     "graphql-modules": "2.1.2",
-    "prisma": "4.13.0",
+    "prisma": "5.0.0",
     "tsx": "3.12.6",
     "zod": "3.21.4"
   },
