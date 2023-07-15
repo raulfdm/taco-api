@@ -1,5 +1,12 @@
 # Changelog
 
+## 2.2.0
+
+### Minor Changes
+
+- aa9b51c: update all dependencies, including [Prisma 5](https://www.prisma.io/blog/prisma-5-f66prwkjx72s) which brings huge performance improvement
+- aa9b51c: add a build step and run the production with node itself instead `tsx`
+
 All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
