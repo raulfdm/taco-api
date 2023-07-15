@@ -82,3 +82,4 @@ docs/
 .temp
 .cache
 documentation/.vuepress/dist
+dist/
