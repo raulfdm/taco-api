@@ -17,7 +17,7 @@ jobs:
       - uses: pnpm/action-setup@v2.2.4
         name: Install pnpm
         with:
-          version: 7
+          version: 8
           run_install: false
 
       - name: Get pnpm store directory
@@ -40,8 +40,8 @@ jobs:
       - name: Linting
         run: pnpm run lint
 
-      # - name: Testing
-      #   run: npm run test
+      - name: Build
+        run: pnpm run build
 
       - name: Build Web docs
         run: pnpm run docs:build
