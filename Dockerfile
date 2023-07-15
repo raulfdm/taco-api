@@ -16,6 +16,7 @@ COPY . .
 RUN ls
 
 RUN pnpm prisma generate
+RUN pnpm run build
 
 EXPOSE 4000
 

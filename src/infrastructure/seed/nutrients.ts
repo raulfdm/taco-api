@@ -41,7 +41,7 @@ const nutrientsSchema = z.array(
     pyridoxine: z.string().transform((value) => (value ? Number(value) : null)),
     niacin: z.string().transform((value) => (value ? Number(value) : null)),
     vitaminC: z.string().transform((value) => (value ? Number(value) : null)),
-  })
+  }),
 );
 
 export type Nutrients = z.infer<typeof nutrientsSchema>[number];
@@ -50,7 +50,7 @@ export type NutrientsMap = Map<number, Omit<Nutrients, 'foodId'>>;
 
 export async function getNutrientsMap(): Promise<NutrientsMap> {
   const aminoAcidsJson = await csvtojson().fromFile(
-    path.resolve(__dirname, '../../../references/csv/nutrients.csv')
+    path.resolve(__dirname, '../../../references/csv/nutrients.csv'),
   );
 
   const nutrients = nutrientsSchema.parse(aminoAcidsJson);

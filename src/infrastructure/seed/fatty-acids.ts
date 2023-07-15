@@ -59,7 +59,7 @@ const fattyAcidsSchema = z.array(
         twentyTwoSix: input['22:6'],
         twentyFourZero: input['24:0'],
       };
-    })
+    }),
 );
 
 export type FattyAcid = z.infer<typeof fattyAcidsSchema>[number];
@@ -68,7 +68,7 @@ export type FattyAcidMap = Map<number, Omit<FattyAcid, 'foodId'>>;
 
 export async function getFattyAcidsMap(): Promise<FattyAcidMap> {
   const fattyAcidsJson = await csvtojson().fromFile(
-    path.resolve(__dirname, '../../../references/csv/fatty-acids.csv')
+    path.resolve(__dirname, '../../../references/csv/fatty-acids.csv'),
   );
 
   const fattyAcids = fattyAcidsSchema.parse(fattyAcidsJson);
