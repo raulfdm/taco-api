@@ -3,9 +3,9 @@
   "description": "Brazilian Table of Food Composition (TACO) - GraphQL API",
   "version": "2.1.0",
   "type": "module",
-  "homepage": "https://github.com/raulfdm/taco.js",
+  "homepage": "https://github.com/raulfdm/taco-api",
   "bugs": {
-    "url": "https://github.com/raulfdm/taco.js/issues"
+    "url": "https://github.com/raulfdm/taco-api/issues"
   },
   "license": "MIT",
   "author": {
@@ -17,7 +17,7 @@
     "dev": "NODE_ENV=development tsx --watch src/app.ts",
     "studio": "prisma studio",
     "build": "tsx scripts/build.ts",
-    "lint": "eslint --ext .ts,.js,.json.md src",
+    "lint": "eslint --ext .ts,.js,.json,.md src",
     "db:migrate": "NODE_ENV=development prisma migrate dev",
     "db:generate": "NODE_ENV=development prisma generate",
     "db:seed": "NODE_ENV=development prisma db seed",
