@@ -1,7 +1,7 @@
 {
   "name": "taco-api",
   "description": "Brazilian Table of Food Composition (TACO) - GraphQL API",
-  "version": "2.1.0",
+  "version": "2.2.0",
   "type": "module",
   "homepage": "https://github.com/raulfdm/taco-api",
   "bugs": {
