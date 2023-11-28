@@ -44,9 +44,8 @@
   "devDependencies": {
     "@changesets/cli": "2.26.2",
     "@types/cors": "2.8.13",
-    "@types/csvtojson": "2.0.0",
     "@types/express": "4.17.17",
-    "@types/node": "18.15.13",
+    "@types/node": "20.10.0",
     "@vuepress/client": "2.0.0-beta.61",
     "csvtojson": "2.0.10",
     "husky": "8.0.3",
@@ -55,8 +54,10 @@
     "vue": "3.3.4",
     "vuepress": "2.0.0-beta.61"
   },
+  "packageManager": "pnpm@8.11.0",
   "engines": {
-    "node": "18"
+    "node": "20",
+    "pnpm": "8"
   },
   "prisma": {
     "seed": "tsx ./src/infrastructure/seed/index.ts",
