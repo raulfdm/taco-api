@@ -1,13 +1,13 @@
-import { createModule } from 'graphql-modules';
-import * as url from 'url';
+import * as url from "url";
+import { createModule } from "graphql-modules";
 
-import { getPrismaClient } from '../../infrastructure/primaClient';
-import { typeDefs } from './typeDefs';
+import { getPrismaClient } from "../../infrastructure/primaClient";
+import { typeDefs } from "./typeDefs";
 
-const __dirname = url.fileURLToPath(new URL('.', import.meta.url));
+const __dirname = url.fileURLToPath(new URL(".", import.meta.url));
 
 export const unitModule = createModule({
-  id: 'unit-module',
+  id: "unit-module",
   dirname: __dirname,
   typeDefs,
   resolvers: {

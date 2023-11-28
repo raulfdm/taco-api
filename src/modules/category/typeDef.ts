@@ -1,4 +1,4 @@
-import { gql } from 'graphql-modules';
+import { gql } from "graphql-modules";
 
 const categoryTypeDef = gql`
   type Category {

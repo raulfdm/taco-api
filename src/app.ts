@@ -1,10 +1,10 @@
-import cors from 'cors';
-import * as dotenv from 'dotenv';
-import express from 'express';
-import { createHandler } from 'graphql-http/lib/use/express';
-import { createApplication } from 'graphql-modules';
+import cors from "cors";
+import * as dotenv from "dotenv";
+import express from "express";
+import { createHandler } from "graphql-http/lib/use/express";
+import { createApplication } from "graphql-modules";
 
-import { env } from '@/infrastructure/env';
+import { env } from "@/infrastructure/env";
 import {
   aminoAcidModules,
   categoryModule,
@@ -13,7 +13,7 @@ import {
   mainModule,
   nutrientModule,
   unitModule,
-} from '@/modules';
+} from "@/modules";
 
 dotenv.config();
 
@@ -34,7 +34,7 @@ const api = createApplication({
 app.use(cors());
 
 app.use(
-  '/graphql',
+  "/graphql",
   createHandler({
     schema: api.schema,
     execute: api.createExecution(),
