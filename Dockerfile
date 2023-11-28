@@ -7,7 +7,7 @@ ENV NODE_ENV=production
 COPY package.json .
 
 RUN corepack enable
-RUN corepack prepare pnpm@latest-8 --activate
+RUN corepack prepare pnpm@8.11.0 --activate
 
 RUN pnpm i --prod --ignore-scripts
 
