@@ -1,11 +1,11 @@
-import path from 'node:path';
+import path from "node:path";
 
-import type { PrismaClient } from '@prisma/client';
-import csvtojson from 'csvtojson/v2';
-import * as url from 'url';
-import { z } from 'zod';
+import * as url from "url";
+import type { PrismaClient } from "@prisma/client";
+import csvtojson from "csvtojson/v2";
+import { z } from "zod";
 
-const __dirname = url.fileURLToPath(new URL('.', import.meta.url));
+const __dirname = url.fileURLToPath(new URL(".", import.meta.url));
 
 const categoriesSchema = z.array(
   z.object({
@@ -16,12 +16,12 @@ const categoriesSchema = z.array(
 
 export async function seedCategories(client: PrismaClient) {
   const categoriesJson = await csvtojson().fromFile(
-    path.resolve(__dirname, '../../../references/csv/categories.csv'),
+    path.resolve(__dirname, "../../../references/csv/categories.csv"),
   );
 
   const categories = categoriesSchema.parse(categoriesJson);
 
-  console.group('Seeding categories');
+  console.group("Seeding categories");
 
   for (const category of categories) {
     console.log(`Creating category "${category.name}"`);
@@ -29,9 +29,9 @@ export async function seedCategories(client: PrismaClient) {
       data: category,
     });
 
-    console.log('Done.');
+    console.log("Done.");
   }
 
-  console.log('All categories created successfully.');
+  console.log("All categories created successfully.");
   console.groupEnd();
 }

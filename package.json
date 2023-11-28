@@ -17,7 +17,7 @@
     "dev": "NODE_ENV=development tsx --watch src/app.ts",
     "studio": "prisma studio",
     "build": "tsx scripts/build.ts",
-    "lint": "eslint --ext .ts,.js,.json,.md src",
+    "lint": "biome lint src",
     "db:migrate": "NODE_ENV=development prisma migrate dev",
     "db:generate": "NODE_ENV=development prisma generate",
     "db:seed": "NODE_ENV=development prisma db seed",
@@ -47,17 +47,10 @@
     "@types/csvtojson": "2.0.0",
     "@types/express": "4.17.17",
     "@types/node": "18.15.13",
-    "@typescript-eslint/eslint-plugin": "6.0.0",
-    "@typescript-eslint/parser": "6.0.0",
     "@vuepress/client": "2.0.0-beta.61",
     "csvtojson": "2.0.10",
-    "eslint": "8.45.0",
-    "eslint-config-prettier": "8.8.0",
-    "eslint-plugin-prettier": "5.0.0",
-    "eslint-plugin-simple-import-sort": "10.0.0",
     "husky": "8.0.3",
     "lint-staged": "13.2.3",
-    "prettier": "3.0.0",
     "typescript": "5.1.6",
     "vue": "3.3.4",
     "vuepress": "2.0.0-beta.61"
@@ -70,7 +63,6 @@
     "schema": "src/infrastructure/prisma/schema.prisma"
   },
   "lint-staged": {
-    "*.{js,ts,json}": "eslint --fix",
-    "*.{md,mdx,yml}": "prettier --write"
+    "*.{js,ts,json}": "pnpm dlx @biomejs/biome check --apply"
   }
 }

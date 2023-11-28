@@ -1,10 +1,10 @@
-import path from 'node:path';
+import path from "node:path";
 
-import csvtojson from 'csvtojson/v2';
-import * as url from 'url';
-import { z } from 'zod';
+import * as url from "url";
+import csvtojson from "csvtojson/v2";
+import { z } from "zod";
 
-const __dirname = url.fileURLToPath(new URL('.', import.meta.url));
+const __dirname = url.fileURLToPath(new URL(".", import.meta.url));
 
 const aminoAcidsSchema = z.array(
   z.object({
@@ -32,11 +32,11 @@ const aminoAcidsSchema = z.array(
 
 export type AminoAcid = z.infer<typeof aminoAcidsSchema>[number];
 
-export type AminoAcidMap = Map<number, Omit<AminoAcid, 'foodId'>>;
+export type AminoAcidMap = Map<number, Omit<AminoAcid, "foodId">>;
 
 export async function getAminoAcidsMap(): Promise<AminoAcidMap> {
   const aminoAcidsJson = await csvtojson().fromFile(
-    path.resolve(__dirname, '../../../references/csv/amino-acids.csv'),
+    path.resolve(__dirname, "../../../references/csv/amino-acids.csv"),
   );
 
   const aminoAcids = aminoAcidsSchema.parse(aminoAcidsJson);
