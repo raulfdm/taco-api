@@ -24,7 +24,7 @@
     "db:reset": "NODE_ENV=development prisma migrate reset",
     "docs:dev": "vuepress dev documentation",
     "docs:build": "vuepress build documentation",
-    "image:build": "docker build -t raulfdm/taco-api:v2 -t raulfdm/taco-api:latest .",
+    "image:build": "tsx scripts/build-docker.ts",
     "image:deploy": "pnpm run image:build && docker push raulfdm/taco-api",
     "prepare": "husky install && pnpm run db:generate"
   },
@@ -33,6 +33,7 @@
     "cors": "2.8.5",
     "dotenv": "16.3.1",
     "esbuild": "0.19.8",
+    "execa": "8.0.1",
     "express": "4.18.2",
     "graphql": "16.8.1",
     "graphql-http": "1.22.0",
