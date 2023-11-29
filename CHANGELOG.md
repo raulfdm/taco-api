@@ -1,5 +1,17 @@
 # Changelog
 
+## 2.3.0
+
+### Minor Changes
+
+- 003ecdb: Minor updates
+
+  - update from node18 to node20;
+  - bump all dev and prod dependencies to its latest versions;
+  - add `packageManager` to package.json;
+  - add `.nvmrc` to enforce node version;
+  - pin `pnpm` on Docker image;
+
 ## 2.2.0
 
 ### Minor Changes
