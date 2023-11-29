@@ -135,7 +135,7 @@ docker compose up -build
 If you want to use the remote image, you can run the following:
 
 ```bash
-docker run -it --rm --name taco -p 4000:4000 raulfdm/taco-api:v2
+docker run -it --rm --name taco -p 4000:4000 raulfdm/taco-api
 ```
 
 ## FAQ
