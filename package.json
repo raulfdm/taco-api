@@ -25,8 +25,8 @@
     "docs:dev": "vuepress dev documentation",
     "docs:build": "vuepress build documentation",
     "image:build": "tsx scripts/build-docker.ts",
-    "image:deploy": "pnpm run image:build && docker push raulfdm/taco-api",
-    "prepare": "husky install && pnpm run db:generate"
+    "image:deploy": "bun run image:build && docker push raulfdm/taco-api",
+    "prepare": "husky install && bun run db:generate"
   },
   "dependencies": {
     "@prisma/client": "5.6.0",
@@ -56,16 +56,12 @@
     "vue": "3.3.9",
     "vuepress": "2.0.0-rc.0"
   },
-  "packageManager": "pnpm@8.11.0",
-  "engines": {
-    "node": "20",
-    "pnpm": "8"
-  },
+  "packageManager": "bun@1.0.15",
   "prisma": {
     "seed": "tsx ./src/infrastructure/seed/index.ts",
     "schema": "src/infrastructure/prisma/schema.prisma"
   },
   "lint-staged": {
-    "*.{js,ts,json}": "pnpm dlx @biomejs/biome check --apply"
+    "*.{js,ts,json}": "bunx @biomejs/biome check --apply"
   }
 }
