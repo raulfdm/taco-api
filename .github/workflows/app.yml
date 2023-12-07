@@ -9,39 +9,20 @@ jobs:
       - name: Checkout to repository
         uses: actions/checkout@v3
 
-      - name: Setup Node
-        uses: actions/setup-node@v3
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v1
         with:
-          node-version: 20
-
-      - uses: pnpm/action-setup@v2.2.4
-        name: Install pnpm
-        with:
-          version: 8
-          run_install: false
-
-      - name: Get pnpm store directory
-        id: pnpm-cache
-        run: |
-          echo "::set-output name=pnpm_cache_dir::$(pnpm store path)"
-
-      - uses: actions/cache@v3
-        name: Setup pnpm cache
-        with:
-          path: ${{ steps.pnpm-cache.outputs.pnpm_cache_dir }}
-          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
-          restore-keys: |
-            ${{ runner.os }}-pnpm-store-
+          bun-version: 1.0.15
 
       - name: Install Dependencies
-        run: pnpm install --frozen-lockfile
+        run: bun install
 
       # Necessary because it's being used in the code
       - name: Linting/Formating
-        run: pnpx @biomejs/biome ci src
+        run: bunx @biomejs/biome ci src
 
       - name: Build
-        run: pnpm run build
+        run: bun run build
 
       - name: Build Web docs
-        run: pnpm run docs:build
+        run: bun run docs:build
