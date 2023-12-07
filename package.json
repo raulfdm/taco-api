@@ -60,7 +60,7 @@
     "bun": "1.0.15"
   },
   "prisma": {
-    "seed": "tsx ./src/infrastructure/seed/index.ts",
+    "seed": "bun run ./src/infrastructure/seed/index.ts",
     "schema": "src/infrastructure/prisma/schema.prisma"
   },
   "lint-staged": {
