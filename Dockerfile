@@ -1,23 +1,19 @@
-FROM node:20
+FROM oven/bun:1
 
 WORKDIR /app
 
 ENV NODE_ENV=production
 
 COPY package.json .
+COPY bun.lockb .
 
-RUN corepack enable
-RUN corepack prepare pnpm@8.11.0 --activate
-
-RUN pnpm i --prod --ignore-scripts
+RUN bun i --prod --ignore-scripts --frozen-lockfile
 
 COPY . .
 
-RUN ls
-
-RUN pnpm prisma generate
-RUN pnpm run build
+RUN bun prisma generate
+RUN bun run build
 
 EXPOSE 4000
 
-CMD [ "pnpm", "start" ]
+CMD [ "bun", "start" ]
