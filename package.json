@@ -56,6 +56,9 @@
     "vuepress": "2.0.0-rc.0"
   },
   "packageManager": "bun@1.0.15",
+  "engines": {
+    "bun": "1.0.15"
+  },
   "prisma": {
     "seed": "tsx ./src/infrastructure/seed/index.ts",
     "schema": "src/infrastructure/prisma/schema.prisma"
