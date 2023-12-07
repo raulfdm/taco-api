@@ -42,5 +42,7 @@ app.use(
 );
 
 app.listen(env.PORT, () =>
-  console.log(`Example app listening on port ${env.PORT}!`),
+  console.log(
+    `TACO GraphQL API listening on http://localhost:${env.PORT}/graphql`,
+  ),
 );
