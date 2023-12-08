@@ -21,6 +21,24 @@ export default defineConfig({
       },
       sidebar: [
         {
+          label: "Introdução",
+          items: [
+            {
+              label: "Sobre",
+              link: "/about",
+            },
+          ],
+        },
+        {
+          label: "Início",
+          items: [
+            {
+              label: "Começando",
+              link: "/getting-started",
+            },
+          ],
+        },
+        {
           label: "References",
           items: [
             {
@@ -30,19 +48,6 @@ export default defineConfig({
           ],
         },
       ],
-      // sidebar: [
-      //   {
-      //     label: "Guides",
-      //     items: [
-      //       // Each item here is one entry in the navigation menu.
-      //       { label: "Example Guide", link: "/guides/example/" },
-      //     ],
-      //   },
-      //   {
-      //     label: "Reference",
-      //     autogenerate: { directory: "reference" },
-      //   },
-      // ],
     }),
   ],
 });
