@@ -7,7 +7,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout to repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4.1.1
 
       - name: Setup Bun
         uses: oven-sh/setup-bun@v1
@@ -15,7 +15,7 @@ jobs:
           bun-version: 1.0.15
 
       - name: Install Dependencies
-        run: bun install
+        run: bun install --frozen-lockfile
 
       # Necessary because it's being used in the code
       - name: Linting/Formating
