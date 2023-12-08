@@ -13,7 +13,8 @@
   "scripts": {
     "prepare": "husky install",
     "build": "turbo build",
-    "dev": "turbo dev"
+    "dev": "turbo dev",
+    "lint": "turbo lint"
   },
   "devDependencies": {
     "@changesets/cli": "2.27.1",
