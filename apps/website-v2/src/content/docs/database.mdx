@@ -1,0 +1,27 @@
+---
+title: "Banco de dados"
+---
+
+Porque o projeto utiliza SQLite e esse gera um arquivo que está sendo comitado, provavelmente você não precisará rodar nenhum dos comandos do data base.
+
+Mas, se forkar o projeto e quiser fazer alterações nos modelos, você provavelmente precisará fazer uma migration no banco de dados para que as novas colunas/tabelas sejam inseridas.
+
+Ao fazer qualquer alteração no arquivo `src/infrastructure/prisma/schema.prisma`, rode o seguinte comando:
+
+```bash
+bun run db:migrate –name <nome-da-alteração>
+```
+
+Isso irá criar um arquivo de migration que deve ser commitado.
+
+Caso queira limpar o banco de dados e reinserir os dados originais, pode usar o comando:
+
+```bash
+bun run db:reset
+```
+
+Caso queira ver o banco de dados em um dashboard, você pode subir o Prisma studio:
+
+```bash
+bun run studio
+```

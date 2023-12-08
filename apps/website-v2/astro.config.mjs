@@ -45,6 +45,10 @@ export default defineConfig({
               link: "/getting-started",
             },
             {
+              label: "Banco de dados",
+              link: "/database",
+            },
+            {
               label: "Rodando localmente",
               link: "/running",
             },
