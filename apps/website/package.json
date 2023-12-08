@@ -1,5 +1,6 @@
 {
-  "name": "taco-api-docs",
+  "name": "website",
+  "private": true,
   "scripts": {
     "dev": "vuepress dev docs",
     "build": "vuepress build docs"
