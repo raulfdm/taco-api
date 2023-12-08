@@ -31,10 +31,6 @@ export default defineConfig({
               link: "/about",
             },
             {
-              label: "Processamento de dados",
-              link: "/data-processing",
-            },
-            {
               label: "Tecnologias",
               link: "/stack",
             },
@@ -75,8 +71,12 @@ export default defineConfig({
           ],
         },
         {
-          label: "References",
+          label: "Referências",
           items: [
+            {
+              label: "Processamento de dados",
+              link: "/data-processing",
+            },
             {
               label: "FAQ",
               link: "/faq",
