@@ -2,11 +2,11 @@
 
 > Brazilian Table of Food Composition
 
-![GraphQL Client](./documentation/images/graphql-client.png)
+![GraphQL Client](./apps/website/images/graphql-client.png)
 
 <p align="center">
- <a href="https://github.com/raulfdm/taco-api/actions/workflows/app.yml">
-   <img src="https://github.com/raulfdm/taco-api/actions/workflows/app.yml/badge.svg"
+ <a href="https://github.com/raulfdm/taco-api/actions/workflows/ci.yml">
+   <img src="https://github.com/raulfdm/taco-api/actions/workflows/ci.yml/badge.svg"
         alt="build status">
  </a>
 </p>
