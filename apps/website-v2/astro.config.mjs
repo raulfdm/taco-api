@@ -31,6 +31,10 @@ export default defineConfig({
               label: "Processamento de dados",
               link: "/data-processing",
             },
+            {
+              label: "Tecnologias",
+              link: "/stack",
+            },
           ],
         },
         {
