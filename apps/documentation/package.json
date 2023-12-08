@@ -1,8 +1,8 @@
 {
   "name": "taco-api-docs",
   "scripts": {
-    "dev": "vuepress dev documentation",
-    "build": "vuepress build documentation"
+    "dev": "vuepress dev app",
+    "build": "vuepress build app"
   },
   "devDependencies": {
     "vue": "3.3.9",
