@@ -1,3 +1,0 @@
----
-title: "TACO GraphQL API"
----

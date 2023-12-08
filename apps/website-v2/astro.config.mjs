@@ -3,6 +3,9 @@ import starlight from "@astrojs/starlight";
 
 // https://astro.build/config
 export default defineConfig({
+  redirects: {
+    "/": "/about",
+  },
   integrations: [
     starlight({
       title: "TACO API",
