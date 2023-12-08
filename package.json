@@ -15,6 +15,7 @@
   },
   "devDependencies": {
     "husky": "8.0.3",
+    "turbo": "^1.11.1",
     "typescript": "5.3.2"
   }
 }
