@@ -43,7 +43,11 @@ export default defineConfig({
           items: [
             {
               label: "FAQ",
-              link: "/faq/",
+              link: "/faq",
+            },
+            {
+              label: "Contribuindo",
+              link: "/contributing",
             },
           ],
         },
