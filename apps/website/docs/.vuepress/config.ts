@@ -45,6 +45,10 @@ export default defineUserConfig({
                 text: "v1.0.0",
                 link: "https://6447d8ec2c2ccb00085151ca--taco-api.netlify.app/",
               },
+              {
+                text: "v2.0.0",
+                link: "https://deploy-preview-41--taco-api.netlify.app/",
+              },
             ],
           },
         ],
