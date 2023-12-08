@@ -13,13 +13,17 @@
   "scripts": {
     "prepare": "husky install",
     "build": "turbo build",
+    "build:taco-image": "docker ",
     "dev": "turbo dev",
     "lint": "turbo lint",
-    "lint:ci": "turbo lint:ci"
+    "lint:ci": "turbo lint:ci",
+    "image:build": "bun run scripts/build-image.ts",
+    "image:deploy": "bun run image:build && docker push raulfdm/taco-api"
   },
   "devDependencies": {
-    "@changesets/cli": "2.27.1",
     "@biomejs/biome": "1.4.1",
+    "@changesets/cli": "2.27.1",
+    "bun-types": "1.0.15",
     "husky": "8.0.3",
     "lint-staged": "15.1.0",
     "turbo": "1.11.1",
