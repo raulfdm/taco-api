@@ -4,7 +4,7 @@ await Bun.build({
   entrypoints: ["./src/app.ts"],
   outdir: "./dist",
   external: Object.keys(dependencies),
-  target: "node",
+  target: "bun",
   sourcemap: "inline",
   splitting: true,
 });
