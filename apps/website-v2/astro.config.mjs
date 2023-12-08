@@ -40,6 +40,10 @@ export default defineConfig({
               label: "Rodando localmente",
               link: "/running",
             },
+            {
+              label: "Deploy",
+              link: "/deploy",
+            },
           ],
         },
         {
