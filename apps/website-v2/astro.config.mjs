@@ -56,13 +56,6 @@ export default defineConfig({
               },
             },
             {
-              label: "Banco de dados",
-              link: "/database",
-              translations: {
-                en: "Database",
-              },
-            },
-            {
               label: "Rodando localmente",
               link: "/running",
               translations: {
@@ -74,6 +67,13 @@ export default defineConfig({
               link: "/api-docs",
               translations: {
                 en: "API Docs",
+              },
+            },
+            {
+              label: "Banco de dados",
+              link: "/database",
+              translations: {
+                en: "Database",
               },
             },
           ],
