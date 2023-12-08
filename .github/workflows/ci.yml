@@ -1,4 +1,4 @@
-name: App
+name: CI
 
 on: [push]
 
@@ -19,10 +19,7 @@ jobs:
 
       # Necessary because it's being used in the code
       - name: Linting/Formating
-        run: bunx @biomejs/biome ci src
+        run: bun run lint:ci
 
       - name: Build
         run: bun run build
-
-      - name: Build Web docs
-        run: bun run docs:build

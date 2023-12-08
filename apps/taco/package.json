@@ -1,0 +1,48 @@
+{
+  "name": "taco-api",
+  "description": "Brazilian Table of Food Composition (TACO) - GraphQL API",
+  "version": "2.3.0",
+  "type": "module",
+  "homepage": "https://github.com/raulfdm/taco-api",
+  "bugs": {
+    "url": "https://github.com/raulfdm/taco-api/issues"
+  },
+  "scripts": {
+    "start": "NODE_ENV=production bun run src/app.ts",
+    "dev": "NODE_ENV=development bun --watch src/app.ts",
+    "studio": "prisma studio",
+    "build": "bun run scripts/build.ts",
+    "lint": "biome lint src",
+    "lint:ci": "biome ci src",
+    "db:migrate": "NODE_ENV=development prisma migrate dev",
+    "db:generate": "NODE_ENV=development prisma generate",
+    "db:seed": "NODE_ENV=development prisma db seed",
+    "db:reset": "NODE_ENV=development prisma migrate reset",
+    "prepare": "bun run db:generate"
+  },
+  "dependencies": {
+    "@prisma/client": "5.7.0",
+    "cors": "2.8.5",
+    "express": "4.18.2",
+    "graphql": "16.8.1",
+    "graphql-http": "1.22.0",
+    "graphql-modules": "2.3.0",
+    "zod": "3.22.4"
+  },
+  "devDependencies": {
+    "@types/cors": "2.8.17",
+    "@types/express": "4.17.21",
+    "bun-types": "1.0.15",
+    "csvtojson": "2.0.10",
+    "prisma": "5.7.0",
+    "typescript": "5.3.2"
+  },
+  "packageManager": "bun@1.0.15",
+  "engines": {
+    "bun": "1.0.15"
+  },
+  "prisma": {
+    "seed": "bun run ./src/infrastructure/seed/index.ts",
+    "schema": "./src/infrastructure/prisma/schema.prisma"
+  }
+}

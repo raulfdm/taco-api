@@ -72,9 +72,6 @@ typings/
 # Serverless directories
 .serverless
 
-# Others
-docs/
-
 ## macOS
 .DS_Store
 
@@ -83,3 +80,4 @@ docs/
 .cache
 documentation/.vuepress/dist
 dist/
+.turbo
