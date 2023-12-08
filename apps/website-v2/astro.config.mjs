@@ -53,6 +53,10 @@ export default defineConfig({
               link: "/running",
             },
             {
+              label: "Documentação da API",
+              link: "/api-docs",
+            },
+            {
               label: "Deploy",
               link: "/deploy",
             },
