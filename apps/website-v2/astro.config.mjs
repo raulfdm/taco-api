@@ -19,7 +19,17 @@ export default defineConfig({
       social: {
         github: "https://github.com/raulfdm/taco-api",
       },
-      sidebar: [],
+      sidebar: [
+        {
+          label: "References",
+          items: [
+            {
+              label: "FAQ",
+              link: "/faq/",
+            },
+          ],
+        },
+      ],
       // sidebar: [
       //   {
       //     label: "Guides",
