@@ -1,0 +1,16 @@
+---
+title: "Deploy with docker"
+---
+
+If you are familiar with docker, you have the option of running the project from an image.
+Within the repository, there is a configuration file to upload the project using docker-compose, so you can just do:
+
+```bash
+docker compose up --build
+```
+
+If you want to use the remote image, you can run the following:
+
+```bash
+docker run -it --rm --name taco -p 4000:4000 raulfdm/taco-api
+```
