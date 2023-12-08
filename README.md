@@ -32,6 +32,15 @@ Run the API:
 bun run dev --filter=taco-api
 ```
 
+## Structure
+
+This project is a monorepo:
+
+- [The API project](./apps/taco/)
+- [The DOCs project](./apps/website)
+
+The monorepo handling is done by Turbo and Bun.
+
 ## Docs
 
 For more details about this API, check the official docs:
