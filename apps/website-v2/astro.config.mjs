@@ -36,6 +36,10 @@ export default defineConfig({
               label: "Começando",
               link: "/getting-started",
             },
+            {
+              label: "Rodando localmente",
+              link: "/running",
+            },
           ],
         },
         {
