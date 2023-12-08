@@ -43,7 +43,7 @@ Para manter os dados originais da pesquisa utilizado para realização desse pro
 
 ### Tecnologias
 
-- [NodeJS](https://nodejs.org/en/) - JavaScript runtime
+- [Bun](https://bun.sh/) - JavaScript runtime
 - [ExpressJS](https://expressjs.com) - Framework HTTP
 - [Prisma](https://www.prisma.io/) - JavaScript Object-Relational Mapping (ORM) para popular o banco de dados e definir a relação;
 - [SQLite](https://sqlite.org/) - Mini banco de dados relacional;
@@ -56,8 +56,8 @@ Para manter os dados originais da pesquisa utilizado para realização desse pro
 
 Para rodar o projeto localmente, você vai precisar ter instalado:
 
-- [NodeJS versão 18](https://nodejs.org/en)
-- pnpm (gerenciador de dependências). Você pode seguir os passos de instalação clicando [aqui](https://pnpm.io/installation#using-corepack);
+- [NodeJS versão 20 or higher](https://nodejs.org/en) - O Prisma ainda precisa de Node pra gerar os arquivos;
+- [Bun](https://bun.sh/) - Para instalar as dependencias, rodar o servidor e os scripts;
 - Algum GraphQL cliente para poder inspecionar a API. Eu recomendo o [Altair GraphQL](https://altairgraphql.dev/)
 
 ### Rodando o projeto
@@ -65,13 +65,19 @@ Para rodar o projeto localmente, você vai precisar ter instalado:
 Primeiro, instale todas as dependências do projeto:
 
 ```bash
-pnpm install
+bun install
 ```
 
-Depois, rode o servidor:
+Depois, navegue até a pasta da API pra facilitar rodar os comandos:
 
 ```bash
-pnpm run dev
+cd apps/taco
+```
+
+Agora, rode o servidor:
+
+```bash
+bun run dev
 ```
 
 Feito isso, o servidor estará rodando no `http://localhost:4000/grapqhl`. Agora, basta copiar este endereço dentro do seu cliente GraphQL para poder rodar queries e ver a documentação da API.
@@ -85,7 +91,7 @@ Mas, se forkar o projeto e quiser fazer alterações nos modelos, você provavel
 Ao fazer qualquer alteração no arquivo `src/infrastructure/prisma/schema.prisma`, rode o seguinte comando:
 
 ```bash
-pnpm run db:migrate –name <nome-da-alteração>
+bun run db:migrate –name <nome-da-alteração>
 ```
 
 Isso irá criar um arquivo de migration que deve ser commitado.
@@ -93,13 +99,13 @@ Isso irá criar um arquivo de migration que deve ser commitado.
 Caso queira limpar o banco de dados e reinserir os dados originais, pode usar o comando:
 
 ```bash
-pnpm run db:reset
+bun run db:reset
 ```
 
 Caso queira ver o banco de dados em um dashboard, você pode subir o Prisma studio:
 
 ```bash
-pnpm run studio
+bun run studio
 ```
 
 #### Documentação da API
@@ -117,7 +123,7 @@ Aqui, você vai precisar seguir o mesmo pré-requisito da etapa de contribuiçã
 Uma vez que tem as dependências instaladas, poderá rodar o comando:
 
 ```bash
-pnpm start
+bun start
 ```
 
 Isso colocará o projeto em modo de produção (com os logs desabilitados) e também estará disponível no endereço `http://localhost:4000/grapqhl`.
@@ -128,7 +134,7 @@ Caso você tenha familiaridade com docker, existe a opção de rodar o projeto a
 Dentro do repositório, existe uma arquivo de configuração para subir o projeto usando docker compose, assim, você pode fazer apenas:
 
 ```bash
-docker compose up –build
+docker compose up –-build
 ```
 
 Caso queira usar a imagem remota, pode rodar:
@@ -138,6 +144,16 @@ docker run -it --rm --name taco -p 4000:4000 raulfdm/taco-api
 ```
 
 ## FAQ
+
+### Por que você migrou de Node pra Bun?
+
+Bun é um runtime JavaScript que tem foco total em performance.
+
+Bun possui (quase) todas APIs do Node implementadas com zero breaking change, ou seja, não possui nenhum incompatibilidade com o ecossistema Node, no máximo, alguma API que ainda não foi implementada.
+
+Além disso, Bun conta com várias funcionalidades e ferramentas integradas, como por exemplo, suporte nativo à TypeScript, gerenciamento de dependencias, tests, etc.
+
+Ainda que esteja na versão 1, Bun já está bem maduro e pronto pra produção.
 
 ### Existe uma demo online?
 
