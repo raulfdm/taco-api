@@ -1,5 +1,4 @@
 import cors from "cors";
-import * as dotenv from "dotenv";
 import express from "express";
 import { createHandler } from "graphql-http/lib/use/express";
 import { createApplication } from "graphql-modules";
@@ -14,8 +13,6 @@ import {
   nutrientModule,
   unitModule,
 } from "@/modules";
-
-dotenv.config();
 
 const app = express();
 
@@ -42,5 +39,7 @@ app.use(
 );
 
 app.listen(env.PORT, () =>
-  console.log(`Example app listening on port ${env.PORT}!`),
+  console.log(
+    `TACO GraphQL API listening on http://localhost:${env.PORT}/graphql`,
+  ),
 );

@@ -1,27 +1,35 @@
 {
   "compilerOptions": {
-    /* Base Options: */
+    "lib": [
+      "ESNext"
+    ],
     "esModuleInterop": true,
-    "skipLibCheck": true,
-    "target": "es2022",
-    "allowJs": true,
-    "resolveJsonModule": true,
-    "moduleDetection": "force",
+    "verbatimModuleSyntax": true,
     "isolatedModules": true,
-    /* Strictness */
+    "resolveJsonModule": true,
+    "module": "esnext",
+    "target": "esnext",
+    "moduleResolution": "bundler",
+    "moduleDetection": "force",
+    "allowImportingTsExtensions": true,
+    "noEmit": true,
+    "composite": true,
     "strict": true,
     "noUncheckedIndexedAccess": true,
-    /* We're transpiling with ESBuild */
-    "moduleResolution": "Bundler",
-    "module": "ESNext",
-    "noEmit": true,
-    /* Node code only */
-    "lib": ["es2022"],
-    "verbatimModuleSyntax": true,
+    "downlevelIteration": true,
+    "skipLibCheck": true,
+    "jsx": "react-jsx",
+    "allowSyntheticDefaultImports": true,
+    "forceConsistentCasingInFileNames": true,
+    "allowJs": true,
     "baseUrl": ".",
     "paths": {
-      "@/*": ["src/*"]
-    }
-  },
-  "include": ["src/**/*", "scripts/**/*"]
+      "@/*": [
+        "src/*"
+      ]
+    },
+    "types": [
+      "bun-types" // add Bun global
+    ]
+  }
 }

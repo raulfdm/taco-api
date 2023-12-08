@@ -1,1 +1,16 @@
+.changeset
+.dockerignore
+.env
+.git
+.github
+.gitignore
+.history
+.husky
+.vscode
+coverage*
+Dockerfile*
+documentation
+LICENSE
 node_modules
+README.md
+references

@@ -13,10 +13,10 @@
     "email": "contact@raulmelo.me"
   },
   "scripts": {
-    "start": "NODE_ENV=production node dist/app.js",
-    "dev": "NODE_ENV=development tsx --watch src/app.ts",
+    "start": "NODE_ENV=production bun run src/app.ts",
+    "dev": "NODE_ENV=development bun --watch src/app.ts",
     "studio": "prisma studio",
-    "build": "tsx scripts/build.ts",
+    "build": "bun run scripts/build.ts",
     "lint": "biome lint src",
     "db:migrate": "NODE_ENV=development prisma migrate dev",
     "db:generate": "NODE_ENV=development prisma generate",
@@ -24,47 +24,43 @@
     "db:reset": "NODE_ENV=development prisma migrate reset",
     "docs:dev": "vuepress dev documentation",
     "docs:build": "vuepress build documentation",
-    "image:build": "tsx scripts/build-docker.ts",
-    "image:deploy": "pnpm run image:build && docker push raulfdm/taco-api",
-    "prepare": "husky install && pnpm run db:generate"
+    "image:build": "bun run scripts/build-docker.ts",
+    "image:deploy": "bun run image:build && docker push raulfdm/taco-api",
+    "prepare": "husky install && bun run db:generate"
   },
   "dependencies": {
-    "@prisma/client": "5.6.0",
+    "@prisma/client": "5.7.0",
     "cors": "2.8.5",
-    "dotenv": "16.3.1",
-    "esbuild": "0.19.8",
-    "execa": "8.0.1",
     "express": "4.18.2",
     "graphql": "16.8.1",
     "graphql-http": "1.22.0",
     "graphql-modules": "2.3.0",
-    "prisma": "5.6.0",
-    "tsx": "4.6.0",
     "zod": "3.22.4"
   },
   "devDependencies": {
     "@changesets/cli": "2.27.1",
     "@types/cors": "2.8.17",
     "@types/express": "4.17.21",
-    "@types/node": "20.10.0",
     "@vuepress/client": "2.0.0-rc.0",
+    "bun-types": "1.0.15",
     "csvtojson": "2.0.10",
+    "execa": "8.0.1",
     "husky": "8.0.3",
     "lint-staged": "15.1.0",
+    "prisma": "5.7.0",
     "typescript": "5.3.2",
     "vue": "3.3.9",
-    "vuepress": "2.0.0-beta.61"
+    "vuepress": "2.0.0-rc.0"
   },
-  "packageManager": "pnpm@8.11.0",
+  "packageManager": "bun@1.0.15",
   "engines": {
-    "node": "20",
-    "pnpm": "8"
+    "bun": "1.0.15"
   },
   "prisma": {
-    "seed": "tsx ./src/infrastructure/seed/index.ts",
-    "schema": "src/infrastructure/prisma/schema.prisma"
+    "seed": "bun run ./src/infrastructure/seed/index.ts",
+    "schema": "./src/infrastructure/prisma/schema.prisma"
   },
   "lint-staged": {
-    "*.{js,ts,json}": "pnpm dlx @biomejs/biome check --apply"
+    "*.{js,ts,json}": "bunx @biomejs/biome check --apply"
   }
 }

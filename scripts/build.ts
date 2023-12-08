@@ -1,13 +1,9 @@
-import esbuild from "esbuild";
+import { dependencies } from "../package.json";
 
-import pkgJson from "../package.json";
-
-esbuild.buildSync({
-  entryPoints: ["src/app.ts"],
-  bundle: true,
-  platform: "node",
-  target: "node20",
-  format: "esm",
-  outfile: "dist/app.js",
-  external: [...Object.keys(pkgJson.dependencies)],
+await Bun.build({
+  entrypoints: ["./src/app.ts"],
+  outdir: "./dist",
+  external: Object.keys(dependencies),
+  target: "bun",
+  splitting: true,
 });
