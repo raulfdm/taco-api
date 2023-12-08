@@ -13,6 +13,7 @@
     "studio": "prisma studio",
     "build": "bun run scripts/build.ts",
     "lint": "biome lint src",
+    "lint:ci": "biome ci src",
     "db:migrate": "NODE_ENV=development prisma migrate dev",
     "db:generate": "NODE_ENV=development prisma generate",
     "db:seed": "NODE_ENV=development prisma db seed",

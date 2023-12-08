@@ -14,7 +14,8 @@
     "prepare": "husky install",
     "build": "turbo build",
     "dev": "turbo dev",
-    "lint": "turbo lint"
+    "lint": "turbo lint",
+    "lint:ci": "turbo lint:ci"
   },
   "devDependencies": {
     "@changesets/cli": "2.27.1",
