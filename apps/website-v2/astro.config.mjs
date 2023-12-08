@@ -29,31 +29,52 @@ export default defineConfig({
             {
               label: "Sobre",
               link: "/about",
+              translations: {
+                en: "About",
+              },
             },
             {
               label: "Tecnologias",
               link: "/stack",
+              translations: {
+                en: "Stack",
+              },
             },
           ],
         },
         {
           label: "Início",
+          translations: {
+            en: "Getting Started",
+          },
           items: [
             {
               label: "Começando",
               link: "/getting-started",
+              translations: {
+                en: "Getting Started",
+              },
             },
             {
               label: "Banco de dados",
               link: "/database",
+              translations: {
+                en: "Database",
+              },
             },
             {
               label: "Rodando localmente",
               link: "/running",
+              translations: {
+                en: "Running",
+              },
             },
             {
               label: "Documentação da API",
               link: "/api-docs",
+              translations: {
+                en: "API Docs",
+              },
             },
           ],
         },
@@ -72,18 +93,30 @@ export default defineConfig({
         },
         {
           label: "Referências",
+          translations: {
+            en: "References",
+          },
           items: [
             {
               label: "Processamento de dados",
               link: "/data-processing",
+              translations: {
+                en: "Data Processing",
+              },
             },
             {
-              label: "FAQ",
+              label: "Perguntas Frequentes",
               link: "/faq",
+              translations: {
+                en: "FAQ",
+              },
             },
             {
               label: "Contribuindo",
               link: "/contributing",
+              translations: {
+                en: "Contributing",
+              },
             },
           ],
         },
