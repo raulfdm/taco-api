@@ -2,22 +2,29 @@
 title: "Començando"
 ---
 
-First, install all the project dependencies:
+You can either fork this project or clone it, the choice is yours.
+
+First and foremost, ensure that you have installed two things on your machine:
+
+- NodeJS version 18 or higher;
+- BunJS version 1.0.15 or higher.
+
+Now, the first step is to install the project dependencies:
 
 ```bash
 bun install
 ```
 
-Then, navigate to the API folder to make it easier to run the commands:
+As the project is set up as a monorepo to facilitate development, I suggest navigating inside the API folder:
 
 ```bash
 cd apps/taco
 ```
 
-Now, run the server:
+Finally, run the development server with the command:
 
 ```bash
 bun run dev
 ```
 
-Once done, the server will be running on `http://localhost:4000/grapqhl`. Now, just copy this address into your GraphQL client to be able to run queries and see the API documentation.
+Once done, the API will be running at `http://localhost:4000/graphql`.
