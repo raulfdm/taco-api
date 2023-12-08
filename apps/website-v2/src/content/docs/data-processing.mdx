@@ -1,0 +1,23 @@
+---
+title: "Processamento de Dados"
+---
+
+O início do processo se baseia inteiramente no banco de dados (arquivo .xls) disponibilizado por eles. Entretanto, para conseguir um resultado satisfatório e poder inseri-los em um banco de dados relacional, as seguintes etapas foram feitas:
+
+1. Baixei a planilha original e subi para o Google Sheets;
+2. Converti de `.xls` (formato proprietário da Microsoft) para `.xlsx` (formato do Office Open XML) para dar mais acessibilidade;
+3. Fiz a limpeza de todas as formatações de linhas, colunas, fontes. Removi as linhas vazias, unifiquei linhas duplicadas ou que foram adicionadas para melhor visualização no estudo;
+4. Substitui os valores não numéricos, onde:
+   - `NA` (não aplicável) foi convertido para vazio (`null`);
+   - `*` (valores enviados para re-análise) foi convertido para vazio (`null`);
+   - `Tr` (valores entre um certo range) foi convertido para para zero (`0`);
+5. Defini nomes em inglês para as colunas;
+6. Criei uma outra planilha (ainda no mesmo documento) que contém todas as categorias possíveis e linkei seus respectivos `id`s na planilha dos alimentos;
+7. Criei uma outra planilha (ainda no mesmo documento) que contém informações nutricionais e linkei com o `id` do alimento;
+8. Exportei cada planilha no documento para `.csv` e baixei dentro do projeto;
+9. Fiz a modelagem do banco de dados usando uma ferramenta chamada `Prisma`;
+10. Criei um scripts para popular o banco de dados na ordem correta, e fazendo a relação entre a informação e o alimento
+
+### Dados oficiais
+
+Para manter os dados originais da pesquisa utilizado para realização desse projeto, [salvei todos os arquivos do site original](https://www.nepa.unicamp.br/taco/tabela.php?ativo=tabela) e você pode consultados na pasta `/references/*`

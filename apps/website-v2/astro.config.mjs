@@ -27,6 +27,10 @@ export default defineConfig({
               label: "Sobre",
               link: "/about",
             },
+            {
+              label: "Processamento de dados",
+              link: "/data-processing",
+            },
           ],
         },
         {
