@@ -59,10 +59,6 @@ export default defineConfig({
               label: "Documentação da API",
               link: "/api-docs",
             },
-            {
-              label: "Deploy",
-              link: "/deploy",
-            },
           ],
         },
         {
@@ -70,7 +66,7 @@ export default defineConfig({
           items: [
             {
               label: "Node app",
-              link: "/",
+              link: "/deploy",
             },
             {
               label: "Docker",
