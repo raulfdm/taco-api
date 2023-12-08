@@ -1,7 +1,8 @@
 {
   "name": "website-v2",
   "type": "module",
-  "version": "0.0.1",
+  "private": true,
+  "version": "0.0.0-development",
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
@@ -10,8 +11,8 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/starlight": "^0.15.0",
-    "astro": "^4.0.1",
-    "sharp": "^0.32.5"
+    "@astrojs/starlight": "0.15.0",
+    "astro": "4.0.1",
+    "sharp": "0.32.5"
   }
 }
