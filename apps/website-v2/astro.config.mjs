@@ -63,6 +63,19 @@ export default defineConfig({
           ],
         },
         {
+          label: "Deploy",
+          items: [
+            {
+              label: "Node app",
+              link: "/",
+            },
+            {
+              label: "Docker",
+              link: "/docker",
+            },
+          ],
+        },
+        {
           label: "References",
           items: [
             {

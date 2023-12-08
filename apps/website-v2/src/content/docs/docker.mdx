@@ -1,0 +1,16 @@
+---
+title: "Rodando com docker"
+---
+
+Caso você tenha familiaridade com docker, existe a opção de rodar o projeto através de uma imagem.
+Dentro do repositório, existe uma arquivo de configuração para subir o projeto usando docker compose, assim, você pode fazer apenas:
+
+```bash
+docker compose up –-build
+```
+
+Caso queira usar a imagem remota, pode rodar:
+
+```bash
+docker run -it --rm --name taco -p 4000:4000 raulfdm/taco-api
+```
