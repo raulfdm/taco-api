@@ -2,14 +2,35 @@
 
 > Brazilian Table of Food Composition
 
-![GraphQL Client](./documentation/images/graphql-client.png)
+![GraphQL Client](./apps/website/docs/images/graphql-client.png)
 
 <p align="center">
- <a href="https://github.com/raulfdm/taco-api/actions/workflows/app.yml">
-   <img src="https://github.com/raulfdm/taco-api/actions/workflows/app.yml/badge.svg"
+ <a href="https://github.com/raulfdm/taco-api/actions/workflows/ci.yml">
+   <img src="https://github.com/raulfdm/taco-api/actions/workflows/ci.yml/badge.svg"
         alt="build status">
  </a>
 </p>
+
+## Getting started
+
+Make sure to have installed:
+
+- [Node 20 or higher](https://nodejs.org/en) - For Prisma
+- [Bun](https://bun.sh/)
+
+Clone/fork this repo.
+
+Install the dependencies:
+
+```bash
+bun install
+```
+
+Run the API:
+
+```bash
+bun run dev --filter=taco-api
+```
 
 ## Docs
 
