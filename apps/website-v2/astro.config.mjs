@@ -56,13 +56,6 @@ export default defineConfig({
               },
             },
             {
-              label: "Rodando localmente",
-              link: "/running",
-              translations: {
-                en: "Running",
-              },
-            },
-            {
               label: "Documentação da API",
               link: "/api-docs",
               translations: {
@@ -83,11 +76,11 @@ export default defineConfig({
           items: [
             {
               label: "Node app",
-              link: "/deploy",
+              link: "/deploy-node",
             },
             {
               label: "Docker",
-              link: "/docker",
+              link: "/deploy-docker",
             },
           ],
         },
