@@ -1,10 +1,13 @@
-import { defineConfig } from "astro/config";
+import { defineConfig, sharpImageService } from "astro/config";
 import starlight from "@astrojs/starlight";
 
 // https://astro.build/config
 export default defineConfig({
   redirects: {
     "/": "/about",
+  },
+  image: {
+    imageService: sharpImageService(),
   },
   integrations: [
     starlight({
