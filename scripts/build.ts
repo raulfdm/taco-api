@@ -5,6 +5,5 @@ await Bun.build({
   outdir: "./dist",
   external: Object.keys(dependencies),
   target: "bun",
-  sourcemap: "inline",
   splitting: true,
 });
