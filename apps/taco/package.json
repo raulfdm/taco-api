@@ -31,13 +31,11 @@
     "zod": "3.22.4"
   },
   "devDependencies": {
-    "@changesets/cli": "2.27.1",
     "@types/cors": "2.8.17",
     "@types/express": "4.17.21",
     "bun-types": "1.0.15",
     "csvtojson": "2.0.10",
     "execa": "8.0.1",
-    "lint-staged": "15.1.0",
     "prisma": "5.7.0",
     "typescript": "5.3.2"
   },
@@ -48,8 +46,5 @@
   "prisma": {
     "seed": "bun run ./src/infrastructure/seed/index.ts",
     "schema": "./src/infrastructure/prisma/schema.prisma"
-  },
-  "lint-staged": {
-    "*.{js,ts,json}": "bunx @biomejs/biome check --apply"
   }
 }

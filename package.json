@@ -11,11 +11,23 @@
     "email": "contact@raulmelo.me"
   },
   "scripts": {
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "build": "turbo build",
+    "dev": "turbo dev"
   },
   "devDependencies": {
+    "@changesets/cli": "2.27.1",
+    "@biomejs/biome": "1.4.1",
     "husky": "8.0.3",
-    "turbo": "^1.11.1",
+    "lint-staged": "15.1.0",
+    "turbo": "1.11.1",
     "typescript": "5.3.2"
+  },
+  "packageManager": "bun@1.0.15",
+  "engines": {
+    "bun": "1.0.15"
+  },
+  "lint-staged": {
+    "*.{js,ts,json}": "bunx @biomejs/biome check --apply"
   }
 }
