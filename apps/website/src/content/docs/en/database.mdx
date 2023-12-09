@@ -2,25 +2,31 @@
 title: "Database"
 ---
 
-Because the project uses SQLite, and this generates a file that is being committed, you probably don't need to run any of the commands from the database.
+The project uses SQLite, a relational database written in C that generates a local file. This means you don't need to install any additional software to handle the structure and storage of data.
 
-But if you fork the project and want to make changes to the models, you will probably need to do a database migration so that the new columns/tables can be inserted.
+Additionally, the project uses an ORM (Object-Relational Mapping) called [Prisma](https://www.prisma.io/), which allows us to interact with the database without needing to write SQL queries and define the structures of tables and their relationships in an easier language.
 
-When making any changes to the `src/infrastructure/prisma/schema.prisma` file, run the following command:
+If you want to fork the project and make any changes to the models, you will need to perform [`migrations`](https://www.prisma.io/docs/orm/prisma-migrate/workflows/data-migration) in the database so that the new columns/tables are inserted.
+
+When making any changes to the `apps/taco/src/infrastructure/prisma/schema.prisma` file, run (inside the project's API folder) the following command:
 
 ```bash
-bun run db:migrate -name <change-name>
+bun run db:migrate --name <name-of-change>
 ```
 
-This will create a migration file that must be committed.
+This will create a migration file that should be committed.
 
-If you want to clean out the database and re-insert the original data, you can use the command:
+## Resetting the Database
+
+If you want to clear the database and reinsert the original data, you can use the command:
 
 ```bash
 bun run db:reset
 ```
 
-If you want to see the database in a dashboard, you can run Prisma studio:
+## Viewing the Data
+
+If you want to see the database in a dashboard, you can launch Prisma Studio:
 
 ```bash
 bun run studio
