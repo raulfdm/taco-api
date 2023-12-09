@@ -38,9 +38,9 @@ export default defineConfig({
             },
             {
               label: "Tecnologias",
-              link: "/stack",
+              link: "/tech",
               translations: {
-                en: "Stack",
+                en: "Technologies",
               },
             },
           ],
