@@ -1,13 +1,19 @@
 ---
-title: "Començando"
+title: "Começando"
 ---
 
+## Pré-requisitos
+
+Antes de fazer a configuração inicial, você precisa ter 2 runtimes instalados:
+
+- [NodeJS](https://nodejs.org/en) versão 18 ou superior
+- [Bun](https://bun.sh/) versão 1.0.15 ou superior
+
+Apesar do Bun ser o runtime principal, uma das dependências ([Prisma](https://www.prisma.io/)) ainda precisa do Node para gerar os arquivos iniciais.
+
+## Configuração
+
 Você pode tanto fazer um fork deste projeto quanto cloná-lo, fica a seu critério.
-
-Antes de mais nada, garanta que você tenha instalado na sua máquina duas coisas:
-
-- NodeJS versão 18 ou superior;
-- BunJS versão 1.0.15 ou superior.
 
 Agora, o primeiro passo é instalar as dependências do projeto:
 
@@ -15,16 +21,40 @@ Agora, o primeiro passo é instalar as dependências do projeto:
 bun install
 ```
 
-Como o projeto está configurado como monorepo, para facilitar o desenvolvimento, sugiro navegar dentro da pasta da API:
+## Rodando o servidor
+
+O projeto está configurado como um [monorepo](https://turbo.build/repo/docs/handbook/what-is-a-monorepo) (ou workspace) usando uma ferramenta chamada [turbo repo](https://turbo.build/repo).
+
+Isso significa que para rodar o servidor através da raiz do projeto, você precisa rodar:
+
+```bash
+bun run dev --filter=taco-api
+```
+
+Ou, se preferir, navegue até a pasta da API:
 
 ```bash
 cd apps/taco
 ```
 
-Por último, rode o servidor de desenvolvimento com o comando:
+E rode os comandos diretamente do diretório do projeto:
 
 ```bash
 bun run dev
 ```
 
-Feito isso, a API estará rodando em `http://localhost:4000/graphql`.
+Em ambos os casos, depois de rodar o comando `dev`, a API estará rodando em `http://localhost:4000/graphql`.
+
+## Rodando o servidor com Docker
+
+Caso você queira um ambiente já totalmente configurado, também é possível rodar o projeto via Docker.
+
+Para isso, na raiz do projeto, rode o comando:
+
+```bash
+docker compose -f ./apps/taco/docker-compose.yml up --build
+```
+
+:::note
+O docker-compose está configurado para rodar a API em modo de desenvolvimento. Para fazer o deploy como uma imagem docker, acesse a seção [Deploy > Docker](/deploy-docker)
+:::
