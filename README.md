@@ -13,24 +13,7 @@
 
 ## Getting started
 
-Make sure to have installed:
-
-- [Node 20 or higher](https://nodejs.org/en) - For Prisma
-- [Bun](https://bun.sh/)
-
-Clone/fork this repo.
-
-Install the dependencies:
-
-```bash
-bun install
-```
-
-Run the API:
-
-```bash
-bun run dev --filter=taco-api
-```
+[https://taco-api.netlify.app/getting-started/](https://taco-api.netlify.app/getting-started/)
 
 ## Structure
 
@@ -45,8 +28,8 @@ The monorepo handling is done by Turbo and Bun.
 
 For more details about this API, check the official docs:
 
-- [Portuguese](https://taco-api.netlify.app/)
-- [English](https://taco-api.netlify.app/en)
+- [Portuguese](https://taco-api.netlify.app/about)
+- [English](https://taco-api.netlify.app/en/about)
 
 ## License
 
