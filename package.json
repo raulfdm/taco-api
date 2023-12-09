@@ -15,6 +15,7 @@
     "build": "turbo build",
     "build:taco-image": "docker ",
     "dev": "turbo dev",
+    "start": "turbo start",
     "lint": "turbo lint",
     "lint:ci": "turbo lint:ci",
     "image:build": "bun run scripts/build-image.ts",
