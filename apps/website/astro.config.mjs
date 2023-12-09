@@ -78,7 +78,7 @@ export default defineConfig({
           label: "Deploy",
           items: [
             {
-              label: "Node app",
+              label: "NodeJS",
               link: "/deploy-node",
             },
             {
