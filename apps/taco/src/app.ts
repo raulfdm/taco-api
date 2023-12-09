@@ -1,6 +1,8 @@
-import cors from "cors";
-import express from "express";
-import { createHandler } from "graphql-http/lib/use/express";
+import { cors } from "@elysiajs/cors";
+import { yoga } from "@elysiajs/graphql-yoga";
+import { useGraphQLModules } from "@envelop/graphql-modules";
+import { Elysia } from "elysia";
+
 import { createApplication } from "graphql-modules";
 
 import { env } from "@/infrastructure/env";
@@ -14,9 +16,7 @@ import {
   unitModule,
 } from "@/modules";
 
-const app = express();
-
-const api = createApplication({
+const application = createApplication({
   modules: [
     mainModule,
     unitModule,
@@ -28,24 +28,21 @@ const api = createApplication({
   ],
 });
 
-app.use(cors());
-
-app.get("/graphiql", async (req, res) => {
-  const graphiqlHTMLPath = `${import.meta.dir}/modules/graphiql.html`;
-
-  res.sendFile(graphiqlHTMLPath);
-});
-
-app.use(
-  "/graphql",
-  createHandler({
-    schema: api.schema,
-    execute: api.createExecution(),
-  }),
-);
-
-app.listen(env.PORT, () =>
-  console.log(
-    `TACO GraphQL API listening on http://localhost:${env.PORT}/graphql`,
-  ),
-);
+new Elysia()
+  .use(cors())
+  .use(
+    yoga({
+      typeDefs: application.typeDefs,
+      plugins: [useGraphQLModules(application)],
+      /**
+       * There's some type difference between those libraries but it's integrating
+       * as expected.
+       *
+       * To see the Yoga API we need to remove the `as any`.
+       */
+      // biome-ignore lint/suspicious/noExplicitAny: <explanation>
+    } as any),
+  )
+  .listen(env.PORT, ({ port }) => {
+    console.log(`🚀 Server ready at http://localhost:${port}`);
+  });
