@@ -1,8 +1,11 @@
 version: '3.9'
 
 services:
-  taco_api:
-    build: ./
+  taco_api_dev:
+    working_dir: /app
+    build:
+      context: ../../
+      dockerfile: ./apps/taco/Dockerfile.dev
     environment:
       PORT: 4000
 
