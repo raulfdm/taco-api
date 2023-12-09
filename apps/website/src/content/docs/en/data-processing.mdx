@@ -1,0 +1,23 @@
+---
+title: "Data processing"
+---
+
+The beginning of the process is based entirely on the database (.xls file) they made available. However, to achieve a satisfactory result and to be able to insert it into a relational database, the following steps were taken:
+
+1. I downloaded the original spreadsheet and uploaded it to Google Sheets;
+2. I converted it from `.xls` (proprietary Microsoft format) to `.xlsx` (Office Open XML format) for better accessibility;
+3. I cleaned up all the rows, columns, and font formatting. I removed empty rows, merged duplicate rows or rows that were added for better visualization in the study;
+4. Replaced the non-numeric values, where:
+   - `NA` (not applicable) was converted to empty (`null`);
+   - `*` (values sent for re-analysis) has been converted to empty (`null`);
+   - `Tr` (values between a specific range) has been converted to zero (`0`);
+5. I defined English names for the columns;
+6. I created another worksheet (still in the same document) that contains all the possible categories and linked theirs `id's to the food worksheet;
+7. I created another sheet (still in the same document) that contains nutritional information and linked it to the `id` of the food;
+8. I exported each spreadsheet in the document to `.csv` and downloaded it into the project;
+9. I modeled the database using a tool called `Prisma`;
+10. I created a script to populate the database in the correct order and make the relationship between the information and the food.
+
+## Official data
+
+To keep the original research data used for this project, [I have saved all the files from the original site](https://www.nepa.unicamp.br/taco/tabela.php?ativo=tabela) and you can consult them in the `/references/*` folder

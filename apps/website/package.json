@@ -1,15 +1,22 @@
 {
   "name": "website",
+  "type": "module",
   "private": true,
+  "version": "0.0.0-development",
   "scripts": {
-    "dev": "vuepress dev docs",
-    "build": "vuepress build docs",
-    "lint": "biome lint docs",
-    "lint:ci": "biome ci docs"
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro check && astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@astrojs/starlight": "0.15.0",
+    "astro": "4.0.1",
+    "sharp": "0.33.0"
   },
   "devDependencies": {
-    "@vuepress/client": "2.0.0-rc.0",
-    "vue": "3.3.11",
-    "vuepress": "2.0.0-rc.0"
+    "@astrojs/check": "0.3.1",
+    "typescript": "5.3.3"
   }
 }

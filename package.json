@@ -15,6 +15,7 @@
     "build": "turbo build",
     "build:taco-image": "docker ",
     "dev": "turbo dev",
+    "start": "turbo start",
     "lint": "turbo lint",
     "lint:ci": "turbo lint:ci",
     "image:build": "bun run scripts/build-image.ts",
@@ -27,7 +28,7 @@
     "husky": "8.0.3",
     "lint-staged": "15.1.0",
     "turbo": "1.11.1",
-    "typescript": "5.3.2"
+    "typescript": "5.3.3"
   },
   "packageManager": "bun@1.0.15",
   "engines": {

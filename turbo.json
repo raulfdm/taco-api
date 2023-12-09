@@ -6,6 +6,9 @@
     },
     "dev": {},
     "lint": {},
-    "lint:ci": {}
+    "lint:ci": {},
+    "start": {
+      "dependsOn": ["build"]
+    }
   }
 }

@@ -1,0 +1,13 @@
+---
+title: "Deploy via Docker"
+---
+
+Outra opção é você fazer o deploy da aplicação via Docker.
+
+A cada nova versão, uma nova imagem pública é criada e pode ser vista no [DockerHUB](https://hub.docker.com/repository/docker/raulfdm/taco-api/general).
+
+Logo, no serviço que você escolher, você pode usar a última versão disponível `raulfdm/taco-api`, ou se for via comando, seria algo como:
+
+```bash
+docker run -it --rm --name taco -p 4000:4000 raulfdm/taco-api
+```

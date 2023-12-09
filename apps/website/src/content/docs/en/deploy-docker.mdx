@@ -1,0 +1,13 @@
+---
+title: "Deploy via Docker"
+---
+
+Another option is to deploy the application via Docker.
+
+With each new version, a new public image is created and can be seen on [DockerHUB](https://hub.docker.com/repository/docker/raulfdm/taco-api/general).
+
+Thus, in the service you choose, you can use the latest available version `raulfdm/taco-api`, or if it's via command, it would be something like:
+
+```bash
+docker run -it --rm --name taco -p 4000:4000 raulfdm/taco-api
+```

@@ -30,6 +30,12 @@ const api = createApplication({
 
 app.use(cors());
 
+app.get("/graphiql", async (req, res) => {
+  const graphiqlHTMLPath = `${import.meta.dir}/modules/graphiql.html`;
+
+  res.sendFile(graphiqlHTMLPath);
+});
+
 app.use(
   "/graphql",
   createHandler({

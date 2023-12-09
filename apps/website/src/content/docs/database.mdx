@@ -1,0 +1,33 @@
+---
+title: "Banco de dados"
+---
+
+O projeto usa SQLite, um banco de dados relacional escrito em C que gera um arquivo local. Isso significa que você não precisa instalar nenhum software adicional para lidar com a estrutura e armazenamento de dados.
+
+Além disso, o projeto usa um ORM (Object-Relational Mapping) chamado [Prisma](https://www.prisma.io/), que permite a gente interagir com o banco de dados sem precisar escrever queries SQL e definir as estruturas de tabelas e suas relações em uma linguagem mais fácil.
+
+Caso você queira forkar o projeto e fizer qualquer alteração nos modelos, você precisará fazer [`migrations`](https://www.prisma.io/docs/orm/prisma-migrate/workflows/data-migration) no banco de dados para que as novas colunas/tabelas sejam inseridas.
+
+Ao fazer qualquer alteração no arquivo `apps/taco/src/infrastructure/prisma/schema.prisma`, rode (dentro da pasta do projeto da API) o seguinte comando:
+
+```bash
+bun run db:migrate --name <nome-da-alteração>
+```
+
+Isso irá criar um arquivo de migration que deve ser commitado.
+
+## Resetando o banco de dados
+
+Caso queira limpar o banco de dados e reinserir os dados originais, pode usar o comando:
+
+```bash
+bun run db:reset
+```
+
+## Visualizando os dados
+
+Caso queira ver o banco de dados em um dashboard, você pode subir o Prisma studio:
+
+```bash
+bun run studio
+```

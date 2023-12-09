@@ -1,0 +1,60 @@
+---
+title: "Getting Started"
+---
+
+## Prerequisites
+
+Before you start the initial setup, you need to have 2 runtimes installed:
+
+- [NodeJS](https://nodejs.org/en) version 18 or higher
+- [Bun](https://bun.sh/) version 1.0.15 or higher
+
+Although Bun is the primary runtime, one of the dependencies ([Prisma](https://www.prisma.io/)) still requires Node to generate the initial files.
+
+## Configuration
+
+You can either fork this project or clone it, the choice is yours.
+
+Now, the first step is to install the project dependencies:
+
+```bash
+bun install
+```
+
+## Running the Server
+
+The project is set up as a [monorepo](https://turbo.build/repo/docs/handbook/what-is-a-monorepo) (or workspace) using a tool called [turbo repo](https://turbo.build/repo).
+
+This means that to run the server from the project root, you need to run:
+
+```bash
+bun run dev --filter=taco-api
+```
+
+Or, if you prefer, navigate to the API folder:
+
+```bash
+cd apps/taco
+```
+
+And run the commands directly from the project directory:
+
+```bash
+bun run dev
+```
+
+In both cases, after running the `dev` command, the API will be running at `http://localhost:4000/graphql`.
+
+## Running the Server with Docker
+
+If you want a fully configured environment, it's also possible to run the project via Docker.
+
+For this, at the project root, run the command:
+
+```bash
+docker compose -f ./apps/taco/docker-compose.yml up --build
+```
+
+:::note
+The docker-compose is configured to run the API in development mode. To deploy as a docker image, visit the section [Deploy > Docker](/deploy-docker)
+:::

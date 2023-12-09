@@ -1,0 +1,31 @@
+---
+title: "Deploy as Node app"
+---
+
+There are several ways and platforms to deploy this API.
+
+On any platform, look for a machine that supports NodeJS applications.
+
+Although the project uses Bun, on a machine that has Node, you can install Bun via npm:
+
+```bash
+npm add -g bun@1.0.15
+```
+
+Having installed bun globally, you can now follow the normal steps:
+
+First, install the dependencies:
+
+```bash
+bun install --production
+```
+
+Then, at the root of the project, run the command:
+
+```bash
+bun run start --filter=taco-api
+```
+
+This will build and run the server.
+
+Remember that the port that needs to be open is `4000`.
