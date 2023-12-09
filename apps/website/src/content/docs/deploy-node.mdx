@@ -1,12 +1,31 @@
 ---
-title: "Deploy"
+title: "Deploy como aplicação NodeJS"
 ---
 
-Aqui, você vai precisar seguir o mesmo pré-requisito da etapa de contribuição.
-Uma vez que tem as dependências instaladas, poderá rodar o comando:
+Existem várias maneiras e várias plataformas para fazer o deploy desta API.
+
+Em qualquer plataforma, procure por uma máquina que tenha suporte para aplicações NodeJS.
+
+Apesar do projeto usar Bun, em uma máquina que tenha Node, você pode instalar Bun via npm:
 
 ```bash
-bun start
+npm add -g bun@1.0.15
 ```
 
-Isso colocará o projeto em modo de produção (com os logs desabilitados) e também estará disponível no endereço `http://localhost:4000/grapqhl`.
+Instalado o Bun globalmente, agora você pode seguir os passos normais:
+
+Primeiro, instale as dependências:
+
+```bash
+bun install --production
+```
+
+Em seguida, na raiz do projeto, rode o comando:
+
+```bash
+bun run start --filter=taco-api
+```
+
+Isso vai fazer o build e executar o servidor.
+
+Lembrando que a porta que precisa estar aberta é a `4000`.

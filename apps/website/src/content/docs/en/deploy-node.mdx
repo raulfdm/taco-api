@@ -1,11 +1,31 @@
 ---
-title: "Deploy"
+title: "Deploy as Node app"
 ---
 
-Now, run the server:
+There are several ways and platforms to deploy this API.
+
+On any platform, look for a machine that supports NodeJS applications.
+
+Although the project uses Bun, on a machine that has Node, you can install Bun via npm:
 
 ```bash
-bun run dev
+npm add -g bun@1.0.15
 ```
 
-Now the server is running at `http://localhost:4000/grapqhl`. Now just copy this address into your GraphQL client so you can run queries and view the API documentation.
+Having installed bun globally, you can now follow the normal steps:
+
+First, install the dependencies:
+
+```bash
+bun install --production
+```
+
+Then, at the root of the project, run the command:
+
+```bash
+bun run start --filter=taco-api
+```
+
+This will build and run the server.
+
+Remember that the port that needs to be open is `4000`.
