@@ -11,7 +11,7 @@
     "email": "contact@raulmelo.me"
   },
   "scripts": {
-    "prepare": "husky install",
+    "prepare": "husky install && bun run scripts/fix-graphql-types.ts",
     "build": "turbo build",
     "build:taco-image": "docker ",
     "dev": "turbo dev",
