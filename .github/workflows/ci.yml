@@ -12,7 +12,7 @@ jobs:
       - name: Setup Bun
         uses: oven-sh/setup-bun@v1
         with:
-          bun-version: 1.0.15
+          bun-version: 1.0.17
 
       - name: Install Dependencies
         run: bun install --frozen-lockfile
