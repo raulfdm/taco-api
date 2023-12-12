@@ -1,18 +1,16 @@
 ---
-title: "API Docs"
+title: "API Documentation"
 ---
 
 GraphQL is a typed language for building APIs.
 
-Because we have to type all the schemas, it's possible to find the documentation in the application itself where we are executing queries that benefit from the technique of ["introspection"](https://graphql.org/learn/introspection/).
+Due to the fact that we have to type all the schemas, it is possible to find the documentation in the very application where we are executing the queries, which benefit from the technique of ["introspection"](https://graphql.org/learn/introspection/).
 
-By default, the project offers a way to check the documentation and run embedded queries using a library called [GraphiQL](https://github.com/graphql/graphiql).
+The project uses GraphQL Yoga, which, in addition to creating and implementing the integration of the `/graphql` route for the POST method, when it receives a GET, returns an interactive playground:
 
-To use it, just access the address `http://localhost:4000/graphiql` and you will see a screen like this:
+![GraphiQL query runner](../../../assets/graphql-playground.png)
 
-![GraphiQL query runner](../../../assets/graphiql.png)
-
-Another alternative is to use a specific tool for this. There are several options such as:
+Another alternative is to use a dedicated tool for this. There are several options, such as:
 
 - [Postman](https://www.postman.com/)
 - [Insomnia](https://insomnia.rest/)
