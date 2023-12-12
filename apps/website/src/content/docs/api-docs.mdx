@@ -2,17 +2,15 @@
 title: "Documentação da API"
 ---
 
-GraphQL é uma linguagem tipada para construção de APIs.
+GraphQL é uma linguagem tipada para a construção de APIs.
 
-Pelo fato de termos que tipar todos os esquemas, é possível encontrar a documentação na própria aplicação que estamos executando as queries que se beneficiam da técnica de ["introspection"](https://graphql.org/learn/introspection/).
+Pelo fato de termos de tipar todos os esquemas, é possível encontrar a documentação na própria aplicação em que estamos executando as queries, as quais se beneficiam da técnica de ["introspection"](https://graphql.org/learn/introspection/).
 
-Por padrão, o projeto oferece uma forma de verificar a documentação e rodar queries imbutida usando uma biblioteca chamada [GraphiQL](https://github.com/graphql/graphiql).
+O projeto utiliza GraphQL Yoga, que além de criar e implementar a integração da rota `/graphql` para o método POST, ao receber um GET, retorna um playground interativo:
 
-Para usá-la, basta acessar o endereço `http://localhost:4000/graphiql` e você verá uma tela assim:
+![GraphiQL rodador de queries](../../assets/graphql-playground.png)
 
-![GraphiQL rodador de queries](../../assets/graphiql.png)
-
-Outra alternativa é você utilizar uma ferramenta própria para isso. Há várias opções como:
+Outra alternativa é utilizar uma ferramenta própria para isso. Há várias opções, como:
 
 - [Postman](https://www.postman.com/)
 - [Insomnia](https://insomnia.rest/)

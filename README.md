@@ -2,7 +2,7 @@
 
 > Brazilian Table of Food Composition
 
-![GraphQL Client](./apps/website/src/assets/graphql-client.png)
+![GraphQL Client](/apps/website/src/assets/graphql-playground.png)
 
 <p align="center">
  <a href="https://github.com/raulfdm/taco-api/actions/workflows/ci.yml">
