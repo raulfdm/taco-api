@@ -10,7 +10,6 @@
   "scripts": {
     "prepare": "husky install",
     "build": "turbo build",
-    "build:taco-image": "docker ",
     "dev": "turbo dev",
     "start": "turbo start",
     "lint": "turbo lint",
