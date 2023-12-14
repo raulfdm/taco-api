@@ -7,13 +7,13 @@ RUN apt-get update -y && apt-get install -y openssl
 
 WORKDIR /app
 
-RUN npm install -g bun@1.0.17
+RUN npm install -g bun@1.0.18 pnpm@8.12.1
 
 # Setup
 COPY package.json bun.lockb ./
 COPY /apps/taco/package.json /app/apps/taco/package.json
 COPY /apps/website/package.json /app/apps/website/package.json
-RUN bun install --ignore-scripts
+RUN pnpm install --ignore-scripts
 
 COPY . .
 
