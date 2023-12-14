@@ -18,7 +18,7 @@
     "db:generate": "NODE_ENV=development prisma generate",
     "db:seed": "NODE_ENV=development prisma db seed",
     "db:reset": "NODE_ENV=development prisma migrate reset",
-    "prepare": "bun run db:generate"
+    "prepare": "bun run scripts/fix-graphql-types.ts && bun run db:generate"
   },
   "dependencies": {
     "@elysiajs/cors": "0.7.2",
