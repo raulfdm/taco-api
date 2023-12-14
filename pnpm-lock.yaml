@@ -15,8 +15,8 @@ importers:
         specifier: 2.27.1
         version: 2.27.1
       bun-types:
-        specifier: 1.0.17
-        version: 1.0.17
+        specifier: 1.0.18
+        version: 1.0.18
       husky:
         specifier: 8.0.3
         version: 8.0.3
@@ -58,8 +58,8 @@ importers:
         version: 3.22.4
     devDependencies:
       bun-types:
-        specifier: 1.0.17
-        version: 1.0.17
+        specifier: 1.0.18
+        version: 1.0.18
       csvtojson:
         specifier: 2.0.10
         version: 2.0.10
@@ -2363,8 +2363,8 @@ packages:
       ieee754: 1.2.1
     dev: false
 
-  /bun-types@1.0.17:
-    resolution: {integrity: sha512-5dj7Pi0qmZB1gaY2LmtKKrKixgnxi/qDcawsA4ttWQhT0jWyecSEB8la7c6DIgrMkJciixAtyLLe3aj0SJaRAw==}
+  /bun-types@1.0.18:
+    resolution: {integrity: sha512-1XZ7AxOF8oO8FZtw1xj006JAKxEjulK3dUhsktZVN95vXBlsf4NIjQxfistVdpt24v3H2I9BwHp+UU+gXSSpAw==}
     dev: true
 
   /busboy@1.6.0:
