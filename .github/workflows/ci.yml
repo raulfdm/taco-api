@@ -14,8 +14,11 @@ jobs:
         with:
           bun-version: 1.0.17
 
+      - name: install pnpm
+        run: bun install -g pnpm
+
       - name: Install Dependencies
-        run: bun install --frozen-lockfile
+        run: pnpm install --frozen-lockfile
 
       # Necessary because it's being used in the code
       - name: Linting/Formating
