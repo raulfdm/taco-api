@@ -45,6 +45,7 @@ RUN bun run build --filter=taco-api
 
 # ------------------------------ #
 FROM base AS release
+
 ENV NODE_ENV=production
 
 COPY --from=installer /temp/prod/node_modules /app/node_modules
