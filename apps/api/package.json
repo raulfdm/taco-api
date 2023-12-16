@@ -41,6 +41,6 @@
   },
   "prisma": {
     "seed": "bun run ./src/infrastructure/seed/index.ts",
-    "schema": "./src/infrastructure/prisma/schema.prisma"
+    "schema": "./prisma/schema.prisma"
   }
 }
