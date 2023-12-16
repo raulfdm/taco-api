@@ -31,14 +31,14 @@
     "zod": "3.22.4"
   },
   "devDependencies": {
-    "bun-types": "1.0.17",
+    "bun-types": "1.0.18",
     "csvtojson": "2.0.10",
     "prisma": "5.7.0",
     "typescript": "5.3.3"
   },
-  "packageManager": "bun@1.0.17",
+  "packageManager": "bun@1.0.18",
   "engines": {
-    "bun": "1.0.17"
+    "bun": "1.0.18"
   },
   "prisma": {
     "seed": "bun run ./src/infrastructure/seed/index.ts",

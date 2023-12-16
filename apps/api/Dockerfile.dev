@@ -7,7 +7,7 @@ RUN apt-get update -y && apt-get install -y openssl
 
 WORKDIR /app
 
-RUN npm install -g bun@1.0.17
+RUN npm install -g bun@1.0.18
 
 # Setup
 COPY package.json bun.lockb ./
