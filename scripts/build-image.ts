@@ -5,7 +5,7 @@ Bun.spawnSync(
     "docker",
     "build",
     "-f",
-    "./apps/taco/Dockerfile",
+    "./apps/api/Dockerfile",
     "-t",
     `raulfdm/taco-api:v${version}`,
     "-t",
