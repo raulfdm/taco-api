@@ -1,6 +1,6 @@
 # It needs to be node. Prisma still depends on something from node
 # to generate the client.
-FROM node:slim as base
+FROM node:20-slim as base
 
 # Install OpenSSL. Required for prisma to work.
 RUN apt-get update -y && apt-get install -y openssl
