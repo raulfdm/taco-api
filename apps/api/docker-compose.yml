@@ -5,7 +5,7 @@ services:
     working_dir: /app
     build:
       context: ../../
-      dockerfile: ./apps/taco/Dockerfile.dev
+      dockerfile: ./apps/api/Dockerfile.dev
     environment:
       PORT: 4000
 

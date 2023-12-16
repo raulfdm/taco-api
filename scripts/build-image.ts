@@ -1,11 +1,11 @@
-import { version } from "../apps/taco/package.json";
+import { version } from "../apps/api/package.json";
 
 Bun.spawnSync(
   [
     "docker",
     "build",
     "-f",
-    "./apps/taco/Dockerfile",
+    "./apps/api/Dockerfile",
     "-t",
     `raulfdm/taco-api:v${version}`,
     "-t",

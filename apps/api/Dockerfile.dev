@@ -11,12 +11,12 @@ RUN npm install -g bun@1.0.17
 
 # Setup
 COPY package.json bun.lockb ./
-COPY /apps/taco/package.json /app/apps/taco/package.json
+COPY /apps/api/package.json /app/apps/api/package.json
 COPY /apps/website/package.json /app/apps/website/package.json
 RUN bun install --ignore-scripts
 
 COPY . .
 
-RUN cd ./apps/taco && bunx prisma generate
+RUN cd ./apps/api && bunx prisma generate
 EXPOSE 4000
 ENTRYPOINT bun run dev --filter=taco-api
