@@ -44,5 +44,5 @@ new Elysia()
     } as any),
   )
   .listen(env.PORT, ({ port }) => {
-    console.log(`🚀 Server ready at http://localhost:${port}`);
+    console.log(`🚀 Server ready at http://localhost:${port}/graphql`);
   });
