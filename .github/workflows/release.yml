@@ -40,4 +40,4 @@ jobs:
 
       - name: Build and Push Docker Image
         if: steps.changesets.outputs.hasChangesets == 'false'
-        run: pnpm run image:deploy
+        run: bun run image:deploy
