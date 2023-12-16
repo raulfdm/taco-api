@@ -15,5 +15,5 @@ LICENSE
 node_modules
 README.md
 references
-dist
+*/dist
 # apps/taco/src/infrastructure/prisma/generated

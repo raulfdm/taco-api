@@ -14,10 +14,10 @@
     "studio": "prisma studio",
     "lint": "biome lint src",
     "lint:ci": "biome ci src",
-    "db:migrate": "NODE_ENV=development prisma migrate dev",
-    "db:generate": "NODE_ENV=development prisma generate",
-    "db:seed": "NODE_ENV=development prisma db seed",
-    "db:reset": "NODE_ENV=development prisma migrate reset",
+    "db:migrate": "NODE_ENV=development bunx prisma migrate dev",
+    "db:generate": "NODE_ENV=development bunx prisma generate",
+    "db:seed": "NODE_ENV=development bunx prisma db seed",
+    "db:reset": "NODE_ENV=development bunx prisma migrate reset",
     "prepare": "bun run scripts/fix-graphql-types.ts"
   },
   "dependencies": {
@@ -35,10 +35,6 @@
     "csvtojson": "2.0.10",
     "prisma": "5.7.0",
     "typescript": "5.3.3"
-  },
-  "packageManager": "pnpm@8.12.1",
-  "engines": {
-    "pnpm": "8.12.1"
   },
   "prisma": {
     "seed": "bun run ./src/infrastructure/seed/index.ts",
