@@ -7,7 +7,7 @@ title: "Começando"
 Antes de fazer a configuração inicial, você precisa ter 2 runtimes instalados:
 
 - [NodeJS](https://nodejs.org/en) versão 18 ou superior
-- [Bun](https://bun.sh/) versão 1.0.17 ou superior
+- [Bun](https://bun.sh/) versão 1.0.18 ou superior
 
 Apesar do Bun ser o runtime principal, uma das dependências ([Prisma](https://www.prisma.io/)) ainda precisa do Node para gerar os arquivos iniciais.
 
@@ -34,7 +34,7 @@ bun run dev --filter=taco-api
 Ou, se preferir, navegue até a pasta da API:
 
 ```bash
-cd apps/taco
+cd apps/api
 ```
 
 E rode os comandos diretamente do diretório do projeto:
@@ -52,7 +52,7 @@ Caso você queira um ambiente já totalmente configurado, também é possível r
 Para isso, na raiz do projeto, rode o comando:
 
 ```bash
-docker compose -f ./apps/taco/docker-compose.yml up --build
+docker compose -f ./apps/api/docker-compose.yml up --build
 ```
 
 :::note
