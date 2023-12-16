@@ -8,7 +8,7 @@ Additionally, the project uses an ORM (Object-Relational Mapping) called [Prisma
 
 If you want to fork the project and make any changes to the models, you will need to perform [`migrations`](https://www.prisma.io/docs/orm/prisma-migrate/workflows/data-migration) in the database so that the new columns/tables are inserted.
 
-When making any changes to the `apps/taco/src/infrastructure/prisma/schema.prisma` file, run (inside the project's API folder) the following command:
+When making any changes to the `apps/api/src/infrastructure/prisma/schema.prisma` file, run (inside the project's API folder) the following command:
 
 ```bash
 bun run db:migrate --name <name-of-change>

@@ -19,7 +19,7 @@
 
 This project is a monorepo:
 
-- [The API project](./apps/taco/)
+- [The API project](./apps/api/)
 - [The DOCs project](./apps/website)
 
 The monorepo handling is done by Turbo and Bun.

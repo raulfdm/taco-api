@@ -34,7 +34,7 @@ bun run dev --filter=taco-api
 Or, if you prefer, navigate to the API folder:
 
 ```bash
-cd apps/taco
+cd apps/api
 ```
 
 And run the commands directly from the project directory:
@@ -52,7 +52,7 @@ If you want a fully configured environment, it's also possible to run the projec
 For this, at the project root, run the command:
 
 ```bash
-docker compose -f ./apps/taco/docker-compose.yml up --build
+bun run dev:docker
 ```
 
 :::note
