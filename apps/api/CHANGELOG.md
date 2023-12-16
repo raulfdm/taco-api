@@ -1,5 +1,11 @@
 # taco-api
 
+## 3.0.1
+
+### Patch Changes
+
+- 5257a21: fix optional options
+
 ## 3.0.0
 
 ### Major Changes
