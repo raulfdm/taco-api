@@ -30,7 +30,7 @@ importers:
         specifier: 5.3.3
         version: 5.3.3
 
-  apps/taco:
+  apps/api:
     dependencies:
       '@elysiajs/cors':
         specifier: 0.7.2
