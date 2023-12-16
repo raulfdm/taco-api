@@ -9,13 +9,15 @@ jobs:
       - name: Checkout to repository
         uses: actions/checkout@v4.1.1
 
-      - name: Setup Bun
-        uses: oven-sh/setup-bun@v1
+      - uses: actions/setup-node@v3
         with:
-          bun-version: 1.0.18
+          node-version: 20
+
+      - name: Install Bun
+        run: npm install -g bun@1.0.18
 
       - name: Install Dependencies
-        run: bun install --frozen-lockfile
+        run: bun install
 
       # Necessary because it's being used in the code
       - name: Linting/Formating
