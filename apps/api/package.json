@@ -15,10 +15,9 @@
     "lint": "biome lint src",
     "lint:ci": "biome ci src",
     "db:migrate": "NODE_ENV=development prisma migrate dev",
-    "db:generate": "NODE_ENV=development prisma generate",
+    "db:generate": "prisma generate",
     "db:seed": "NODE_ENV=development prisma db seed",
-    "db:reset": "NODE_ENV=development prisma migrate reset",
-    "prepare": "bun run db:generate"
+    "db:reset": "NODE_ENV=development prisma migrate reset"
   },
   "dependencies": {
     "@elysiajs/cors": "0.7.2",
@@ -42,6 +41,6 @@
   },
   "prisma": {
     "seed": "bun run ./src/infrastructure/seed/index.ts",
-    "schema": "./src/infrastructure/prisma/schema.prisma"
+    "schema": "./prisma/schema.prisma"
   }
 }

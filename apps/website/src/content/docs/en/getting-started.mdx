@@ -6,10 +6,20 @@ title: "Getting Started"
 
 Before you start the initial setup, you need to have 2 runtimes installed:
 
-- [NodeJS](https://nodejs.org/en) version 18 or higher
+- [NodeJS](https://nodejs.org/en) version 20 or higher
 - [Bun](https://bun.sh/) version 1.0.18 or higher
 
 Although Bun is the primary runtime, one of the dependencies ([Prisma](https://www.prisma.io/)) still requires Node to generate the initial files.
+
+:::tip
+
+If you already have Node installed, you can install `bun` via npm:
+
+```bash
+npm install -g bun@1.0.18
+```
+
+:::
 
 ## Configuration
 
@@ -31,20 +41,6 @@ This means that to run the server from the project root, you need to run:
 bun run dev --filter=taco-api
 ```
 
-Or, if you prefer, navigate to the API folder:
-
-```bash
-cd apps/api
-```
-
-And run the commands directly from the project directory:
-
-```bash
-bun run dev
-```
-
-In both cases, after running the `dev` command, the API will be running at `http://localhost:4000/graphql`.
-
 ## Running the Server with Docker
 
 If you want a fully configured environment, it's also possible to run the project via Docker.
@@ -52,9 +48,17 @@ If you want a fully configured environment, it's also possible to run the projec
 For this, at the project root, run the command:
 
 ```bash
-docker compose -f ./apps/api/docker-compose.yml up --build
+docker-compose -f ./apps/api/docker-compose.yml up
 ```
 
 :::note
 The docker-compose is configured to run the API in development mode. To deploy as a docker image, visit the section [Deploy > Docker](/deploy-docker)
 :::
+
+## Running the Documentation
+
+If you want to edit the documentation, in the project's root directory, run the command:
+
+```bash
+bun run dev --filter=website
+```

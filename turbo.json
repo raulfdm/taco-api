@@ -2,9 +2,15 @@
   "$schema": "https://turbo.build/schema.json",
   "pipeline": {
     "build": {
-      "outputs": ["dist/**"]
+      "dependsOn": ["db:generate"],
+      "outputs": ["dist/app.js"],
+      "env": ["NODE_ENV=production"]
     },
-    "dev": {},
+    "db:generate": {},
+    "dev": {
+      "dependsOn": ["db:generate"],
+      "env": ["NODE_ENV=development"]
+    },
     "lint": {},
     "lint:ci": {},
     "start": {
