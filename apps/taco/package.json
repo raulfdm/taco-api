@@ -10,15 +10,15 @@
   "scripts": {
     "start": "NODE_ENV=production bun run dist/app.js",
     "dev": "NODE_ENV=development bun --watch src/app.ts",
-    "studio": "prisma studio",
     "build": "bun run scripts/build.ts",
+    "studio": "prisma studio",
     "lint": "biome lint src",
     "lint:ci": "biome ci src",
     "db:migrate": "NODE_ENV=development prisma migrate dev",
     "db:generate": "NODE_ENV=development prisma generate",
     "db:seed": "NODE_ENV=development prisma db seed",
     "db:reset": "NODE_ENV=development prisma migrate reset",
-    "prepare": "bun run scripts/fix-graphql-types.ts && bun run db:generate"
+    "prepare": "bun run scripts/fix-graphql-types.ts"
   },
   "dependencies": {
     "@elysiajs/cors": "0.7.2",
