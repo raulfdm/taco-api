@@ -1,6 +1,6 @@
 # It needs to be node. Prisma still depends on something from node
 # to generate the client.
-FROM node:slim as base
+FROM node:20-slim as base
 
 # Install OpenSSL. Required for prisma to work.
 RUN apt-get update -y && apt-get install -y openssl
@@ -10,13 +10,8 @@ WORKDIR /app
 RUN npm install -g bun@1.0.18 pnpm@8.12.1
 
 # Setup
-COPY package.json bun.lockb ./
-COPY /apps/api/package.json /app/apps/api/package.json
-COPY /apps/website/package.json /app/apps/website/package.json
+COPY . .
 RUN pnpm install --ignore-scripts
 
-COPY . .
-
-RUN cd ./apps/api && bunx prisma generate
 EXPOSE 4000
 ENTRYPOINT bun run dev --filter=taco-api
