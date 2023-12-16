@@ -6,10 +6,20 @@ title: "Começando"
 
 Antes de fazer a configuração inicial, você precisa ter 2 runtimes instalados:
 
-- [NodeJS](https://nodejs.org/en) versão 18 ou superior
+- [NodeJS](https://nodejs.org/en) versão 20 ou superior
 - [Bun](https://bun.sh/) versão 1.0.18 ou superior
 
 Apesar do Bun ser o runtime principal, uma das dependências ([Prisma](https://www.prisma.io/)) ainda precisa do Node para gerar os arquivos iniciais.
+
+:::tip
+
+Caso já tenha o Node instalado, você pode o `bun` via npm:
+
+```bash
+npm install -g bun@1.0.18
+```
+
+:::
 
 ## Configuração
 
@@ -31,28 +41,16 @@ Isso significa que para rodar o servidor através da raiz do projeto, você prec
 bun run dev --filter=taco-api
 ```
 
-Ou, se preferir, navegue até a pasta da API:
-
-```bash
-cd apps/api
-```
-
-E rode os comandos diretamente do diretório do projeto:
-
-```bash
-bun run dev
-```
-
-Em ambos os casos, depois de rodar o comando `dev`, a API estará rodando em `http://localhost:4000/graphql`.
+Esse comando vai gerar os arquivos necessarios e iniciar o servidor HTTP da API no endereço [http://localhost:4000/graphql](http://localhost:4000/graphql)
 
 ## Rodando o servidor com Docker
 
-Caso você queira um ambiente já totalmente configurado, também é possível rodar o projeto via Docker.
+Caso queira um ambiente totalmente configurado sem precisar instalar nada, é possível rodar o projeto via docker.
 
 Para isso, na raiz do projeto, rode o comando:
 
 ```bash
-docker compose -f ./apps/api/docker-compose.yml up --build
+docker-compose -f ./apps/api/docker-compose.yml up
 ```
 
 :::note
