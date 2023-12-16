@@ -54,3 +54,11 @@ docker-compose -f ./apps/api/docker-compose.yml up
 :::note
 The docker-compose is configured to run the API in development mode. To deploy as a docker image, visit the section [Deploy > Docker](/deploy-docker)
 :::
+
+## Running the Documentation
+
+If you want to edit the documentation, in the project's root directory, run the command:
+
+```bash
+bun run dev --filter=website
+```
