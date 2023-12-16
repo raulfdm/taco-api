@@ -18,6 +18,7 @@
     "start": "turbo start",
     "lint": "turbo lint",
     "lint:ci": "turbo lint:ci",
+    "db:generate": "turbo db:generate",
     "image:build": "bun run scripts/build-image.ts",
     "image:deploy": "bun run image:build && docker push raulfdm/taco-api"
   },
