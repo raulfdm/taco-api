@@ -1,4 +1,4 @@
-import { version } from "../apps/taco/package.json";
+import { version } from "../apps/api/package.json";
 
 Bun.spawnSync(
   [
