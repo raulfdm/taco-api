@@ -21,19 +21,21 @@ jobs:
         run: bun run build --filter=website
 
       - name: Netlify Deploy
+        id: netlify_deploy
         uses: jsmrcaga/action-netlify-deploy@v2.1.0
         with:
           install_command: "echo Skipping installing the dependencies"
           build_command: "echo Skipping building the web files"
-          build_directory: apps/website/dist
+          build_directory: ./apps/website/dist
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
           deploy_alias: ${{ env.BRANCH_NAME }}
+          monorepo_package: website
 
-      # - name: Status check
-      #   uses: Sibz/github-status-action@v1.1.1
-      #   with:
-      #     authToken: ${{ secrets.GITHUB_TOKEN }}
-      #     context: Netlify preview
-      #     state: success
-      #     target_url: ${{ env.NETLIFY_PREVIEW_URL }}
+      - name: Status check
+        uses: Sibz/github-status-action@v1.1.6
+        with:
+          authToken: ${{ secrets.GITHUB_TOKEN }}
+          context: Netlify preview
+          state: success
+          target_url: ${{ steps.netlify_deploy.outputs.NETLIFY_PREVIEW_URL }}
