@@ -1,5 +1,11 @@
 # taco-api
 
+## 3.0.2
+
+### Patch Changes
+
+- 76e7f1a: update bun to 1.0.20
+
 ## 3.0.1
 
 ### Patch Changes
