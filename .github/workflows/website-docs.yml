@@ -33,16 +33,13 @@ jobs:
       - uses: actions/github-script@v7
         with:
           script: |
-            async function he(){
-              const result = await github.rest.repos.listPullRequestsAssociatedWithCommit({
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                commit_sha: context.sha,
-              })
+            const result = await github.rest.repos.listPullRequestsAssociatedWithCommit({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              commit_sha: context.sha,
+            })
 
-              console.log(result.data[0].number)
-            }
-            he()
+            console.log(result.data[0].number)
 
       # - name: Checkout to repository
       #   uses: actions/checkout@v4.1.1
