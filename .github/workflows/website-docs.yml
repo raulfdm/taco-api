@@ -25,7 +25,7 @@ jobs:
         with:
           script: |
             function he(){
-              console.log(github.rest.repos)
+              console.log(github.rest.repos.listPullRequestsAssociatedWithCommit)
             }
             he()
 
