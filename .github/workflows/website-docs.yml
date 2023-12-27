@@ -33,19 +33,8 @@ jobs:
           NETLIFY_DEPLOY_TO_PROD: ${{ env.BRANCH_NAME == 'main' }}
           monorepo_package: website
 
-      # - name: Status check
-      #   uses: Sibz/github-status-action@v1.1.6
-      #   with:
-      #     authToken: ${{ secrets.GITHUB_TOKEN }}
-      #     context: Netlify preview
-      #     state: success
-      #     target_url: ${{ steps.netlify_deploy.outputs.NETLIFY_PREVIEW_URL }}
-
-      - name: Status Check
-        uses: Sibz/github-status-action@v1
+      - name: Comment PR
+        uses: thollander/actions-comment-pull-request@v2
         with:
-          authToken: ${{secrets.GITHUB_TOKEN}}
-          context: Netlify preview
-          description: "Passed"
-          state: "success"
-          sha: ${{github.event.pull_request.head.sha || github.sha}}
+          message: |
+            [Preview](${{ steps.netlify_deploy.outputs.NETLIFY_PREVIEW_URL }})
