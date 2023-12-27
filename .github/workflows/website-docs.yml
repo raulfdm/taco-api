@@ -10,15 +10,26 @@ jobs:
   website:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/github-script@v6
+      - uses: jwalton/gh-find-current-pr@v1
+        id: findPr
         with:
-          script: |
-            github.rest.issues.createComment({
-              issue_number: context.issue.number,
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              body: '👋 Thanks for reporting!'
-            })
+          # Can be "open", "closed", or "all".  Defaults to "open".
+          state: open
+      # This will echo "Your PR is 7", or be skipped if there is no current PR.
+      - run: echo "Your PR is ${PR}"
+        if: success() && steps.findPr.outputs.number
+        env:
+          PR: ${{ steps.findPr.outputs.pr }}
+
+      # - uses: actions/github-script@v6
+      #   with:
+      #     script: |
+      #       github.rest.issues.createComment({
+      #         issue_number: context.issue.number,
+      #         owner: context.repo.owner,
+      #         repo: context.repo.repo,
+      #         body: '👋 Thanks for reporting!'
+      #       })
 
       - run: |
           pull_number=$(jq --raw-output .pull_request.number "$GITHUB_EVENT_PATH")
