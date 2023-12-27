@@ -25,19 +25,20 @@ jobs:
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
-            const results = github.rest.repos.listPullRequestsAssociatedWithCommit({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              commit_sha: ${{ github.sha }},
-            });
+            console.log(JSON.stringify(context,null,2))
+            # const results = github.rest.repos.listPullRequestsAssociatedWithCommit({
+            #   owner: context.repo.owner,
+            #   repo: context.repo.repo,
+            #   commit_sha: ${{ github.sha }},
+            # });
 
-            const issues = result.data.filter((el) => state === 'all' || el.state === state);
+            # const issues = result.data.filter((el) => state === 'all' || el.state === state);
 
-            const issueNumber = issues.find((el) => {
-                    return context.payload.ref === `refs/heads/${el.head.ref}`;
-                }) || issues[0];
+            # const issueNumber = issues.find((el) => {
+            #         return context.payload.ref === `refs/heads/${el.head.ref}`;
+            #     }) || issues[0];
 
-            console.log(issueNumber)
+            # console.log(issueNumber)
 
       - run: |
           pull_number=$(jq --raw-output .pull_request.number "$GITHUB_EVENT_PATH")
