@@ -41,40 +41,27 @@ jobs:
           NETLIFY_PREVIEW_URL=$(cat deploy_output.txt | grep "Website draft URL: " | cut -d' ' -f4)
           echo "NETLIFY_PREVIEW_URL=$NETLIFY_PREVIEW_URL" >> "$GITHUB_OUTPUT"
 
-      - name: Comment on PR
-        run: |
-          echo ${{steps.url_preview.outputs.NETLIFY_PREVIEW_URL}}
+      - uses: actions/github-script@v7
+        env:
+          NETLIFY_PREVIEW_URL: ${{ steps.url_preview.outputs.NETLIFY_PREVIEW_URL }}
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            async function comment(){
+              const result = await github.rest.repos.listPullRequestsAssociatedWithCommit({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                commit_sha: context.sha,
+              })
 
-      # - name: Extract Preview URL
-      #   id: extract_preview_url
-      #   run: |
-      #     echo ${{ steps.netlify_deploy.outputs.NETLIFY_PREVIEW_URL }}
+              const issueNumber = result.data[0].number
 
-      # NETLIFY_PREVIEW_URL=$(echo echo $OUTPUT | grep 'Website draft URL' | cut -d' ' -f4)
-      # echo "NETLIFY_PREVIEW_URL=$NETLIFY_PREVIEW_URL" >> "$GITHUB_OUTPUT"
+              await github.rest.issues.createComment({
+                issue_number: issueNumber,
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                body: 'Preview URL: ' + process.env.NETLIFY_PREVIEW_URL
+              })
+            }
 
-      # - uses: actions/github-script@v7
-      #   env:
-      #     NETLIFY_PREVIEW_URL: ${{ steps.netlify_deploy.outputs.NETLIFY_PREVIEW_URL }}
-      #   with:
-      #     github-token: ${{ secrets.GITHUB_TOKEN }}
-      #     script: |
-      #       async function comment(){
-      #         console.log(process.env)
-      #         const result = await github.rest.repos.listPullRequestsAssociatedWithCommit({
-      #           owner: context.repo.owner,
-      #           repo: context.repo.repo,
-      #           commit_sha: context.sha,
-      #         })
-
-      #         const issueNumber = result.data[0].number
-
-      #         await github.rest.issues.createComment({
-      #           issue_number: issueNumber,
-      #           owner: context.repo.owner,
-      #           repo: context.repo.repo,
-      #           body: 'Preview URL: '
-      #         })
-      #       }
-
-      #       comment()
+            comment()
