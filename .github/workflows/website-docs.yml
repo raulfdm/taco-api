@@ -1,0 +1,76 @@
+name: Website Docs
+
+on: [push]
+
+permissions:
+  pull-requests: write
+
+jobs:
+  website:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout to repository
+        uses: actions/checkout@v4.1.1
+
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v1
+        with:
+          bun-version: 1.0.20
+
+      - name: Install dependencies
+        run: bun install --no-cache
+
+      - name: Add Netlify CLI globally
+        run: bun add -g netlify-cli@17.10.1
+
+      - name: Build website
+        run: bun run build --filter=website
+
+      - name: Deploy to Netlify
+        id: netlify_deploy
+        env:
+          BRANCH_NAME: ${{ github.head_ref || github.ref_name }}
+        run: |
+          netlify deploy \
+            --dir apps/website/dist \
+            --site ${{ secrets.NETLIFY_SITE_ID }} \
+            --filter taco-api \
+            --auth ${{ secrets.NETLIFY_AUTH_TOKEN }} \
+            $(if [$BRANCH_NAME == "master"]; then echo "--prod"; fi) \
+            > deploy_output.txt
+
+      - name: Generate URL Preview
+        id: url_preview
+        run: |
+          NETLIFY_PREVIEW_URL=$(cat deploy_output.txt | grep "Website draft URL: " | cut -d' ' -f4)
+          echo "NETLIFY_PREVIEW_URL=$NETLIFY_PREVIEW_URL" >> "$GITHUB_OUTPUT"
+
+      - name: Comment URL Preview on PR
+        uses: actions/github-script@v7
+        env:
+          NETLIFY_PREVIEW_URL: ${{ steps.url_preview.outputs.NETLIFY_PREVIEW_URL }}
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            async function comment(){
+              const result = await github.rest.repos.listPullRequestsAssociatedWithCommit({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                commit_sha: context.sha,
+              })
+
+              const issueNumber = result.data[0].number
+
+              if(issueNumber){
+                await github.rest.issues.createComment({
+                  issue_number: issueNumber,
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  body: 'Preview URL: ' + process.env.NETLIFY_PREVIEW_URL
+                })
+              }else{
+                console.log('No PR found for commit ' + context.sha)
+              }
+            }
+
+            comment()
