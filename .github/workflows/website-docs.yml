@@ -36,6 +36,7 @@ jobs:
           echo "Pull Request Number: $pull_number"
           echo $GITHUB_REF
           echo ${{github.event.number}}
+          echo ${{github.event.workflow_run.id}}
           echo ${{github.event.issue.number}}
           echo ${{ github.event.pull_request.number }}
           echo ${{ github.head_ref }}
