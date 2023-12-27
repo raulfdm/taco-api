@@ -24,8 +24,14 @@ jobs:
       - uses: actions/github-script@v7
         with:
           script: |
-            function he(){
-              console.log(github.rest.repos.listPullRequestsAssociatedWithCommit)
+            async function he(){
+              const result = await github.rest.repos.listPullRequestsAssociatedWithCommit({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                commit_sha: context.sha,
+              })
+
+              console.log(result)
             }
             he()
 
