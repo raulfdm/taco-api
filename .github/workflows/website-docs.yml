@@ -35,6 +35,8 @@ jobs:
         id: extract_preview_url
 
         run: |
+          ${{ steps.netlify_deploy.outputs }}
+          echo "${{ steps.netlify_deploy.outputs }}"
           NETLIFY_PREVIEW_URL=$(echo "${{ steps.netlify_deploy.outputs }}" | grep 'Website draft URL' | cut -d' ' -f4)
           echo "NETLIFY_PREVIEW_URL=$URL" >> "$GITHUB_OUTPUT"
 
