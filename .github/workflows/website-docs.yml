@@ -37,30 +37,30 @@ jobs:
           monorepo_package: website
 
       - name: foo
-        run: echo ${{ steps.netlify_deploy.outputs.NETLIFY_PREVIEW_URL }}
+        run: echo ${{ steps.netlify_deploy.outputs.NETLIFY_LIVE_URL }}
 
-      - uses: actions/github-script@v7
-        env:
-          NETLIFY_PREVIEW_URL: ${{ steps.netlify_deploy.outputs.NETLIFY_PREVIEW_URL }}
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          script: |
-            async function comment(){
-              console.log(process.env)
-              const result = await github.rest.repos.listPullRequestsAssociatedWithCommit({
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                commit_sha: context.sha,
-              })
+      # - uses: actions/github-script@v7
+      #   env:
+      #     NETLIFY_PREVIEW_URL: ${{ steps.netlify_deploy.outputs.NETLIFY_PREVIEW_URL }}
+      #   with:
+      #     github-token: ${{ secrets.GITHUB_TOKEN }}
+      #     script: |
+      #       async function comment(){
+      #         console.log(process.env)
+      #         const result = await github.rest.repos.listPullRequestsAssociatedWithCommit({
+      #           owner: context.repo.owner,
+      #           repo: context.repo.repo,
+      #           commit_sha: context.sha,
+      #         })
 
-              const issueNumber = result.data[0].number
+      #         const issueNumber = result.data[0].number
 
-              # await github.rest.issues.createComment({
-              #   issue_number: issueNumber,
-              #   owner: context.repo.owner,
-              #   repo: context.repo.repo,
-              #   body: 'Preview URL: ' 
-              # })
-            }
+      #         await github.rest.issues.createComment({
+      #           issue_number: issueNumber,
+      #           owner: context.repo.owner,
+      #           repo: context.repo.repo,
+      #           body: 'Preview URL: '
+      #         })
+      #       }
 
-            await comment()
+      #       comment()
