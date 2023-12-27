@@ -6,35 +6,43 @@ jobs:
   website:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout to repository
-        uses: actions/checkout@v4.1.1
+      - run: |
+          pull_number=$(jq --raw-output .pull_request.number "$GITHUB_EVENT_PATH")
+          echo "Pull Request Number: $pull_number"
+          echo $GITHUB_REF
+          echo ${{github.event.number}}
+          echo ${{github.event.issue.number}}
+          echo ${{ github.event.pull_request.number }}
 
-      - name: Setup Bun
-        uses: oven-sh/setup-bun@v1
-        with:
-          bun-version: 1.0.20
+      # - name: Checkout to repository
+      #   uses: actions/checkout@v4.1.1
 
-      - name: Install dependencies
-        run: bun install --no-cache
+      # - name: Setup Bun
+      #   uses: oven-sh/setup-bun@v1
+      #   with:
+      #     bun-version: 1.0.20
 
-      - name: Build
-        run: bun run build --filter=website
+      # - name: Install dependencies
+      #   run: bun install --no-cache
 
-      - name: Netlify Deploy
-        id: netlify_deploy
-        uses: jsmrcaga/action-netlify-deploy@v2.1.0
-        with:
-          install_command: "echo Skipping installing the dependencies"
-          build_command: "echo Skipping building the web files"
-          build_directory: ./apps/website/dist
-          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
-          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
-          deploy_alias: ${{ env.BRANCH_NAME }}
-          NETLIFY_DEPLOY_TO_PROD: ${{ env.BRANCH_NAME == 'main' }}
-          monorepo_package: website
+      # - name: Build
+      #   run: bun run build --filter=website
 
-      - name: Comment PR
-        uses: thollander/actions-comment-pull-request@v2
-        with:
-          message: |
-            [Preview](${{ steps.netlify_deploy.outputs.NETLIFY_PREVIEW_URL }})
+      # - name: Netlify Deploy
+      #   id: netlify_deploy
+      #   uses: jsmrcaga/action-netlify-deploy@v2.1.0
+      #   with:
+      #     install_command: "echo Skipping installing the dependencies"
+      #     build_command: "echo Skipping building the web files"
+      #     build_directory: ./apps/website/dist
+      #     NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+      #     NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+      #     deploy_alias: ${{ env.BRANCH_NAME }}
+      #     NETLIFY_DEPLOY_TO_PROD: ${{ env.BRANCH_NAME == 'main' }}
+      #     monorepo_package: website
+
+      # - name: Comment PR
+      #   uses: thollander/actions-comment-pull-request@v2
+      #   with:
+      #     message: |
+      #       [Preview](${{ steps.netlify_deploy.outputs.NETLIFY_PREVIEW_URL }})
