@@ -45,19 +45,23 @@ jobs:
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
-            console.log(import.meta.env)
-            console.log(process.env)
-            const result = await github.rest.repos.listPullRequestsAssociatedWithCommit({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              commit_sha: context.sha,
-            })
+            async function comment(){
+              console.log(import.meta.env)
+              console.log(process.env)
+              const result = await github.rest.repos.listPullRequestsAssociatedWithCommit({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                commit_sha: context.sha,
+              })
 
-            const issueNumber = result.data[0].number
+              const issueNumber = result.data[0].number
 
-            # await github.rest.issues.createComment({
-            #   issue_number: issueNumber,
-            #   owner: context.repo.owner,
-            #   repo: context.repo.repo,
-            #   body: 'Preview URL: ' 
-            # })
+              # await github.rest.issues.createComment({
+              #   issue_number: issueNumber,
+              #   owner: context.repo.owner,
+              #   repo: context.repo.repo,
+              #   body: 'Preview URL: ' 
+              # })
+            }
+
+            await comment()
