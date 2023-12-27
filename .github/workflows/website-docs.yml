@@ -10,26 +10,6 @@ jobs:
   website:
     runs-on: ubuntu-latest
     steps:
-      - id: extract_pr
-        shell: bash
-        run: |
-          if [[ "${{ github.event_name }}" == "merge_group" ]]; then
-            echo "number=$(echo "${{ github.ref }}" | sed -n 's|.*/pr-\([0-9]*\)-.*|\1|p')" >> $GITHUB_OUTPUT
-          elif [[ "${{ github.event_name }}" == "pull_request" ]]; then
-            echo "number=${{ github.event.pull_request.number }}" >> $GITHUB_OUTPUT
-          fi
-
-      - uses: jwalton/gh-find-current-pr@v1
-        id: findPr
-        with:
-          # Can be "open", "closed", or "all".  Defaults to "open".
-          state: open
-      # This will echo "Your PR is 7", or be skipped if there is no current PR.
-      - run: echo "Your PR is ${PR}"
-        if: success() && steps.findPr.outputs.number
-        env:
-          PR: ${{ steps.findPr.outputs.pr }}
-
       - uses: actions/github-script@v7
         with:
           script: |
@@ -39,7 +19,14 @@ jobs:
               commit_sha: context.sha,
             })
 
-            console.log(result.data[0].number)
+            const issueNumber = result.data[0].number
+
+            await github.rest.issues.createComment({
+              issue_number: issueNumber,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: '👋 HELLO!'
+            })
 
       # - name: Checkout to repository
       #   uses: actions/checkout@v4.1.1
