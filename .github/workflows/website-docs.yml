@@ -55,9 +55,9 @@ jobs:
 
             const issueNumber = result.data[0].number
 
-            await github.rest.issues.createComment({
-              issue_number: issueNumber,
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              body: 'Preview URL: ' + ${{ steps.netlify_deploy.outputs.NETLIFY_PREVIEW_URL }}
-            })
+            # await github.rest.issues.createComment({
+            #   issue_number: issueNumber,
+            #   owner: context.repo.owner,
+            #   repo: context.repo.repo,
+            #   body: 'Preview URL: ' 
+            # })
