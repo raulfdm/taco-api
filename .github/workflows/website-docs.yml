@@ -30,40 +30,15 @@ jobs:
         id: netlify_deploy
         run: |
           OUTPUT=$(netlify deploy --dir apps/website/dist --site ${{ secrets.NETLIFY_SITE_ID }} --filter taco-api --auth ${{ secrets.NETLIFY_AUTH_TOKEN }})
-          NETLIFY_PREVIEW_URL=$(echo echo $OUTPUT | grep 'Website draft URL' | cut -d' ' -f4)
-          echo "NETLIFY_PREVIEW_URL=$NETLIFY_PREVIEW_URL" >> "$GITHUB_OUTPUT"
+          echo $OUTPUT
 
-      - name: Extract Preview URL
-        id: extract_preview_url
-        run: |
-          echo ${{ steps.netlify_deploy.outputs.NETLIFY_PREVIEW_URL }}
-
-        # run: |
-        # ${{join(steps.netlify_deploy.outputs.*, '\n')}}
-        # ${{ steps.netlify_deploy.outputs }}
-        # echo "${{ steps.netlify_deploy.outputs }}"
-        # # NETLIFY_PREVIEW_URL=$(echo "${{ steps.netlify_deploy.outputs }}" | grep 'Website draft URL' | cut -d' ' -f4)
-        # # echo "NETLIFY_PREVIEW_URL=$URL" >> "$GITHUB_OUTPUT"
-      # - run: echo ${{ steps.extract_preview_url.outputs.NETLIFY_PREVIEW_URL }}
-
-      # - name: Netlify Deploy
-      #   id: netlify_deploy
-      #   uses: jsmrcaga/action-netlify-deploy@v2.1.0
-      #   with:
-      #     install_command: "echo Skipping installing the dependencies"
-      #     build_command: "echo Skipping building the web files"
-      #     build_directory: ./apps/website/dist
-      #     NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
-      #     NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
-      #     deploy_alias: ${{ env.BRANCH_NAME }}
-      #     NETLIFY_DEPLOY_TO_PROD: ${{ env.BRANCH_NAME == 'main' }}
-      #     monorepo_package: website
-
-      # - name: foo
-      #   shell: bash
+      # - name: Extract Preview URL
+      #   id: extract_preview_url
       #   run: |
-      #     echo ${{ steps.netlify_deploy.outputs }}
-      #     echo ${{ github.event_name}}
+      #     echo ${{ steps.netlify_deploy.outputs.NETLIFY_PREVIEW_URL }}
+
+      # NETLIFY_PREVIEW_URL=$(echo echo $OUTPUT | grep 'Website draft URL' | cut -d' ' -f4)
+      # echo "NETLIFY_PREVIEW_URL=$NETLIFY_PREVIEW_URL" >> "$GITHUB_OUTPUT"
 
       # - uses: actions/github-script@v7
       #   env:
