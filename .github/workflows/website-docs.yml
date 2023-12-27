@@ -28,15 +28,16 @@ jobs:
 
       - name: Deploy
         id: netlify_deploy
-        run: netlify deploy --dir apps/website/dist --site ${{ secrets.NETLIFY_SITE_ID }} --filter taco-api --auth ${{ secrets.NETLIFY_AUTH_TOKEN }}
-
-      - name: Extract and set Website Draft URL
-        id: extract_url
         run: |
-          URL=$(echo "$DEPLOY_OUTPUT" | grep 'Website draft URL' | cut -d' ' -f4)
-          echo "::set-output name=website_draft_url::$URL"
-        env:
-          DEPLOY_OUTPUT: ${{ steps.netlify_deploy.outputs }}
+          netlify deploy --dir apps/website/dist --site ${{ secrets.NETLIFY_SITE_ID }} --filter taco-api --auth ${{ secrets.NETLIFY_AUTH_TOKEN }}
+
+      - name: Extract Preview URL
+        id: extract_preview_url
+        run: |
+          NETLIFY_PREVIEW_URL=$(echo "$DEPLOY_OUTPUT" | grep 'Website draft URL' | cut -d' ' -f4)
+          echo "NETLIFY_PREVIEW_URL=$URL" >> "$GITHUB_OUTPUT"
+
+      - run: echo ${{ steps.extract_preview_url.outputs.NETLIFY_PREVIEW_URL }}
 
       # - name: Netlify Deploy
       #   id: netlify_deploy
