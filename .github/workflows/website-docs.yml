@@ -21,15 +21,28 @@ jobs:
         env:
           PR: ${{ steps.findPr.outputs.pr }}
 
-      # - uses: actions/github-script@v6
-      #   with:
-      #     script: |
-      #       github.rest.issues.createComment({
-      #         issue_number: context.issue.number,
-      #         owner: context.repo.owner,
-      #         repo: context.repo.repo,
-      #         body: '👋 Thanks for reporting!'
-      #       })
+      - uses: actions/github-script@v6
+        with:
+          script: |
+            const results = github.rest.repos.listPullRequestsAssociatedWithCommit({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              commit_sha: sha,
+            });
+
+            const issues = result.data.filter((el) => state === 'all' || el.state === state);
+
+            const issueNumber =
+                issues.find((el) => {
+                    return context.payload.ref === `refs/heads/${el.head.ref}`;
+                }) || issues[0];
+
+            github.rest.issues.createComment({
+              issue_number: issueNumber,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: '👋 Thanks for reporting!'
+            })
 
       - run: |
           pull_number=$(jq --raw-output .pull_request.number "$GITHUB_EVENT_PATH")
