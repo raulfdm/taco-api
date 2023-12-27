@@ -20,14 +20,15 @@ jobs:
       - name: Install dependencies
         run: bun install --no-cache
 
+      - name: Add Netlify CLI
+        run: bun add -g netlify-cli@17.10.1
+
       - name: Build
         run: bun run build --filter=website
 
       - name: Deploy
         id: netlify_deploy
-        uses: netlify/actions/cli@master
-        with:
-          args: netlify deploy --dir ./apps/website/dist --site taco-api
+        run: netlify deploy --dir ./apps/website/dist --site taco-api
         env:
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
