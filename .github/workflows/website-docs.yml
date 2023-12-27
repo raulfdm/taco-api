@@ -10,6 +10,15 @@ jobs:
   website:
     runs-on: ubuntu-latest
     steps:
+      - id: extract_pr
+        shell: bash
+        run: |
+          if [[ "${{ github.event_name }}" == "merge_group" ]]; then
+            echo "number=$(echo "${{ github.ref }}" | sed -n 's|.*/pr-\([0-9]*\)-.*|\1|p')" >> $GITHUB_OUTPUT
+          elif [[ "${{ github.event_name }}" == "pull_request" ]]; then
+            echo "number=${{ github.event.pull_request.number }}" >> $GITHUB_OUTPUT
+          fi
+
       - uses: jwalton/gh-find-current-pr@v1
         id: findPr
         with:
@@ -31,7 +40,7 @@ jobs:
                 commit_sha: context.sha,
               })
 
-              console.log(result)
+              console.log(result.data[0].number)
             }
             he()
 
