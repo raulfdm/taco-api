@@ -35,6 +35,13 @@ jobs:
             --filter taco-api \
             --auth ${{ secrets.NETLIFY_AUTH_TOKEN }} > output.txt
 
+      - name: STUFF
+        run: |
+          echo ${{ github.event.base_ref }}
+          echo ${{ github.base_ref }}
+          echo ${{ github.ref }}
+          cat output.txt | grep "Website draft URL: " | cut -d' ' -f4
+
       - name: OUTPUT
         uses: actions/upload-artifact@v3
         with:
