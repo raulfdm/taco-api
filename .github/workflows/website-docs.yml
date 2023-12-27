@@ -9,7 +9,7 @@ jobs:
   website:
     runs-on: ubuntu-latest
     steps:
-      - run: echo ${{env}} | sort
+      - run: echo env | sort
       # - name: Checkout to repository
       #   uses: actions/checkout@v4.1.1
 
