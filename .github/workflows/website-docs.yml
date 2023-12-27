@@ -35,12 +35,13 @@ jobs:
         id: extract_preview_url
 
         run: |
+          ${{join(steps.netlify_deploy.outputs.*, '\n')}}
           ${{ steps.netlify_deploy.outputs }}
           echo "${{ steps.netlify_deploy.outputs }}"
-          NETLIFY_PREVIEW_URL=$(echo "${{ steps.netlify_deploy.outputs }}" | grep 'Website draft URL' | cut -d' ' -f4)
-          echo "NETLIFY_PREVIEW_URL=$URL" >> "$GITHUB_OUTPUT"
+          # NETLIFY_PREVIEW_URL=$(echo "${{ steps.netlify_deploy.outputs }}" | grep 'Website draft URL' | cut -d' ' -f4)
+          # echo "NETLIFY_PREVIEW_URL=$URL" >> "$GITHUB_OUTPUT"
 
-      - run: echo ${{ steps.extract_preview_url.outputs.NETLIFY_PREVIEW_URL }}
+      # - run: echo ${{ steps.extract_preview_url.outputs.NETLIFY_PREVIEW_URL }}
 
       # - name: Netlify Deploy
       #   id: netlify_deploy
