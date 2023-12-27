@@ -37,7 +37,10 @@ jobs:
           monorepo_package: website
 
       - name: foo
-        run: echo ${{ steps.netlify_deploy.outputs.NETLIFY_LIVE_URL }}
+        shell: bash
+        run: |
+          echo ${{ steps.netlify_deploy.outputs.NETLIFY_LIVE_URL }}
+          echo ${{ github.event_name}}
 
       # - uses: actions/github-script@v7
       #   env:
