@@ -12,9 +12,12 @@ jobs:
       - name: Checkout to repository
         uses: actions/checkout@v4.1.1
 
-      - run: |
-          BRANCH_NAME=$(git rev-parse --abbrev-ref HEAD)
-          echo $BRANCH_NAME
+      - name: Get branch name
+        id: branch_name
+        run: |
+          echo ${{ github.head_ref || github.ref_name }} 
+          # BRANCH_NAME=$(git rev-parse --abbrev-ref HEAD)
+          # echo "BRANCH_NAME=$BRANCH_NAME" >> "$GITHUB_OUTPUT"
 
       # - name: Setup Bun
       #   uses: oven-sh/setup-bun@v1
