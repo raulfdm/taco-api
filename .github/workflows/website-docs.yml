@@ -2,6 +2,10 @@ name: Website Docs
 
 on: [push]
 
+permissions:
+  contents: read
+  pull-requests: read
+
 jobs:
   website:
     runs-on: ubuntu-latest
@@ -10,6 +14,7 @@ jobs:
           pull_number=$(jq --raw-output .pull_request.number "$GITHUB_EVENT_PATH")
           echo "Pull Request Number: $pull_number"
           echo $GITHUB_REF
+          echo ${{github.event}}
           echo ${{github.event.number}}
           echo ${{github.event.issue.number}}
           echo ${{ github.event.pull_request.number }}
