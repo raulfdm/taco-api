@@ -14,10 +14,15 @@ jobs:
           pull_number=$(jq --raw-output .pull_request.number "$GITHUB_EVENT_PATH")
           echo "Pull Request Number: $pull_number"
           echo $GITHUB_REF
-          echo ${{fromJSON(github.event)}}
           echo ${{github.event.number}}
           echo ${{github.event.issue.number}}
           echo ${{ github.event.pull_request.number }}
+          echo ${{ github.head_ref }}
+          echo ${{ github.base_ref }}
+          echo ${{ github.event.ref }}
+          echo ${{ github.triggering_actor }}
+          echo ${{ github.run_number }}
+          env | sort
 
       # - name: Checkout to repository
       #   uses: actions/checkout@v4.1.1
