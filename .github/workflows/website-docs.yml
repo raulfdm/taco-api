@@ -34,7 +34,12 @@ jobs:
             --site ${{ secrets.NETLIFY_SITE_ID }} \
             --filter taco-api \
             --auth ${{ secrets.NETLIFY_AUTH_TOKEN }} > output.txt
-          cat output.txt | grep 'Website URL' | cut -d' ' -f4
+
+      - name: OUTPUT
+        uses: actions/upload-artifact@v3
+        with:
+          name: deploy-output
+          path: output.txt
 
       # - name: Extract Preview URL
       #   id: extract_preview_url
