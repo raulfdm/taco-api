@@ -33,20 +33,17 @@ jobs:
             --dir apps/website/dist \
             --site ${{ secrets.NETLIFY_SITE_ID }} \
             --filter taco-api \
-            --auth ${{ secrets.NETLIFY_AUTH_TOKEN }} > output.txt
+            --auth ${{ secrets.NETLIFY_AUTH_TOKEN }} > deploy_output.txt
 
-      - name: STUFF
+      - name: Generate URL Preview
+        id: url_preview
         run: |
-          echo ${{ github.event.base_ref }}
-          echo ${{ github.base_ref }}
-          echo ${{ github.ref }}
-          cat output.txt | grep "Website draft URL: " | cut -d' ' -f4
+          NETLIFY_PREVIEW_URL=$(cat deploy_output.txt | grep "Website draft URL: " | cut -d' ' -f4)
+          echo "NETLIFY_PREVIEW_URL=$NETLIFY_PREVIEW_URL" >> "$GITHUB_OUTPUT"
 
-      - name: OUTPUT
-        uses: actions/upload-artifact@v3
-        with:
-          name: deploy-output
-          path: output.txt
+      - name: Comment on PR
+        run: |
+          echo ${{steps.url_preview.outputs.NETLIFY_PREVIEW_URL}}
 
       # - name: Extract Preview URL
       #   id: extract_preview_url
