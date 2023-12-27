@@ -9,11 +9,12 @@ jobs:
   website:
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout to repository
+        uses: actions/checkout@v4.1.1
+
       - run: |
           BRANCH_NAME=$(git rev-parse --abbrev-ref HEAD)
           echo $BRANCH_NAME
-      # - name: Checkout to repository
-      #   uses: actions/checkout@v4.1.1
 
       # - name: Setup Bun
       #   uses: oven-sh/setup-bun@v1
