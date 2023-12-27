@@ -36,7 +36,7 @@ jobs:
 
         run: |
           echo ${{join(steps.netlify_deploy.outputs.*, '\n')}}
-          echo ${{ fromJson(steps.netlify_deploy.outputs) }}
+
         # run: |
         # ${{join(steps.netlify_deploy.outputs.*, '\n')}}
         # ${{ steps.netlify_deploy.outputs }}
