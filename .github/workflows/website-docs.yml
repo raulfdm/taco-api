@@ -29,8 +29,12 @@ jobs:
       - name: Deploy
         id: netlify_deploy
         run: |
-          OUTPUT=$(netlify deploy --dir apps/website/dist --site ${{ secrets.NETLIFY_SITE_ID }} --filter taco-api --auth ${{ secrets.NETLIFY_AUTH_TOKEN }})
-          echo $OUTPUT
+          netlify deploy \
+            --dir apps/website/dist \
+            --site ${{ secrets.NETLIFY_SITE_ID }} \
+            --filter taco-api \
+            --auth ${{ secrets.NETLIFY_AUTH_TOKEN }} > output.txt
+          cat output.txt
 
       # - name: Extract Preview URL
       #   id: extract_preview_url
