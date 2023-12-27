@@ -23,24 +23,33 @@ jobs:
       - name: Build
         run: bun run build --filter=website
 
-      - name: Netlify Deploy
+      - name: Deploy
         id: netlify_deploy
-        uses: jsmrcaga/action-netlify-deploy@v2.1.0
+        uses: netlify/actions/cli@master
         with:
-          install_command: "echo Skipping installing the dependencies"
-          build_command: "echo Skipping building the web files"
-          build_directory: ./apps/website/dist
-          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          args: netlify deploy --dir ./apps/website/dist --site taco-api
+        env:
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
-          deploy_alias: ${{ env.BRANCH_NAME }}
-          NETLIFY_DEPLOY_TO_PROD: ${{ env.BRANCH_NAME == 'main' }}
-          monorepo_package: website
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
 
-      - name: foo
-        shell: bash
-        run: |
-          echo ${{ steps.netlify_deploy.outputs.NETLIFY_LIVE_URL }}
-          echo ${{ github.event_name}}
+      # - name: Netlify Deploy
+      #   id: netlify_deploy
+      #   uses: jsmrcaga/action-netlify-deploy@v2.1.0
+      #   with:
+      #     install_command: "echo Skipping installing the dependencies"
+      #     build_command: "echo Skipping building the web files"
+      #     build_directory: ./apps/website/dist
+      #     NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+      #     NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+      #     deploy_alias: ${{ env.BRANCH_NAME }}
+      #     NETLIFY_DEPLOY_TO_PROD: ${{ env.BRANCH_NAME == 'main' }}
+      #     monorepo_package: website
+
+      # - name: foo
+      #   shell: bash
+      #   run: |
+      #     echo ${{ steps.netlify_deploy.outputs }}
+      #     echo ${{ github.event_name}}
 
       # - uses: actions/github-script@v7
       #   env:
