@@ -25,7 +25,7 @@ jobs:
         with:
           script: |
             function he(){
-              console.log(JSON.stringify(context,null,2))
+              console.log(github.rest.repos)
             }
             he()
 
