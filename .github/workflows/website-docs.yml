@@ -36,10 +36,17 @@ jobs:
           NETLIFY_DEPLOY_TO_PROD: ${{ env.BRANCH_NAME == 'main' }}
           monorepo_package: website
 
+      - name: foo
+        run: echo ${{ steps.netlify_deploy.outputs.NETLIFY_PREVIEW_URL }}
+
       - uses: actions/github-script@v7
+        env:
+          NETLIFY_PREVIEW_URL: ${{ secrets.NETLIFY_PREVIEW_URL }}
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
+            console.log(import.meta.env)
+            console.log(process.env)
             const result = await github.rest.repos.listPullRequestsAssociatedWithCommit({
               owner: context.repo.owner,
               repo: context.repo.repo,
