@@ -6,42 +6,33 @@ jobs:
   website:
     runs-on: ubuntu-latest
     steps:
-      - name: ECHO
-        run: env
-      # - name: Checkout to repository
-      #   uses: actions/checkout@v4.1.1
+      - name: Checkout to repository
+        uses: actions/checkout@v4.1.1
 
-      # - name: Setup Bun
-      #   uses: oven-sh/setup-bun@v1
-      #   with:
-      #     bun-version: 1.0.20
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v1
+        with:
+          bun-version: 1.0.20
 
-      # - name: Install dependencies
-      #   run: bun install --no-cache
+      - name: Install dependencies
+        run: bun install --no-cache
 
-      # - name: Build
-      #   run: bun run build --filter=website
+      - name: Build
+        run: bun run build --filter=website
 
-      # - name: Netlify Deploy
-      #   id: netlify_deploy
-      #   uses: jsmrcaga/action-netlify-deploy@v2.1.0
-      #   with:
-      #     install_command: "echo Skipping installing the dependencies"
-      #     build_command: "echo Skipping building the web files"
-      #     build_directory: ./apps/website/dist
-      #     NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
-      #     NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
-      #     deploy_alias: ${{ env.BRANCH_NAME }}
-      #     NETLIFY_DEPLOY_TO_PROD: ${{ env.BRANCH_NAME == 'main' }}
-      #     monorepo_package: website
+      - name: Netlify Deploy
+        id: netlify_deploy
+        uses: jsmrcaga/action-netlify-deploy@v2.1.0
+        with:
+          install_command: "echo Skipping installing the dependencies"
+          build_command: "echo Skipping building the web files"
+          build_directory: ./apps/website/dist
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+          deploy_alias: ${{ env.BRANCH_NAME }}
+          NETLIFY_DEPLOY_TO_PROD: ${{ env.BRANCH_NAME == 'main' }}
+          monorepo_package: website
 
-      # - name: Update comment
-      #   uses: peter-evans/create-or-update-comment@v3
-      #   with:
-      #     # comment-id: 557858210
-      #     body: |
-      #       **Edit:** Some additional info
-      #     reactions: eyes
       # - name: Status check
       #   uses: Sibz/github-status-action@v1.1.6
       #   with:
@@ -49,3 +40,12 @@ jobs:
       #     context: Netlify preview
       #     state: success
       #     target_url: ${{ steps.netlify_deploy.outputs.NETLIFY_PREVIEW_URL }}
+
+      - name: Status Check
+        uses: Sibz/github-status-action@v1
+        with:
+          authToken: ${{secrets.GITHUB_TOKEN}}
+          context: Netlify preview
+          description: "Passed"
+          state: "success"
+          sha: ${{github.event.pull_request.head.sha || github.sha}}
