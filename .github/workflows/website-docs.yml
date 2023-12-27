@@ -27,7 +27,7 @@ jobs:
             const results = github.rest.repos.listPullRequestsAssociatedWithCommit({
               owner: context.repo.owner,
               repo: context.repo.repo,
-              commit_sha: sha,
+              commit_sha: ${{ github.sha }},
             });
 
             const issues = result.data.filter((el) => state === 'all' || el.state === state);
@@ -57,6 +57,7 @@ jobs:
           echo ${{ github.event.ref }}
           echo ${{ github.triggering_actor }}
           echo ${{ github.run_number }}
+          echo ${{ github.sha }}
           env | sort
 
       # - name: Checkout to repository
