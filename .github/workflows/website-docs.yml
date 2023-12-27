@@ -21,7 +21,7 @@ jobs:
         env:
           PR: ${{ steps.findPr.outputs.pr }}
 
-      - uses: actions/github-script@v6
+      - uses: actions/github-script@v7
         with:
           script: |
             const results = github.rest.repos.listPullRequestsAssociatedWithCommit({
@@ -32,17 +32,11 @@ jobs:
 
             const issues = result.data.filter((el) => state === 'all' || el.state === state);
 
-            const issueNumber =
-                issues.find((el) => {
+            const issueNumber = issues.find((el) => {
                     return context.payload.ref === `refs/heads/${el.head.ref}`;
                 }) || issues[0];
 
-            github.rest.issues.createComment({
-              issue_number: issueNumber,
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              body: '👋 Thanks for reporting!'
-            })
+            console.log(issueNumber)
 
       - run: |
           pull_number=$(jq --raw-output .pull_request.number "$GITHUB_EVENT_PATH")
@@ -57,7 +51,6 @@ jobs:
           echo ${{ github.event.ref }}
           echo ${{ github.triggering_actor }}
           echo ${{ github.run_number }}
-          echo ${{ github.sha }}
           env | sort
 
       # - name: Checkout to repository
