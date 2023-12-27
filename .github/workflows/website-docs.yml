@@ -29,11 +29,11 @@ jobs:
       - name: Deploy
         id: netlify_deploy
         run: |
-          netlify deploy --dir apps/website/dist --site ${{ secrets.NETLIFY_SITE_ID }} --filter taco-api --auth ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          NETLIFY_PREVIEW_URL=$(netlify deploy --dir apps/website/dist --site ${{ secrets.NETLIFY_SITE_ID }} --filter taco-api --auth ${{ secrets.NETLIFY_AUTH_TOKEN }})
+          echo "NETLIFY_PREVIEW_URL=$NETLIFY_PREVIEW_URL" >> "$GITHUB_OUTPUT"
 
       - name: Extract Preview URL
         id: extract_preview_url
-
         run: |
           echo ${{join(steps.netlify_deploy.outputs.*, '\n')}}
 
