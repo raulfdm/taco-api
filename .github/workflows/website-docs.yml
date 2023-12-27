@@ -37,8 +37,6 @@ jobs:
           monorepo_package: website
 
       - uses: actions/github-script@v7
-        env:
-          NETLIFY_PREVIEW_URL: ${{ steps.netlify_deploy.outputs.NETLIFY_PREVIEW_URL }}
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
@@ -54,5 +52,5 @@ jobs:
               issue_number: issueNumber,
               owner: context.repo.owner,
               repo: context.repo.repo,
-              body: 'Preview URL: ' + process.env.NETLIFY_PREVIEW_URL
+              body: 'Preview URL: ' + ${{ steps.netlify_deploy.outputs.NETLIFY_PREVIEW_URL }}
             })
