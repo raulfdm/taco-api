@@ -9,7 +9,9 @@ jobs:
   website:
     runs-on: ubuntu-latest
     steps:
-      - run: env | sort
+      - run: |
+          BRANCH_NAME=$(git rev-parse --abbrev-ref HEAD)
+          echo $BRANCH_NAME
       # - name: Checkout to repository
       #   uses: actions/checkout@v4.1.1
 
