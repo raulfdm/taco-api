@@ -23,37 +23,11 @@ jobs:
 
       - uses: actions/github-script@v7
         with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
-            console.log(JSON.stringify(context,null,2))
-            # const results = github.rest.repos.listPullRequestsAssociatedWithCommit({
-            #   owner: context.repo.owner,
-            #   repo: context.repo.repo,
-            #   commit_sha: ${{ github.sha }},
-            # });
-
-            # const issues = result.data.filter((el) => state === 'all' || el.state === state);
-
-            # const issueNumber = issues.find((el) => {
-            #         return context.payload.ref === `refs/heads/${el.head.ref}`;
-            #     }) || issues[0];
-
-            # console.log(issueNumber)
-
-      - run: |
-          pull_number=$(jq --raw-output .pull_request.number "$GITHUB_EVENT_PATH")
-          echo "Pull Request Number: $pull_number"
-          echo $GITHUB_REF
-          echo ${{github.event.number}}
-          echo ${{github.event.workflow_run.id}}
-          echo ${{github.event.issue.number}}
-          echo ${{ github.event.pull_request.number }}
-          echo ${{ github.head_ref }}
-          echo ${{ github.base_ref }}
-          echo ${{ github.event.ref }}
-          echo ${{ github.triggering_actor }}
-          echo ${{ github.run_number }}
-          env | sort
+            function he(){
+              console.log(JSON.stringify(context,null,2))
+            }
+            he()
 
       # - name: Checkout to repository
       #   uses: actions/checkout@v4.1.1
