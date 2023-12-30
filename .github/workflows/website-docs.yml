@@ -5,6 +5,9 @@ on: [push]
 permissions:
   pull-requests: write
 
+env:
+  BRANCH_NAME: ${{ github.head_ref || github.ref_name }}
+
 jobs:
   website:
     runs-on: ubuntu-latest
@@ -28,9 +31,9 @@ jobs:
 
       - name: Deploy to Netlify
         id: netlify_deploy
-        env:
-          BRANCH_NAME: ${{ github.head_ref || github.ref_name }}
         run: |
+          additional_flags=""
+          if [ "$BRANCH_NAME" = "main" ]; then additional_flags="--prod"; fi
           netlify deploy \
             --dir apps/website/dist \
             --site ${{ secrets.NETLIFY_SITE_ID }} \
