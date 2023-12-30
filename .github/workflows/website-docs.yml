@@ -39,7 +39,7 @@ jobs:
             --site ${{ secrets.NETLIFY_SITE_ID }} \
             --filter taco-api \
             --auth ${{ secrets.NETLIFY_AUTH_TOKEN }} \
-            $(if ["$BRANCH_NAME" == "main"]; then echo "--prod"; fi) \
+            $additional_flags \
             > deploy_output.txt
 
       - name: Generate URL Preview
