@@ -44,12 +44,14 @@ jobs:
 
       - name: Generate URL Preview
         id: url_preview
+        if: ${{ env.BRANCH_NAME != 'main' }}
         run: |
           NETLIFY_PREVIEW_URL=$(cat deploy_output.txt | grep "Website draft URL: " | cut -d' ' -f4)
           echo "NETLIFY_PREVIEW_URL=$NETLIFY_PREVIEW_URL" >> "$GITHUB_OUTPUT"
 
       - name: Comment URL Preview on PR
         uses: actions/github-script@v7
+        if: ${{ env.BRANCH_NAME != 'main' }}
         env:
           NETLIFY_PREVIEW_URL: ${{ steps.url_preview.outputs.NETLIFY_PREVIEW_URL }}
         with:
