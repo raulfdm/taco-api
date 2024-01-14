@@ -1,7 +1,13 @@
+import minimist from "minimist";
 import { version } from "../apps/api/package.json";
+
+const args = minimist<{ deploy?: boolean; build?: boolean }>(Bun.argv);
 
 const tagVersion = `raulfdm/taco-api:v${version}`;
 const latestVersion = "raulfdm/taco-api:latest";
+
+console.log("Building...");
+
 Bun.spawnSync(
   [
     "docker",
@@ -19,9 +25,10 @@ Bun.spawnSync(
   },
 );
 
-console.log("Build");
-
-Bun.spawnSync(["docker", "push", latestVersion]);
-Bun.spawnSync(["docker", "push", tagVersion]);
-
-console.log("Docker images pushed");
+if (args.deploy) {
+  console.log("Deploying...");
+  Bun.spawnSync(["docker", "push", latestVersion]);
+  Bun.spawnSync(["docker", "push", tagVersion]);
+} else {
+  console.log("Skipping deploy...");
+}

@@ -11,7 +11,7 @@
     "start": "NODE_ENV=production bun run dist/app.js",
     "dev": "NODE_ENV=development bun --watch src/app.ts",
     "studio": "prisma studio",
-    "build": "bun run scripts/build.ts",
+    "build": "bun build src/app.ts --compile --outfile dist/taco-api-standalone",
     "lint": "biome lint src",
     "lint:ci": "biome ci src",
     "db:migrate": "NODE_ENV=development prisma migrate dev",
