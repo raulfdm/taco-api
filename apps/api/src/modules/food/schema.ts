@@ -1,15 +1,12 @@
-import * as url from "url";
 import type { Prisma } from "@prisma/client";
 import { createModule } from "graphql-modules";
 
 import { getPrismaClient } from "../../infrastructure/primaClient";
 import { typeDefs } from "./typeDef";
 
-const __dirname = url.fileURLToPath(new URL(".", import.meta.url));
-
 export const foodModule = createModule({
   id: "food-module",
-  dirname: __dirname,
+  dirname: import.meta.dir,
   typeDefs: typeDefs,
   resolvers: {
     Query: {
