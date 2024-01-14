@@ -26,15 +26,16 @@
   "devDependencies": {
     "@biomejs/biome": "1.4.1",
     "@changesets/cli": "2.27.1",
-    "@types/bun": "1.0.0",
+    "@types/bun": "1.0.1",
     "husky": "8.0.3",
     "lint-staged": "15.1.0",
+    "minimist": "1.2.8",
     "turbo": "1.11.1",
     "typescript": "5.3.3"
   },
-  "packageManager": "bun@1.0.20",
+  "packageManager": "bun@1.0.22",
   "engines": {
-    "bun": "1.0.20"
+    "bun": "1.0.22"
   },
   "lint-staged": {
     "*.{js,ts,json}": "bunx @biomejs/biome check --apply"

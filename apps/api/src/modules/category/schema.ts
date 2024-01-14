@@ -1,4 +1,3 @@
-import * as url from "url";
 import type { Prisma } from "@prisma/client";
 import { createModule } from "graphql-modules";
 
@@ -7,11 +6,9 @@ import { typeDefs } from "./typeDef";
 
 type FoodFilters = Pick<Prisma.FoodFindManyArgs, "skip" | "take">;
 
-const __dirname = url.fileURLToPath(new URL(".", import.meta.url));
-
 export const categoryModule = createModule({
   id: "category-module",
-  dirname: __dirname,
+  dirname: import.meta.dir,
   typeDefs: typeDefs,
   resolvers: {
     Query: {

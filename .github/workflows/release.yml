@@ -18,7 +18,7 @@ jobs:
       - name: Setup Bun
         uses: oven-sh/setup-bun@v1
         with:
-          bun-version: 1.0.20
+          bun-version: 1.0.22
 
       - name: Install Dependencies
         run: bun install --frozen-lockfile --no-cache
@@ -40,4 +40,4 @@ jobs:
 
       - name: Build and Push Docker Image
         if: steps.changesets.outputs.hasChangesets == 'false'
-        run: bun run image:deploy
+        run: bun run image:build --deploy

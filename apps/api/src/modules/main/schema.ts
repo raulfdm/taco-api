@@ -1,11 +1,8 @@
-import * as url from "url";
 import { createModule, gql } from "graphql-modules";
-
-const __dirname = url.fileURLToPath(new URL(".", import.meta.url));
 
 export const mainModule = createModule({
   id: "main-module",
-  dirname: __dirname,
+  dirname: import.meta.dir,
   typeDefs: [
     gql`
       input PrismaQueryOptions {
