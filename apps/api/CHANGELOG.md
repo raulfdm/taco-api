@@ -1,5 +1,11 @@
 # taco-api
 
+## 3.1.0
+
+### Minor Changes
+
+- 12d8a88: build api with --compile and reduce the docker image 76%~
+
 ## 3.0.2
 
 ### Patch Changes
