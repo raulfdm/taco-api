@@ -11,7 +11,6 @@
   "scripts": {
     "prepare": "husky && bun run scripts/fix-graphql-types.ts",
     "build": "turbo build",
-    "build:taco-image": "docker ",
     "dev": "turbo dev",
     "dev:docker": "docker-compose -f ./apps/api/docker-compose.yml up",
     "start": "turbo start",
