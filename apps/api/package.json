@@ -8,7 +8,7 @@
     "url": "https://github.com/raulfdm/taco-api/issues"
   },
   "scripts": {
-    "start": "NODE_ENV=production bun run dist/app.js",
+    "start": "bun run build && NODE_ENV=production ./dist/taco-api-standalone",
     "dev": "prisma generate && NODE_ENV=development bun --watch src/app.ts",
     "studio": "prisma studio",
     "build": "bun build src/app.ts --compile --outfile dist/taco-api-standalone",
