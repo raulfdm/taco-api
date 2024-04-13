@@ -1,6 +1,6 @@
 import path from "node:path";
 
-import * as url from "url";
+import * as url from "node:url";
 import csvtojson from "csvtojson/v2";
 import { z } from "zod";
 
