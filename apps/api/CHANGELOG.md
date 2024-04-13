@@ -1,5 +1,15 @@
 # taco-api
 
+## 3.2.0
+
+### Minor Changes
+
+- eba8667: update dependencies
+
+### Patch Changes
+
+- eba8667: fix dev and start command
+
 ## 3.1.0
 
 ### Minor Changes
