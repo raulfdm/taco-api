@@ -8,7 +8,7 @@ RUN apt-get update -y && apt-get install -y openssl
 WORKDIR /app
 
 # Install bun to be available in all stages.
-RUN npm install -g bun@1.0.22
+RUN npm install -g bun@1.1.3
 
 FROM base as setup
 
