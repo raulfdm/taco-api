@@ -1,9 +1,7 @@
 {
   "name": "taco-workspace",
   "private": true,
-  "workspaces": [
-    "apps/*"
-  ],
+  "workspaces": ["apps/*"],
   "type": "module",
   "license": "MIT",
   "author": {
@@ -11,7 +9,7 @@
     "email": "contact@raulmelo.me"
   },
   "scripts": {
-    "prepare": "husky install && bun run scripts/fix-graphql-types.ts",
+    "prepare": "husky && bun run scripts/fix-graphql-types.ts",
     "build": "turbo build",
     "build:taco-image": "docker ",
     "dev": "turbo dev",
@@ -24,14 +22,14 @@
     "image:deploy": "bun run image:build"
   },
   "devDependencies": {
-    "@biomejs/biome": "1.4.1",
+    "@biomejs/biome": "1.6.4",
     "@changesets/cli": "2.27.1",
     "@types/bun": "1.0.12",
-    "husky": "8.0.3",
-    "lint-staged": "15.1.0",
+    "husky": "9.0.11",
+    "lint-staged": "15.2.2",
     "minimist": "1.2.8",
-    "turbo": "1.11.1",
-    "typescript": "5.3.3"
+    "turbo": "1.13.2",
+    "typescript": "5.4.5"
   },
   "packageManager": "bun@1.1.3",
   "engines": {
