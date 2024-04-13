@@ -11,12 +11,12 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/starlight": "0.15.0",
-    "astro": "4.0.1",
-    "sharp": "0.33.0"
+    "@astrojs/starlight": "0.21.5",
+    "astro": "4.6.1",
+    "sharp": "0.33.3"
   },
   "devDependencies": {
-    "@astrojs/check": "0.3.1",
-    "typescript": "5.3.3"
+    "@astrojs/check": "0.5.10",
+    "typescript": "5.4.5"
   }
 }
