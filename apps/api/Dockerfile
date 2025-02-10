@@ -12,7 +12,7 @@ RUN npm install -g bun@1.2.2
 
 FROM base as setup
 
-COPY package.json bun.lockb ./
+COPY package.json bun.lock ./
 COPY /apps/api/package.json ./apps/api/package.json
 COPY /apps/website/package.json ./apps/website/package.json
 COPY /scripts/fix-graphql-types.ts ./scripts/fix-graphql-types.ts
