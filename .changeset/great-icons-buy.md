@@ -1,5 +1,5 @@
 ---
-"taco-api": minor
+"taco-api": patch
 ---
 
 Fix Dockerfile
