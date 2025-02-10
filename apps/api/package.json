@@ -20,20 +20,20 @@
     "db:reset": "NODE_ENV=development prisma migrate reset"
   },
   "dependencies": {
-    "@elysiajs/cors": "1.0.2",
-    "@elysiajs/graphql-yoga": "1.0.2",
+    "@elysiajs/cors": "1.2.0",
+    "@elysiajs/graphql-yoga": "1.2.0",
     "@envelop/graphql-modules": "6.0.0",
-    "@prisma/client": "5.12.1",
-    "elysia": "1.0.13",
-    "graphql-modules": "2.3.0",
-    "graphql": "16.8.1",
-    "zod": "3.22.4"
+    "@prisma/client": "6.3.1",
+    "elysia": "1.2.12",
+    "graphql-modules": "2.4.0",
+    "graphql": "16.10.0",
+    "zod": "3.24.1"
   },
   "devDependencies": {
-    "@types/bun": "1.0.12",
+    "@types/bun": "1.2.2",
     "csvtojson": "2.0.10",
-    "prisma": "5.12.1",
-    "typescript": "5.4.5"
+    "prisma": "6.3.1",
+    "typescript": "5.7.3"
   },
   "packageManager": "bun@1.2.2",
   "engines": {
