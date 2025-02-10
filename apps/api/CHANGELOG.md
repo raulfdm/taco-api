@@ -1,5 +1,11 @@
 # taco-api
 
+## 4.1.0
+
+### Minor Changes
+
+- 7fce14c: Fix Dockerfile
+
 ## 4.0.0
 
 ### Major Changes
