@@ -1,5 +1,13 @@
 # taco-api
 
+## 4.0.0
+
+### Major Changes
+
+- 38d751c: Upgrade all dependencies
+
+  In theory, nothing has changed except the dependencies version. This is a major because I've migrated from Prisma 5 to 6.
+
 ## 3.2.0
 
 ### Minor Changes
