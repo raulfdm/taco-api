@@ -21,14 +21,14 @@
     "image:deploy": "bun run image:build"
   },
   "devDependencies": {
-    "@biomejs/biome": "1.6.4",
-    "@changesets/cli": "2.27.1",
-    "@types/bun": "1.0.12",
-    "husky": "9.0.11",
-    "lint-staged": "15.2.2",
+    "@biomejs/biome": "1.9.4",
+    "@changesets/cli": "2.27.12",
+    "@types/bun": "1.2.2",
+    "husky": "9.1.7",
+    "lint-staged": "15.4.3",
     "minimist": "1.2.8",
     "turbo": "1.13.2",
-    "typescript": "5.4.5"
+    "typescript": "5.7.3"
   },
   "packageManager": "bun@1.2.2",
   "engines": {
